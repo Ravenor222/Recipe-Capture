@@ -8,12 +8,13 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "clarifai": "^2.9.1",
     "expo": "~36.0.0",
+    "expo-camera": "~8.0.0",
     "galio-framework": "^0.6.3",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-camera": "^3.19.1",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
