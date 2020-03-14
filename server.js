@@ -1,22 +1,20 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const PORT = 3001;
+const bodyParser = require("body-parser");
 const identifyImage = require('./components/helpers/clarifai_helper');
 
+app.use(bodyParser.urlencoded({extended: true, parameterLimit: 100000, limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}))
+
 app.get('/', function (req, res) {
-  console.log('youch')
-  res.send("hey")
 })
 
 app.post('/', (req,res)=>{
-  console.log("yo")
-  console.log(res)
-  // console.log()
-  // identifyImage(req.body.data.)
+  identifyImage(req.body.data)
 })
-app.post('*', (req, res) => {
-  console.log("thats all folks")
-})
+
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}!`);
 });
