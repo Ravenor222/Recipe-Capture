@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
-import identifyImage from './helpers/clarifai_helper'
+import axios from 'axios';
 
 export default function CameraApp (props){
 
@@ -36,7 +36,13 @@ export default function CameraApp (props){
               }
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
-                identifyImage(photo.base64);
+                // identifyImage(photo.base64);
+                let photoObj = {
+                  photo: photo.base64
+                }
+                axios.post('/', photoObj)
+                .then(res => console.log("hi"))
+                .catch(err => console.log(err))
               }
             }}>
             <FontAwesome
