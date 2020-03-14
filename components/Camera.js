@@ -36,8 +36,8 @@ export default function CameraApp (props){
               }
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
-                axios.post('http://192.168.88.209:3001/', {data: photo.base64, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
-                .then(res => console.log("hi"))
+                axios.post('http://192.168.88.160:3001/', {data: photo.base64, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                .then(res => console.log("success"))
                 .catch(err => console.log(err))
               }
             }}>
