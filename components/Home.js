@@ -3,8 +3,14 @@ import { Text, View, TouchableOpacity, StyleSheet, ImageBackground } from 'react
 import { Dropdown } from 'react-native-material-dropdown';
 import { Button } from 'galio-framework';
 import CameraApp from './Camera';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function Home (props){
+export default function Home ({navigation}){
+
+  const goToCamera = () =>{
+    Actions.camera()
+  }
 
   let styles = StyleSheet.create({
     backgroundImage: {
@@ -60,7 +66,7 @@ export default function Home (props){
       <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
         <Dropdown label='Select Cuisine' data={cuisine} containerStyle={styles.dropdown}/>
         <Dropdown label='Ready In' data={time} containerStyle={styles.dropdown}/>
-        <Button shadowless size="small" iconSize={50} color="error" style={styles.button}>Start Now</Button>
+        <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => navigation.navigate('Camera')}>Start Now</Button>
       </ImageBackground>
   )
 
