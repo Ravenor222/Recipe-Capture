@@ -7,13 +7,13 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "run": "node server.js"
-
   },
   "dependencies": {
     "axios": "^0.19.2",
     "clarifai": "^2.9.1",
     "expo": "~36.0.0",
     "expo-camera": "~8.0.0",
+    "express": "^4.17.1",
     "galio-framework": "^0.6.3",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
@@ -25,6 +25,5 @@
     "babel-preset-expo": "~8.0.0",
     "@babel/core": "^7.0.0"
   },
-  "private": true,
-  "proxy": "http://localhost:3000"
+  "private": true
 }

@@ -40,7 +40,7 @@ export default function CameraApp (props){
                 let photoObj = {
                   photo: photo.base64
                 }
-                axios.post('/', photoObj)
+                axios.post('http://192.168.1.12:3001/', photoObj)
                 .then(res => console.log("hi"))
                 .catch(err => console.log(err))
               }
