@@ -47,6 +47,7 @@ export default function CameraApp (props){
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
                 console.log(state)
+
                 // axios.post('http://192.168.88.103:3001/', {data: {photo: photo.base64, state:}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 // .then(res => console.log("success"))
                 // .catch(err => console.log(err))
@@ -63,3 +64,7 @@ export default function CameraApp (props){
 
   );
 }
+
+// 1: post params w/ the picture w/ axios
+// 2: receive it on the server end and start thinking about the query string
+// 3: make a switch component

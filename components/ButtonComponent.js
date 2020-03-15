@@ -6,14 +6,8 @@ const ButtonComponent = (props) => {
     const [state, setState] = useContext(ProfileContext);
     return(
 
-        <Button data={state} onPress={() => {
-          props.navigation.navigate('Camera', {
-            state: state
-          });
-
-        }} >
+        <Button data={state} onPress={() => {props.navigation.navigate('Camera', {state: state});}} >
         {state.name + state.cuisine + state.time}
-        
       </Button>
     )
 }
