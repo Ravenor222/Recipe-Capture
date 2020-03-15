@@ -3,7 +3,7 @@ import { ProfileContext } from './ProfileContext';
 import { Dropdown } from 'react-native-material-dropdown';
 import { StyleSheet} from 'react-native';
 
-const DropDownCuisineComponent = ({list, label}) => {
+const DropDownTimeComponent = ({list, label}) => {
   let styles = StyleSheet.create({
     dropdown:{
       backgroundColor: "white",
@@ -20,13 +20,11 @@ const DropDownCuisineComponent = ({list, label}) => {
       <Dropdown 
       label={label}
       data={list} 
-      // (() => setState())
       onChangeText={(value)=>{
-        setState(state => ({...state, cuisine:value}));
-
+        setState(state => ({...state, time:value}));
       }}
       containerStyle={styles.dropdown}
       />
     )
 }
-export default DropDownCuisineComponent
+export default DropDownTimeComponent

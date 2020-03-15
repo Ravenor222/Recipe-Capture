@@ -12,6 +12,7 @@ app.get('/', function (req, res) {
 })
 
 app.post('/', (req,res)=>{
+  console.log(req.body)
   identifyImage(req.body.data)
   .then((response) => {
     const results = [];

@@ -7,11 +7,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ProfileContext, ProfileContextProvider } from './ProfileContext';
 import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
-import DropDownComponent from './Dropdown';
+import DropDownCuisineComponent from './Dropdown';
+import DropDownTimeComponent from './DropDownTime'
+import ButtonComponent from './ButtonComponent';
 
 export default function Home ({navigation}){
 
-  const [state, setState] = useContext(ProfileContext)
+  // const [state, setState] = useContext(ProfileContext)
 
   let styles = StyleSheet.create({
     backgroundImage: {
@@ -64,16 +66,22 @@ export default function Home ({navigation}){
   }]
 
   return (
-    
+    <ProfileContextProvider> 
+
       <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
-        <ProfileContextProvider> 
-          <DropDownComponent list={time} label="Ready in..." preference='time'/>
-        </ProfileContextProvider>
-        <ProfileContextProvider> 
-          <DropDownComponent list={cuisine} label="Select Cuisine" preference='cuisine' />
-        </ProfileContextProvider>
+
+          <DropDownTimeComponent list={time} label="Ready in..." />
+      
+
+          <DropDownCuisineComponent list={cuisine} label="Select Cuisine" />
+    
+        <ButtonComponent />
+
+
         <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => navigation.navigate('Camera')}>Start Now</Button>
       </ImageBackground>
+    </ProfileContextProvider>
+
   )
 
 

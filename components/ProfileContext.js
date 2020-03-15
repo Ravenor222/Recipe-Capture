@@ -13,6 +13,7 @@ const  ProfileContextProvider = (props) => {
 
   const [state, setState] = useState({
     name: "test",
+    time: "test",
     cuisine: "test"
   });
 
