@@ -9,9 +9,11 @@ app.use(bodyParser.urlencoded({extended: true, parameterLimit: 100000, limit: '5
 app.use(bodyParser.json({limit: '50mb'}))
 
 app.get('/', function (req, res) {
+  res.send("You're at the root")
 })
 
 app.post('/', (req,res)=>{
+  console.log(req.body)
   identifyImage(req.body.data)
   .then((response) => {
     const results = [];
