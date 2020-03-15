@@ -7,12 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ProfileContext, ProfileContextProvider } from './ProfileContext';
 import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
-import DropDownComponent from './Dropdown';
+import DropDownCuisineComponent from './DropdownCuisine';
+import DropDownTimeComponent from './DropDownTime'
+import ButtonComponent from './ButtonComponent';
+import Axios from 'axios';
 
 export default function Home ({navigation}){
-
-  const [state, setState] = useContext(ProfileContext)
-
   let styles = StyleSheet.create({
     backgroundImage: {
       width:'100%',
@@ -57,16 +57,31 @@ export default function Home ({navigation}){
   }]
 
   return (
-    
+    // NOTE: When I removed all the contextProviders, the background image started to load slower
+    // -> Both having the provider inside / outside the ImageBackground tag
       <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
         <ProfileContextProvider> 
-          <DropDownComponent list={time} label="Ready in..." preference='time'/>
-        </ProfileContextProvider>
-        <ProfileContextProvider> 
-          <DropDownComponent list={cuisine} label="Select Cuisine" preference='cuisine' />
-        </ProfileContextProvider>
-        <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => navigation.navigate('Camera')}>Start Now</Button>
+
+        <DropDownTimeComponent 
+         list={time} 
+         style={styles.dropdown}
+         label="Ready in..." />
+        <DropDownCuisineComponent 
+         list={cuisine} 
+         style={styles.dropdown}
+         label="Select Cuisine" />
+        <ButtonComponent 
+         style={styles.button} 
+         navigation={navigation}/>
+        {/* <Button
+         shadowless size="small" 
+         iconSize={50} color="error" 
+         style={styles.button} 
+         onPress = {() => {navigation.navigate('Camera');}}>Start Now</Button> */}
+       
+       </ProfileContextProvider>
       </ImageBackground>
+
   )
 
 
