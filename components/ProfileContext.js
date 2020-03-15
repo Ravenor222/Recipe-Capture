@@ -18,8 +18,10 @@ const  ProfileContextProvider = (props) => {
   });
 
   return (
-    <ProfileContext.Provider value={[state, setState]}>
-      {props.children}
+    <ProfileContext.Provider 
+    value={[state, setState]}
+    >
+    {props.children}
     </ProfileContext.Provider>
   )
 }

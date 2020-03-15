@@ -28,19 +28,14 @@ export default function CameraApp (props){
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
   return (
     <View style={{ flex: 1 }}>
       <Camera style={{ flex: 1 }} type={type} ref={ref=>{this.camera = ref}}>
-        
         <View style={{flex:1, flexDirection:"column",justifyContent:"flex-end",margin:20}}>
           <TouchableOpacity
-            style = {{
-              alignSelf: 'center',
-              backgroundColor: 'transparent',
-            }}
-
+            style = {{alignSelf: 'center', backgroundColor: 'transparent'}}
             onPress = {async () => {
-              
               const options = {
                 base64: true
               }
@@ -54,10 +49,7 @@ export default function CameraApp (props){
                 .catch(err => console.log(err))
               }
             }}>
-            <FontAwesome
-              name="camera"
-              style={{ color: "#fff", fontSize: 40}}
-            />
+            <FontAwesome name="camera" style={{ color: "#fff", fontSize: 40}}/>
           </TouchableOpacity>
         </View>
       </Camera>
@@ -66,6 +58,3 @@ export default function CameraApp (props){
   );
 }
 
-// 1: post params w/ the picture w/ axios
-// 2: receive it on the server end and start thinking about the query string
-// 3: make a switch component

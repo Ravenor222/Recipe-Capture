@@ -20,9 +20,7 @@ const DropDownTimeComponent = ({list, label}) => {
       <Dropdown 
       label={label}
       data={list} 
-      onChangeText={(value)=>{
-        setState(state => ({...state, time:value}));
-      }}
+      onChangeText={(value)=>{setState(state => ({...state, time:value}));}}
       containerStyle={styles.dropdown}
       />
     )

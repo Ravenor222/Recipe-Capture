@@ -7,7 +7,7 @@ export default function Profile(props){
   return(
     <View>
       <Text>
-        Hi
+        Profile
       </Text>
     </View>
   )

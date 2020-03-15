@@ -69,13 +69,20 @@ export default function Home ({navigation}){
       <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
         <ProfileContextProvider> 
 
-        <DropDownTimeComponent list={time} label="Ready in..." />
-        <DropDownCuisineComponent list={cuisine} label="Select Cuisine" />
-        <ButtonComponent navigation={navigation}/>
-        <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => {
-          
-          navigation.navigate('Camera');
-        }}>Start Now</Button>
+        <DropDownTimeComponent 
+         list={time} 
+         label="Ready in..." />
+        <DropDownCuisineComponent 
+         list={cuisine} 
+         label="Select Cuisine" />
+        <ButtonComponent 
+         style={styles.button} 
+         navigation={navigation}/>
+        <Button
+         shadowless size="small" 
+         iconSize={50} color="error" 
+         style={styles.button} 
+         onPress = {() => {navigation.navigate('Camera');}}>Start Now</Button>
        
        </ProfileContextProvider>
       </ImageBackground>
