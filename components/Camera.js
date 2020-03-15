@@ -13,7 +13,7 @@ export default function CameraApp (props){
   const [state, setState] = useContext(ProfileContext);
 
     // => This is the current state that is being sent upon transition from home page to camera
-    console.log(props.route.params)
+    // console.log(props.route.params.state)
 
 
   useEffect(() => {
@@ -47,10 +47,11 @@ export default function CameraApp (props){
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
                 console.log(state)
-
-                // axios.post('http://192.168.88.103:3001/', {data: {photo: photo.base64, state:}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
-                // .then(res => console.log("success"))
-                // .catch(err => console.log(err))
+                
+                //'http://192.168.88.103:3001/'
+                axios.post('http://af4826b5.ngrok.io/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                .then(res => console.log("success"))
+                .catch(err => console.log(err))
               }
             }}>
             <FontAwesome
