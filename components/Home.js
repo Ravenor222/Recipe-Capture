@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ProfileContext, ProfileContextProvider } from './ProfileContext';
 import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
-import DropDownCuisineComponent from './Dropdown';
+import DropDownCuisineComponent from './DropdownCuisine';
 import DropDownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
 
@@ -80,7 +80,7 @@ export default function Home ({navigation}){
 
         <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => navigation.navigate('Camera')}>Start Now</Button>
       </ImageBackground>
-    </ProfileContextProvider>
+     </ProfileContextProvider>
 
   )
 
