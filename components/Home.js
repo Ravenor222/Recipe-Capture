@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { StyleSheet, ImageBackground } from 'react-native';
 import { ProfileContextProvider } from './ProfileContext';
 import DropDownCuisineComponent from './DropdownCuisine';
