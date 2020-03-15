@@ -5,12 +5,13 @@ import { Button } from 'galio-framework';
 import CameraApp from './Camera';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ProfileContextProvider, ProfileContext } from './ProfileContext';
+import { ProfileContext, ProfileContextProvider } from './ProfileContext';
 import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
+import DropDownComponent from './Dropdown';
 
 export default function Home ({navigation}){
+
   const [state, setState] = useContext(ProfileContext)
-  const context = useContext(ProfileContext)
 
   let styles = StyleSheet.create({
     backgroundImage: {
@@ -63,12 +64,13 @@ export default function Home ({navigation}){
   }]
 
   return (
+    
       <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
-        <Dropdown label='Select Cuisine' data={cuisine} containerStyle={styles.dropdown}/>
-        <Dropdown label='Ready In' data={time} containerStyle={styles.dropdown}/>
         <ProfileContextProvider> 
-          {/* //<Button onPress={() => setState(state => ({...state, name: 'Clicked'}))}>{context.name}</Button> */}
-          <Text></Text>
+          <DropDownComponent list={time} label="Ready in..." preference='time'/>
+        </ProfileContextProvider>
+        <ProfileContextProvider> 
+          <DropDownComponent list={cuisine} label="Select Cuisine" preference='cuisine' />
         </ProfileContextProvider>
         <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => navigation.navigate('Camera')}>Start Now</Button>
       </ImageBackground>
