@@ -8,6 +8,7 @@ const DropDownCuisineComponent = ({list,style, label}) => {
       <Dropdown 
       label={label}
       data={list} 
+      
       onChangeText={(value)=>{setState(state => ({...state, cuisine:value}));}}
       containerStyle={style}
       />

@@ -13,6 +13,7 @@ export default function App() {
 
 
   return (
+    
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeNav} />

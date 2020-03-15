@@ -31,6 +31,7 @@ export default function CameraApp (props){
 
   return (
     <View style={{ flex: 1 }}>
+      
       <Camera style={{ flex: 1 }} type={type} ref={ref=>{this.camera = ref}}>
         <View style={{flex:1, flexDirection:"column",justifyContent:"flex-end",margin:20}}>
           <TouchableOpacity
