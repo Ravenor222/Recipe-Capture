@@ -63,7 +63,7 @@ export default function Home ({navigation}){
 
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
 
-        <ProfileContextProvider> 
+      <ProfileContextProvider> 
 
         <DropDownTimeComponent 
          list={time} 
@@ -77,8 +77,8 @@ export default function Home ({navigation}){
          style={styles.button} 
          navigation={navigation}/>
        
-       </ProfileContextProvider>
-      </ImageBackground>
+      </ProfileContextProvider>
+    </ImageBackground>
   
 
   )

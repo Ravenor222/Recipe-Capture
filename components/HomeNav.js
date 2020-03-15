@@ -9,17 +9,17 @@ export default function HomeNav ({navigation}){
   return (
 
     <Stack.Navigator>
-            <Stack.Screen name="Home" component={Home} options={{
-            title: null,
-            headerShown: false }} />
-            <Stack.Screen name="Camera" component={CameraApp} options={{
-            title: null,
-            headerTransparent: true,
-            headerBackTitleStyle: {
-              color: 'white',
-            },
-            headerTintColor: "white"
-            }}/>
+      <Stack.Screen name="Homescreen" component={Home} options={{
+        title: null,
+        headerShown: false }} />
+      <Stack.Screen name="Camera" component={CameraApp} options={{
+        title: null,
+        headerTransparent: true,
+        headerBackTitleStyle: {
+          color: 'white',
+          },
+          headerTintColor: "white"
+      }}/>
     </Stack.Navigator>
   )
 
