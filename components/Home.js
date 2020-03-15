@@ -10,11 +10,9 @@ import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolic
 import DropDownCuisineComponent from './DropdownCuisine';
 import DropDownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
+import Axios from 'axios';
 
 export default function Home ({navigation}){
-
-  // const [state, setState] = useContext(ProfileContext)
-
   let styles = StyleSheet.create({
     backgroundImage: {
       width:'100%',
@@ -66,21 +64,21 @@ export default function Home ({navigation}){
   }]
 
   return (
-    <ProfileContextProvider> 
-
+    // NOTE: When I removed all the contextProviders, the background image started to load slower
+    // -> Both having the provider inside / outside the ImageBackground tag
       <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
+        <ProfileContextProvider> 
 
-          <DropDownTimeComponent list={time} label="Ready in..." />
-      
-
-          <DropDownCuisineComponent list={cuisine} label="Select Cuisine" />
-    
-        <ButtonComponent />
-
-
-        <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => navigation.navigate('Camera')}>Start Now</Button>
+        <DropDownTimeComponent list={time} label="Ready in..." />
+        <DropDownCuisineComponent list={cuisine} label="Select Cuisine" />
+        <ButtonComponent navigation={navigation}/>
+        <Button shadowless size="small" iconSize={50} color="error" style={styles.button} onPress = {() => {
+          
+          navigation.navigate('Camera');
+        }}>Start Now</Button>
+       
+       </ProfileContextProvider>
       </ImageBackground>
-     </ProfileContextProvider>
 
   )
 

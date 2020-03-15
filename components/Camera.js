@@ -8,12 +8,12 @@ import { ProfileContext, ProfileContextProvider } from './ProfileContext';
 
 
 export default function CameraApp (props){
-
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
-  // const [state, setState] = useContext(ProfileContext);
-  // const pref = useContext(ProfileContext)
-  // console.log(setState(...state, value))
+  const [state, setState] = useContext(ProfileContext);
+
+    // => This is the current state that is being sent upon transition from home page to camera
+    console.log(props.route.params)
 
 
   useEffect(() => {
@@ -29,9 +29,6 @@ export default function CameraApp (props){
     return <Text>No access to camera</Text>;
   }
   return (
-    //a : Does the Camera itself need to be in a different component? Much like the drop down etc?
-    //b : Would I need the provider && the profilecontext?
-  <ProfileContextProvider> 
     <View style={{ flex: 1 }}>
       <Camera style={{ flex: 1 }} type={type} ref={ref=>{this.camera = ref}}>
         
@@ -43,14 +40,16 @@ export default function CameraApp (props){
             }}
 
             onPress = {async () => {
+              
               const options = {
                 base64: true
               }
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
-                axios.post('http://192.168.88.103:3001/', {data: {photo: photo.base64, state:pref}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
-                .then(res => console.log("success"))
-                .catch(err => console.log(err))
+                console.log(state)
+                // axios.post('http://192.168.88.103:3001/', {data: {photo: photo.base64, state:}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                // .then(res => console.log("success"))
+                // .catch(err => console.log(err))
               }
             }}>
             <FontAwesome
@@ -61,7 +60,6 @@ export default function CameraApp (props){
         </View>
       </Camera>
     </View>
-  </ProfileContextProvider> 
 
   );
 }
