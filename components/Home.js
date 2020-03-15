@@ -71,9 +71,11 @@ export default function Home ({navigation}){
 
         <DropDownTimeComponent 
          list={time} 
+         style={styles.dropdown}
          label="Ready in..." />
         <DropDownCuisineComponent 
          list={cuisine} 
+         style={styles.dropdown}
          label="Select Cuisine" />
         <ButtonComponent 
          style={styles.button} 
