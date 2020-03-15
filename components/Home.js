@@ -1,16 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import { Dropdown } from 'react-native-material-dropdown';
-import { Button } from 'galio-framework';
-import CameraApp from './Camera';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import {StyleSheet, ImageBackground } from 'react-native';
 import { ProfileContext, ProfileContextProvider } from './ProfileContext';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 import DropDownCuisineComponent from './DropdownCuisine';
 import DropDownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
-import Axios from 'axios';
 
 export default function Home ({navigation}){
   let styles = StyleSheet.create({
