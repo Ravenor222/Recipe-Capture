@@ -14,12 +14,13 @@ app.get('/', function (req, res) {
 
 app.post('/', (req,res)=>{
   console.log(req.body)
-  identifyImage(req.body.data)
+  identifyImage(req.body.data.photo)
   .then((response) => {
     const results = [];
     const filtered = (response.outputs[0].data.concepts.filter( x => x.value > 0.70 && x.name !== "vegetable" && x.name !== "relish" && x.name !== "sweet" && x.name !== "juice" && x.name !== "pasture" && x.name !== "herb" && x.name !== "condiment" && x.name !== "fruit" && x.name !== "citrus"))
     for (let item of filtered) {
       results.push(item.name)
+      console.log(results);
     }
   })
   .catch((err) => alert(err))

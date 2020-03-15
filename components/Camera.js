@@ -41,12 +41,12 @@ export default function CameraApp (props){
               }
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
-                console.log(state)
+                
                 
                 //'http://192.168.88.103:3001/'
                 axios.post('http://192.168.88.103:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log("success"))
-                .catch(err => console.log(err))
+                .catch(err => console.log("error"))
               }
             }}>
             <FontAwesome name="camera" style={{ color: "#fff", fontSize: 40}}/>
