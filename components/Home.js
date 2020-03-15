@@ -23,13 +23,6 @@ export default function Home ({navigation}){
     },
     button: {
       alignSelf: "center"
-    },
-    dropdown:{
-      backgroundColor: "white",
-      width: '80%',
-      alignSelf: "center",
-      paddingLeft: 5,
-      paddingRight: 5
     }
   });
 

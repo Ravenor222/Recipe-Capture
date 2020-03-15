@@ -19,6 +19,7 @@ const DropDownComponent = ({list, preference, label}) => {
       <Dropdown 
       label={label}
       data={list} 
+      preference={preference}
       onChangeText={(value => setState(state => ({...state, preference: value})))}
       containerStyle={styles.dropdown}
       />
