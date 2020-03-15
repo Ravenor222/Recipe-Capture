@@ -12,7 +12,7 @@ const ButtonComponent = (props) => {
         style={props.style} 
         onPress={() => {props.navigation.navigate('Camera', {state: state});}} 
         >
-        {state.name + state.cuisine + state.time}
+        Start Now 
       </Button>
     )
 }

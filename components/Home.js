@@ -80,11 +80,11 @@ export default function Home ({navigation}){
         <ButtonComponent 
          style={styles.button} 
          navigation={navigation}/>
-        <Button
+        {/* <Button
          shadowless size="small" 
          iconSize={50} color="error" 
          style={styles.button} 
-         onPress = {() => {navigation.navigate('Camera');}}>Start Now</Button>
+         onPress = {() => {navigation.navigate('Camera');}}>Start Now</Button> */}
        
        </ProfileContextProvider>
       </ImageBackground>
