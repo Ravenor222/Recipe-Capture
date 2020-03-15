@@ -1,18 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import { Dropdown } from 'react-native-material-dropdown';
-import { Button } from 'galio-framework';
-import CameraApp from './Camera';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { ProfileContext, ProfileContextProvider } from './ProfileContext';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
+import React from 'react';
+import { StyleSheet, ImageBackground } from 'react-native';
+import { ProfileContextProvider } from './ProfileContext';
 import DropDownCuisineComponent from './DropdownCuisine';
 import DropDownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
-import Axios from 'axios';
+
 
 export default function Home ({navigation}){
+
   let styles = StyleSheet.create({
     backgroundImage: {
       width:'100%',
@@ -23,6 +18,13 @@ export default function Home ({navigation}){
     },
     button: {
       alignSelf: "center"
+    },
+    dropdown:{
+      backgroundColor: "white",
+      width: '80%',
+      alignSelf: "center",
+      paddingLeft: 5,
+      paddingRight: 5
     }
   });
 
@@ -57,9 +59,9 @@ export default function Home ({navigation}){
   }]
 
   return (
-    // NOTE: When I removed all the contextProviders, the background image started to load slower
-    // -> Both having the provider inside / outside the ImageBackground tag
-      <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
+
+    <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
+
         <ProfileContextProvider> 
 
         <DropDownTimeComponent 
@@ -73,14 +75,10 @@ export default function Home ({navigation}){
         <ButtonComponent 
          style={styles.button} 
          navigation={navigation}/>
-        {/* <Button
-         shadowless size="small" 
-         iconSize={50} color="error" 
-         style={styles.button} 
-         onPress = {() => {navigation.navigate('Camera');}}>Start Now</Button> */}
        
        </ProfileContextProvider>
       </ImageBackground>
+  
 
   )
 
