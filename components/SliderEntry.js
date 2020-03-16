@@ -20,9 +20,6 @@ export default class SliderEntry extends Component {
 
     static propTypes = {
         data: PropTypes.object.isRequired,
-        even: PropTypes.bool,
-        parallax: PropTypes.bool,
-        parallaxProps: PropTypes.object
     };
 
     get image () {
@@ -36,7 +33,7 @@ export default class SliderEntry extends Component {
     }
 
     render () {
-        const { data: { title, subtitle } } = this.props;
+        const { data: { title, time, missing } } = this.props;
 
         const uppercaseTitle = title ? (
             <Text
@@ -45,6 +42,15 @@ export default class SliderEntry extends Component {
             >
                 { title.toUpperCase() }
             </Text>
+        ) : false;
+
+        const missingIng = missing ? (
+          <Text
+            style={[styles.time]}
+            numberOfLines={2}
+          >
+            Missing Ingredients: { missing }
+          </Text>
         ) : false;
 
         return (
@@ -59,11 +65,12 @@ export default class SliderEntry extends Component {
                 </View>
                 <View style={[styles.textContainer]}>
                     { uppercaseTitle }
+                    { missingIng }
                     <Text
-                      style={[styles.subtitle]}
+                      style={[styles.time]}
                       numberOfLines={2}
                     >
-                        { subtitle }
+                    { time } minutes
                     </Text>
                 </View>
             </TouchableOpacity>
@@ -128,7 +135,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       letterSpacing: 0.5
   },
-  subtitle: {
+  time: {
       marginTop: 6,
       color: 'gray',
       fontSize: 12,
