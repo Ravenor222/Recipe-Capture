@@ -18,7 +18,8 @@ export default function Home ({navigation}){
       justifyContent: 'space-around'
     },
     button: {
-      alignSelf: "center"
+      alignSelf: "center",
+      backgroundColor: 'lightsalmon'
     },
     dropdown:{
       backgroundColor: "white",

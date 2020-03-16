@@ -10,7 +10,7 @@ function wp (percentage) {
     return Math.round(value);
 }
 
-const slideHeight = viewportHeight * 0.52;
+const slideHeight = viewportHeight * 0.57;
 const slideWidth = wp(77);
 const itemHorizontalMargin = wp(2);
 const itemWidth = slideWidth + itemHorizontalMargin * 2;
@@ -131,14 +131,14 @@ const styles = StyleSheet.create({
   },
   title: {
       color: 'black',
-      fontSize: 13,
+      fontSize: 14,
       fontWeight: 'bold',
       letterSpacing: 0.5
   },
   time: {
       marginTop: 6,
       color: 'gray',
-      fontSize: 12,
+      fontSize: 13,
       fontStyle: 'italic'
   }
 });
