@@ -4,9 +4,9 @@ import { View, Dimensions, StyleSheet } from 'react-native';
 import SliderEntry from './SliderEntry'
 
 let recipes = [
-  {title: 'Pie', subtitle: '45 minutes', illustration: 'https://images-gmi-pmc.edge-generalmills.com/94323808-18ab-4d37-a1ef-d6e1ff5fc7ae.jpg'},
-  {title: 'Pasta', subtitle: '30 minutes', illustration: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/190305-lemon-garlic-asparagus-pasta-horizontal-161-1553190755.jpg'},
-  {title: 'Pho', subtitle: '60 minutes', illustration: 'https://www.recipetineats.com/wp-content/uploads/2019/04/Beef-Pho_6.jpg'}
+  {title: 'Pie', time: '45', missing: 'Eggs, Cream', illustration: 'https://images-gmi-pmc.edge-generalmills.com/94323808-18ab-4d37-a1ef-d6e1ff5fc7ae.jpg'},
+  {title: 'Pasta', time: '30', missing: 'Tomato, Garlic', illustration: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/190305-lemon-garlic-asparagus-pasta-horizontal-161-1553190755.jpg'},
+  {title: 'Pho', time: '60', missing: '', illustration: 'https://www.recipetineats.com/wp-content/uploads/2019/04/Beef-Pho_6.jpg'}
 ]
 function wp (percentage) {
   const value = (percentage * viewportWidth) / 100;
