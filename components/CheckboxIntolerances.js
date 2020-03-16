@@ -4,17 +4,24 @@ import { View ,Text } from 'react-native';
 // import { Text } from 'galio-framework'
 import MultiSelect from 'react-native-multiple-select'
 
-
-function handleConfirm(pItems){
-    console.log('pItems =>', pItems);
-}
-
 const items = [{
     id: '1',
     name: 'Keto',
 }, {
     id: '2',
     name: "Gluten-Free",
+},  {
+    id: '3',
+    name: "Gluten-Free2",
+},  {
+    id: '4',
+    name: "Gluten-Free3",
+},  {
+    id: '5',
+    name: "Gluten-Free4",
+},  {
+    id: '6',
+    name: "Gluten-Free5",
 }]
 
 const CheckboxIntolerances = () => {
@@ -28,16 +35,15 @@ const CheckboxIntolerances = () => {
         uniqueKey="id"
         onSelectedItemsChange={(x) => {
           if (state.includes(x[x.length-1])) {
-            console.log(state)
+            setState(state.filter(number => number !== x[x.length-1]))
           } else {
             setState([...state, x[x.length-1]])
           }
-          console.log(state)
         }}
         selectedItems={state}
         selectText="Pick Items"
         searchInputPlaceholderText="Search Items..."
-        onChangeInput={ (text)=> console.log(text)}
+        onChangeInput={x => console.log("hi")}
         // altFontFamily="ProximaNova-Light"
         tagRemoveIconColor="#CCC"
         tagBorderColor="#CCC"
