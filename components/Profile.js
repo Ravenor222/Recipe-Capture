@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, AsyncStorage, ImageBackground, StyleSheet
 import { ProfileContext } from './ProfileContext';
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownDietComponent from './DropdownDiet';
+import CheckboxIntolerances from './CheckboxIntolerances'
 
 
 //What do I want?
@@ -48,7 +49,7 @@ export default function Profile(props){
 
      <View style={{flex:0.70}}>
         <DropdownDietComponent style={styles.dropdown}/>
-        
+        <CheckboxIntolerances />
      </View>
     </View>
     </ImageBackground>
