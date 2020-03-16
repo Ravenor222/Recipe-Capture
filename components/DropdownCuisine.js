@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ProfileContext } from './ProfileContext';
 import { Dropdown } from 'react-native-material-dropdown';
 
-const DropDownCuisineComponent = ({list,style, label}) => {
+const DropdownCuisineComponent = ({list,style, label}) => {
     const [state, setState] = useContext(ProfileContext);
     return(
       <Dropdown 
@@ -14,4 +14,4 @@ const DropDownCuisineComponent = ({list,style, label}) => {
       />
     )
 }
-export default DropDownCuisineComponent
+export default DropdownCuisineComponent

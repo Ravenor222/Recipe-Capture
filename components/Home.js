@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ProfileContextProvider } from './ProfileContext';
-import DropDownCuisineComponent from './DropdownCuisine';
-import DropDownTimeComponent from './DropDownTime'
+import DropdownCuisineComponent from './DropdownCuisine';
+import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
 
 import {
@@ -92,11 +92,11 @@ export default function Home ({navigation}){
 
       <ProfileContextProvider> 
 
-        <DropDownTimeComponent 
+        <DropdownTimeComponent 
          list={time} 
          style={styles.dropdown}
          label="Ready in..." />
-        <DropDownCuisineComponent 
+        <DropdownCuisineComponent 
          list={cuisine} 
          style={styles.dropdown}
          label="Select Cuisine" />
