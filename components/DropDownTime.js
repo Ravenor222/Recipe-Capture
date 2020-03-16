@@ -3,7 +3,7 @@ import { ProfileContext } from './ProfileContext';
 import { Dropdown } from 'react-native-material-dropdown';
 import { StyleSheet} from 'react-native';
 
-const DropDownTimeComponent = ({list,style ,label}) => {
+const DropdownTimeComponent = ({list,style ,label}) => {
     const [state, setState] = useContext(ProfileContext);
     return(
       <Dropdown 
@@ -14,4 +14,4 @@ const DropDownTimeComponent = ({list,style ,label}) => {
       />
     )
 }
-export default DropDownTimeComponent
+export default DropdownTimeComponent

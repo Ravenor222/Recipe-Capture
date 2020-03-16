@@ -2,8 +2,8 @@ import React from 'react';
 
 import { StyleSheet, ImageBackground } from 'react-native';
 import { ProfileContextProvider } from './ProfileContext';
-import DropDownCuisineComponent from './DropdownCuisine';
-import DropDownTimeComponent from './DropDownTime'
+import DropdownCuisineComponent from './DropdownCuisine';
+import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
 
 
@@ -65,11 +65,11 @@ export default function Home ({navigation}){
 
       <ProfileContextProvider> 
 
-        <DropDownTimeComponent 
+        <DropdownTimeComponent 
          list={time} 
          style={styles.dropdown}
          label="Ready in..." />
-        <DropDownCuisineComponent 
+        <DropdownCuisineComponent 
          list={cuisine} 
          style={styles.dropdown}
          label="Select Cuisine" />
