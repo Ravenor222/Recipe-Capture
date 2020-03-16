@@ -1,10 +1,21 @@
 import React from 'react';
 
-import { StyleSheet, ImageBackground } from 'react-native';
 import { ProfileContextProvider } from './ProfileContext';
 import DropDownCuisineComponent from './DropdownCuisine';
 import DropDownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
+
+import {
+  ScrollView, Dimensions, Platform, TouchableOpacity, ImageBackground, StyleSheet
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+// Galio components
+import {
+  NavBar, Icon, theme
+} from 'galio-framework';
+
+const { width } = Dimensions.get('screen');
 
 
 export default function Home ({navigation}){
@@ -62,6 +73,22 @@ export default function Home ({navigation}){
   return (
 
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
+      <NavBar
+          // titleStyle={{backgroundColor: "#FE2472"}}
+          title={null}
+          transparent={true}
+          left={(
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={theme.SIZES.BASE}
+                color={theme.COLORS.ICON}
+              />
+            </TouchableOpacity>
+          )}
+          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+        />
 
       <ProfileContextProvider> 
 
