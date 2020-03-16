@@ -4,6 +4,7 @@ import HomeNav from './components/HomeNav';
 import Profile from './components/Profile';
 import Favourites from './components/Favourites';
 import MakeLater from './components/MakeLater';
+import MyCarousel from './components/carousel'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
@@ -20,6 +21,7 @@ export default function App() {
         <Drawer.Screen name="Profile" component={Profile} />
         <Drawer.Screen name="Favourites" component={Favourites} />
         <Drawer.Screen name="Saved for Later" component={MakeLater} />
+        <Drawer.Screen name="Carousel" component={MyCarousel} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
