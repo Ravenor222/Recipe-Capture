@@ -13,18 +13,7 @@ app.get('/', function (req, res) {
   res.send("You're at the root")
 })
 
-//https://api.spoonacular.com/recipes/complexSearch? 
-//excludeIngredients=kale
-//&addRecipeInformation=true
-//&cuisine=Japanese
-//&diet=vegan
-//&maxFat=55
-//&number=5
-//&apiKey=${API_KEY}
 
-
-
-//https://api.spoonacular.com/recipes/complexSearch?excludeIngredients=${}
 
 app.post('/', (req,res)=>{
   console.log(req.body)
