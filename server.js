@@ -27,7 +27,7 @@ app.post('/', (req,res)=>{
     //THESE ARE THE SPOONACULAR RESULTS WITH THE GIVEN TAGS
     const recipes =  getRecipes(process.env.SPOON_KEY, results)
     console.log(recipes);
-
+    /// -> POST TO THE PHONE
   })
   .catch((err) => alert(err))
 
