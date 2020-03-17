@@ -3,7 +3,7 @@ import {
   ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import Nav from './Nav';
 // Galio components
 import {
   Card, Block, NavBar, Icon, theme
@@ -47,24 +47,12 @@ export default class Favourites extends React.Component {
     const { navigation } = this.props;
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <NavBar style={styles.nav}
-          title="My Favourites"
-          left={(
-            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-              <Icon 
-                name="menu"
-                family="feather"
-                size={theme.SIZES.BASE}
-                color={theme.COLORS.ICON}
-              />
-            </TouchableOpacity>
-          )}
-          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
-        />
+        <Nav title="My Favourites" navigation={navigation} />
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-              <TouchableOpacity style={styles.card} onPress={() => { alert(`You've clicked`); }}>
+                <TouchableOpacity style={styles.card} onPress={() => { alert(`You've clicked`); }}>
+
                 <Card
                   key={recipe.id}
                   flex
@@ -73,7 +61,7 @@ export default class Favourites extends React.Component {
                   titleColor={recipe.full ? theme.COLORS.WHITE : null}
                   style={styles.cardBackground}
                   title={recipe.title}
-                  caption="Ready in 10 minutes"
+                  caption={`Ready in ${recipe.readyInMinutes} minutes`}
                   image={recipe.image}
                   imageStyle={[recipe.padded ? styles.rounded : null]}
                   imageBlockStyle={[

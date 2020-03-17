@@ -46,7 +46,7 @@ export default function CameraApp (props){
                 
                 //'http://192.168.88.103:3001/'
 
-                axios.post('http://192.168.88.103:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                axios.post('http://192.168.1.73:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
 
                 .then(res => console.log("success"))
                 .catch(err => console.log("error"))
