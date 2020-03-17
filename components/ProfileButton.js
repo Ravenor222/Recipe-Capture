@@ -24,24 +24,15 @@ const ProfileButton = (props) => {
         console.log(error);
      }
    };
- const saveObj = () => {
-    for (let key of selected.keys()) {
-        obj[key] = selected.get(key);
-        console.log("1")
-    }
-     const filtered = Object.entries(obj).filter((x) => x[1]);
-     const results = (filtered.map(x=> (x[0])));
-     console.log("")
-     setState(state => ({...state, intolerances:results}));
- }
+
     return(
         <Button 
         shadowless size="small" 
         iconSize={50} color="error" 
         style={props.style}
         onPress={async () => {
-            saveObj();
-            await storeData()
+            console.log(state);
+            await storeData();
         }}
         >
         Save Settings

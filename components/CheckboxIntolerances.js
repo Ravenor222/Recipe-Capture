@@ -10,6 +10,9 @@ import {
   Text,
 } from 'react-native';
 import Constants from 'expo-constants';
+import { StorageContext } from '../contexts/storageContext';
+
+
 
 const DATA = [
   {
@@ -49,19 +52,23 @@ const DATA = [
     title: 'Gluten-free7',
   },
   {
-    id: 'Gluten-free8',
-    title: 'Gluten-free8',
+    id: 'Gluten-f',
+    title: 'Gluten-f',
   },
   {
-    id: 'Gluten-free9',
-    title: 'Gluten-free9',
+    id: 'Gluten-fre',
+    title: 'Gluten-fre',
   },
   {
-    id: 'Gluten-free10',
-    title: 'Gluten-free10',
+    id: 'Gluten-fr',
+    title: 'Gluten-fr',
   },
   
 ];
+
+const obj = {
+
+}
 
 
 function Item({ id, title, selected, onSelect }) {
@@ -70,7 +77,7 @@ function Item({ id, title, selected, onSelect }) {
       onPress={() => onSelect(id)}
       style={[
         styles.item,
-        { backgroundColor: selected ? '#6e3b6e' : '#f9c2ff' },
+        { backgroundColor: selected ? '#ff7c67' : '#ffa07a' },
       ]}
     >
       <Text style={styles.title}>{title}</Text>
@@ -83,16 +90,22 @@ export default function App(props) {
   const selected = props.state[0]
   const setSelected = props.state[1]
   // const [selected, setSelected] = React.useState(new Map());
-  // const [state, setState] = React.useContext(StorageContext);
+  const [state, setState] = React.useContext(StorageContext);
 
   const onSelect = React.useCallback(
     id => {
-      const results = []
+      
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
-  
-      
       setSelected(newSelected);
+
+      for (let key of selected.keys()) {
+        obj[key] = selected.get(key);
+      };
+      const filtered = Object.entries(obj).filter((x) => x[1]);
+      const results = (filtered.map(x=> (x[0])));
+      setState(state => ({...state, intolerances:results}));
+     
     },
     [selected],
   );
@@ -101,6 +114,8 @@ export default function App(props) {
     <SafeAreaView style={styles.container}>
       <FlatList
         horizontal={false}
+        style={{alignSelf:'center', flexGrow:0}}
+
         numColumns={3}
         data={DATA}
         renderItem={({ item }) => (
@@ -126,12 +141,21 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: '#f9c2ff',
     padding: 5,
-    marginVertical: 2,
-    marginHorizontal: 8,
+    marginVertical: 4,
+    marginHorizontal: 5,
+    borderRadius:5,
+    paddingVertical:10,
+    width:'30%',
+    textAlign:'center',
+
+    
   },
   title: {
     fontSize: 12,
   },
+  intolerance:{
+    color:'red'
+  }
 });
 
 

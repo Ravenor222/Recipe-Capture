@@ -17,16 +17,9 @@ const retrieveData = async () => {
     
   } catch (error) {
     console.log(error);
-    // Error retrieving data
   }
 };
-//What do I want?
-//1: Allergies form
-//2: intolerances checkbox
-//3: diet dropdown
-//4: switch for pantry
-//5: all of these need to save to local storage
-//6:  
+
 
 let styles = StyleSheet.create({
   backgroundImage: {
@@ -34,7 +27,7 @@ let styles = StyleSheet.create({
     height:'100%',
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between'
   },
   button: {
     alignSelf: "center"
@@ -46,7 +39,8 @@ let styles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     marginTop:10
-  }
+  },
+  
 });
 
 export default function Profile(props){
@@ -65,14 +59,13 @@ export default function Profile(props){
 
      <View style={{flex:1, justifyContent:'space-around'}}>
         <DropdownDietComponent style={styles.dropdown}/>
-
         <ProfileInput />
-       <ProfileIntolerances state={[selected, setSelected]}/>
-       {/* this is complete */}
-        <ProfileSwitch /> 
-      {/* {this is complete} */}
-        <Button onPress={()=>{retrieveData()}}/>
-        <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%'}}/>
+          <View style={{flex:0.42}}>
+            <ProfileIntolerances state={[selected, setSelected]}/>
+          </View>
+      
+       <ProfileSwitch /> 
+       <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%', backgroundColor:'#ffa07a'}}/>
      </View>
 
     {/* </View> */}
