@@ -1,8 +1,13 @@
 import React, {useContext} from 'react';
-import { Text, View, TouchableOpacity, AsyncStorage, ImageBackground, StyleSheet } from 'react-native';
-import { ProfileContext } from './ProfileContext';
+import { Text, View, TouchableOpacity,ImageBackground, AsyncStorage, StyleSheet } from 'react-native';
+import { Button, Switch, Input, Block } from 'galio-framework'
+import ProfileButton from '../components/ProfileButton'
+import ProfileSwitch from '../components/ProfileSwitch'
+import ProfileInput from '../components/ProfileTextInput'
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownDietComponent from './DropdownDiet';
+import { StorageContextProvider } from '../contexts/storageContext';
+import { ProfileContext } from './ProfileContext';
 
 
 //What do I want?
@@ -34,23 +39,45 @@ let styles = StyleSheet.create({
   }
 });
 
+function saveData() {
+  let user = "Nick";
+  AsyncStorage.setItem("user", user)
+}
+
+const loadData = async () => {
+  try {
+      let user = await AsyncStorage.getItem('user')
+      console.log(user);
+  }
+  catch(error) {
+      console.log(error)
+  }
+}
+
+
 export default function Profile(props){
 
   return(
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
+    <StorageContextProvider>
     <View style={{flex:1}}>
-
-      <View style={{flex:0.3, backgroundColor:'red', flexDirection:'column', justifyContent:'flex-end'}}>
+      {/* <View style={{flex:0.3, backgroundColor:'red', flexDirection:'column', justifyContent:'flex-end'}}>
         <Text style={{color:'white', alignSelf:'center', paddingBottom:20}}>
           I'm someone
         </Text>
-      </View>
-
-     <View style={{flex:0.70}}>
+      </View> */}
+     <View style={{flex:1, justifyContent:'space-around'}}>
         <DropdownDietComponent style={styles.dropdown}/>
-        
+        <ProfileInput />
+       
+        <ProfileSwitch />
+
+        <ProfileButton style={{alignSelf:'center', width:'80%'}}/>
+
+
      </View>
     </View>
+    </StorageContextProvider>
     </ImageBackground>
   )
 

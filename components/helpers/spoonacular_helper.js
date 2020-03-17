@@ -8,9 +8,9 @@ function getRecipes(API_KEY, results) {
        console.log(result.status)
     
        if (result.status === 200){
-           console.log(results)
+          console.log("results array:",results)
           console.log(result.data)
-          
+          console.log("spoonacular helper")
     
        };
     });
