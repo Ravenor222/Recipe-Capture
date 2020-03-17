@@ -4,6 +4,7 @@ import React from 'react';
 import SearchIngredients from './SearchIngredients';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
+import Nav from './Nav';
 
 let ingredients = ['Apple', 'Lettuce', 'Pie']
 
