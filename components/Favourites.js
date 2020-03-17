@@ -38,6 +38,7 @@ const recipes = [{
 export default function Favourites (props){
     return (
       <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+//       <Nav title="My Favourites" navigation={navigation} />
       <NavBar style = {styles.nav}
           title="Favourites"
           left={(
@@ -54,15 +55,15 @@ export default function Favourites (props){
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-              <TouchableOpacity style={styles.card} onPress={() => { alert(`You've clicked`); }}>
+                <TouchableOpacity style={styles.card} onPress={() => { alert(`You've clicked`); }}>
                 <Card
                   key={recipe.id}
                   avatar='https://storage.needpix.com/rsynced_images/pale-pink-heart.jpg'
                   title={recipe.title.toUpperCase()}
-                  caption={`${recipe.readyInMinutes} minutes`}
                   borderless
                   shadowColor={theme.COLORS.BLACK}
                   style={styles.cardBackground}
+                  caption={`Ready in ${recipe.readyInMinutes} minutes`}
                   image={recipe.image}
                   imageBlockStyle={[styles.noRadius]}
                   footerStyle={{paddingLeft: 5, marginRight:70}}
