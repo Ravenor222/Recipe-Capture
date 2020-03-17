@@ -110,34 +110,40 @@ const recipes = [{
   ]
   
 
-export default class Favourites extends React.Component {
-  render() {
-    const { navigation } = this.props;
+export default function MakeLater(props) {
+
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        <Nav title="Saved Recipes" navigation={navigation}  />
+        {/* <Nav title="Saved Recipes" navigation={navigation}  /> */}
+        <NavBar style = {styles.nav}
+          title="Saved Recipes"
+          left={(
+            <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={25}
+                color={theme.COLORS.WHITE}
+              />
+            </TouchableOpacity>
+          )}
+          titleStyle={{ color:'white', fontSize:25 }}/>
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-                <TouchableOpacity style={styles.card} onPress={() => {navigation.navigate('Recipe', {recipe});}} >
+                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe});}} >
                 <Card
                   key={recipe.id}
-                  flex
+                  avatar='https://storage.needpix.com/rsynced_images/pale-pink-heart.jpg'
+                  title={recipe.title.toUpperCase()}
                   borderless
                   shadowColor={theme.COLORS.BLACK}
-                  titleColor={recipe.full ? theme.COLORS.WHITE : null}
                   style={styles.cardBackground}
-                  title={recipe.title}
                   caption={`Ready in ${recipe.readyInMinutes} minutes`}
                   image={recipe.image}
-                  imageStyle={[recipe.padded ? styles.rounded : null]}
-                  imageBlockStyle={[
-                    recipe.padded ? { padding: theme.SIZES.BASE / 2 } : null,
-                    recipe.full ? null : styles.noRadius,
-                  ]}
-                  footerStyle={recipe.full ? styles.full : null}
+                  imageBlockStyle={[styles.noRadius]}
+                  footerStyle={{paddingLeft: 5, marginRight:70}}
                 >
-                  {recipe.full ? <LinearGradient colors={['transparent', 'rgba(0,0,0, 0.8)']} style={styles.gradient} /> : null}
                 </Card>
               </TouchableOpacity>
             ))}
@@ -146,7 +152,6 @@ export default class Favourites extends React.Component {
       </Block>
     );
   }
-}
 
 const styles = StyleSheet.create({
   cards: {
@@ -187,6 +192,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: theme.SIZES.BASE * 0.5,
   },
   nav: {
-    backgroundColor: "#FE2472"
+    backgroundColor: "lightsalmon"
   }
 });

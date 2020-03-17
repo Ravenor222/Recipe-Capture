@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Card, Block, NavBar, Icon, theme } from 'galio-framework';
+import Nav from './Nav';
 
 const { width } = Dimensions.get('screen');
 
@@ -37,8 +38,8 @@ const recipes = [{
 
 export default function Favourites (props){
     return (
-      <Block flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-//       <Nav title="My Favourites" navigation={navigation} />
+      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+{/* //       <Nav title="My Favourites" navigation={props.navigation} /> */}
       <NavBar style = {styles.nav}
           title="Favourites"
           left={(
