@@ -4,6 +4,7 @@ import { Button, Switch, Input, Block } from 'galio-framework'
 import ProfileButton from '../components/ProfileButton'
 import ProfileSwitch from '../components/ProfileSwitch'
 import ProfileInput from '../components/ProfileTextInput'
+import ProfileIntolerances from '../components/CheckboxIntolerances'
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownDietComponent from './DropdownDiet';
 import { StorageContextProvider } from '../contexts/storageContext';
@@ -56,7 +57,7 @@ export default function Profile(props){
         <DropdownDietComponent style={styles.dropdown}/>
 
         <ProfileInput />
-       
+       <ProfileIntolerances />
        {/* this is complete */}
         <ProfileSwitch /> 
       {/* {this is complete} */}
