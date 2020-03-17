@@ -39,44 +39,31 @@ let styles = StyleSheet.create({
   }
 });
 
-function saveData() {
-  let user = "Nick";
-  AsyncStorage.setItem("user", user)
-}
-
-const loadData = async () => {
-  try {
-      let user = await AsyncStorage.getItem('user')
-      console.log(user);
-  }
-  catch(error) {
-      console.log(error)
-  }
-}
-
-
 export default function Profile(props){
 
   return(
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
     <StorageContextProvider>
-    <View style={{flex:1}}>
+    {/* <View style={{flex:1}}> */}
+
       {/* <View style={{flex:0.3, backgroundColor:'red', flexDirection:'column', justifyContent:'flex-end'}}>
         <Text style={{color:'white', alignSelf:'center', paddingBottom:20}}>
           I'm someone
         </Text>
       </View> */}
+
      <View style={{flex:1, justifyContent:'space-around'}}>
         <DropdownDietComponent style={styles.dropdown}/>
+
         <ProfileInput />
        
-        <ProfileSwitch />
-
+       {/* this is complete */}
+        <ProfileSwitch /> 
+      {/* {this is complete} */}
         <ProfileButton style={{alignSelf:'center', width:'80%'}}/>
-
-
      </View>
-    </View>
+
+    {/* </View> */}
     </StorageContextProvider>
     </ImageBackground>
   )

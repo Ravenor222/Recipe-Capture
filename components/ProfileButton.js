@@ -7,6 +7,8 @@ import { StorageContext } from '../contexts/storageContext';
 const ProfileButton = (props) => {
     const [state, setState] = useContext(StorageContext);
     const stringState = JSON.stringify(state)
+
+
  const storeData = async () => {
      try {
        await AsyncStorage.setItem('1',stringState );
@@ -15,15 +17,14 @@ const ProfileButton = (props) => {
      }
    };
 
-
-
     return(
         <Button 
         shadowless size="small" 
         iconSize={50} color="error" 
+        style={props.style}
         onPress={storeData}
         >
-        Submit
+        Save Settings
       </Button>
 
     )
