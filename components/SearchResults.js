@@ -2,10 +2,10 @@ import { ProfileContext } from './ProfileContext';
 import MyCarousel from './SearchResultCards'
 import React from 'react';
 import SearchIngredients from './SearchIngredients';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
 
-let ingredients = ['Apple', 'Lettuce', 'Pie']
+let ingredients = ['Apple', 'Lettuce', 'Egg', 'Mango', 'Garlic']
 
 export default function SearchResults(props){
 
@@ -25,8 +25,10 @@ export default function SearchResults(props){
           )}
           titleStyle={{ color:'white', fontSize:25 }}
         />
-      {/* <SearchIngredients ingredients={ingredients}/> */}
-      <MyCarousel/>
+        <View>
+          <MyCarousel/>
+          <SearchIngredients ingredients={ingredients}/>
+        </View>
     </>
   )
 
@@ -34,5 +36,9 @@ export default function SearchResults(props){
 const styles = StyleSheet.create({
   nav : {
     backgroundColor: 'lightsalmon'
+  },
+  container :{
+    flex: 1,
+    justifyContent:'space-between'
   }
 })
