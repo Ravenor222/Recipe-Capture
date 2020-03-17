@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ProfileContext } from './ProfileContext';
+import { StorageContext } from '../contexts/storageContext';
 import { Dropdown } from 'react-native-material-dropdown';
 import { StyleSheet } from 'react-native'
 
@@ -13,14 +13,14 @@ let diet = [{
 
 
 const DropdownDietComponent = (props) => {
+const [state, setState] = useContext(StorageContext);
+
+
     return(
       <Dropdown 
       label={"Diet"}
       data={diet} 
-      onChangeText={(value)=>{
-          //ASYNCSTORAGE HERE
-         console.log(value)
-      }}
+      onChangeText={(value)=>{setState(state => ({...state, diet:value}));}}
       containerStyle={props.style}
       />
     )

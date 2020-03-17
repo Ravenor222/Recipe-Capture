@@ -6,6 +6,7 @@ function getRecipes(API_KEY, results) {
     .then(function (result) {
        console.log(result.status)
        if (result.status === 200){
+
           console.log(result.data)
        };
     })

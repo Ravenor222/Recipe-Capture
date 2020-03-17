@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 
 
 app.post('/', (req,res)=>{
-  console.log(req.body)
+  // console.log(req.body)
   identifyImage(req.body.data.photo)
   .then((response) => {
     const results = [];
@@ -25,7 +25,9 @@ app.post('/', (req,res)=>{
       results.push(item.name)
     }
     //THESE ARE THE SPOONACULAR RESULTS WITH THE GIVEN TAGS
-    const recipes = getRecipes(process.env.SPOON_KEY, results)
+    const recipes =  getRecipes(process.env.SPOON_KEY, results)
+    console.log(recipes);
+
   })
   .catch((err) => alert(err))
 
