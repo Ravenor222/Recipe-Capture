@@ -8,6 +8,7 @@ const ButtonComponent = (props) => {
     return(
         <Button 
         shadowless size="small" 
+        color='info'
         iconSize={50}
         style={props.style} 
         onPress={() => {props.navigation.navigate('Camera', {state: state});}} 
