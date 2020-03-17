@@ -127,6 +127,5 @@ const styles = StyleSheet.create({
       marginTop: 6,
       color: 'gray',
       fontSize: 13,
-      fontStyle: 'italic'
   }
 });
