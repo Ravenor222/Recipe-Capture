@@ -134,7 +134,7 @@ export default function MakeLater(props) {
                 <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe});}} >
                 <Card
                   key={recipe.id}
-                  avatar='https://storage.needpix.com/rsynced_images/pale-pink-heart.jpg'
+                  avatar='https://storage.needpix.com/rsynced_images/ribbon-1202758_1280.png'
                   title={recipe.title.toUpperCase()}
                   borderless
                   shadowColor={theme.COLORS.BLACK}
