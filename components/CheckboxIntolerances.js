@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 import React, {useCallback, useContext} from 'react';
+=======
+
+
+
+import React from 'react';
+>>>>>>> 9dbbfe7aeace129fb8fee27fc6b6dd0f70f6cd62
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -9,6 +16,11 @@ import {
 import Constants from 'expo-constants';
 import { StorageContext } from '../contexts/storageContext';
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9dbbfe7aeace129fb8fee27fc6b6dd0f70f6cd62
 const DATA = [
   {
     id: 'Dairy',
@@ -65,6 +77,10 @@ const obj = {
 
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9dbbfe7aeace129fb8fee27fc6b6dd0f70f6cd62
 function Item({ id, title, selected, onSelect }) {
   return (
     <TouchableOpacity
@@ -80,11 +96,21 @@ function Item({ id, title, selected, onSelect }) {
 }
 
 export default function App(props) {
+<<<<<<< HEAD
   const selected = props.state[0]
   const setSelected = props.state[1]
   const [state, setState] = useContext(StorageContext);
 
   const onSelect = useCallback(
+=======
+  // console.log(props.state[0])
+  const selected = props.state[0]
+  const setSelected = props.state[1]
+  // const [selected, setSelected] = React.useState(new Map());
+  const [state, setState] = React.useContext(StorageContext);
+
+  const onSelect = React.useCallback(
+>>>>>>> 9dbbfe7aeace129fb8fee27fc6b6dd0f70f6cd62
     id => {
       
       const newSelected = new Map(selected);
