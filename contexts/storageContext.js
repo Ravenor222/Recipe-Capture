@@ -7,9 +7,10 @@ const  StorageContextProvider = (props) => {
   const [state, setState] = useState({
     name:"nick",
     diet:null,
-    intolerances:[], // -> maybe null
+    intolerances:null, // -> maybe null
     pantry: false,
-    allergies:""
+    allergies:"",
+    
 });
 
   return (

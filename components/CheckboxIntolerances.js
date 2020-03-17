@@ -13,51 +13,56 @@ import Constants from 'expo-constants';
 
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    id: 'Dairy',
+    title: 'Dairy',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    id: 'Keto',
+    title: 'Keto',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    id: 'Gluten-free1',
+    title: 'Gluten-free1',
   },
   {
-    id: '4',
-    title: 'fourth Item',
+    id: 'Gluten-free2',
+    title: 'Gluten-free2',
   },
   {
-    id: '5',
-    title: 'fourth Item',
+    id: 'Gluten-free3',
+    title: 'Gluten-free3',
   },
   {
-    id: '6',
-    title: 'fourth Item',
+    id: 'Gluten-free4',
+    title: 'Gluten-free4',
   },
   {
-    id: '7',
-    title: 'fourth Item',
+    id: 'Gluten-free5',
+    title: 'Gluten-free5',
   },
   {
-    id: '8',
-    title: 'fourth Item',
+    id: 'Gluten-free6',
+    title: 'Gluten-free6',
   },
   {
-    id: '9',
-    title: 'fourth Item',
+    id: 'Gluten-free7',
+    title: 'Gluten-free7',
   },
   {
-    id: '10',
-    title: 'fourth Item',
+    id: 'Gluten-free8',
+    title: 'Gluten-free8',
   },
   {
-    id: '11s',
-    title: 'fourth Item',
+    id: 'Gluten-free9',
+    title: 'Gluten-free9',
+  },
+  {
+    id: 'Gluten-free10',
+    title: 'Gluten-free10',
   },
   
 ];
+
 
 function Item({ id, title, selected, onSelect }) {
   return (
@@ -73,15 +78,20 @@ function Item({ id, title, selected, onSelect }) {
   );
 }
 
-export default function App() {
-  const [selected, setSelected] = React.useState(new Map());
+export default function App(props) {
+  // console.log(props.state[0])
+  const selected = props.state[0]
+  const setSelected = props.state[1]
+  // const [selected, setSelected] = React.useState(new Map());
+  // const [state, setState] = React.useContext(StorageContext);
 
   const onSelect = React.useCallback(
     id => {
+      const results = []
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
-      console.log(selected);
-      console.log(selected[0])
+  
+      
       setSelected(newSelected);
     },
     [selected],

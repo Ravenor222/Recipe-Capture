@@ -10,7 +10,16 @@ import DropdownDietComponent from './DropdownDiet';
 import { StorageContextProvider } from '../contexts/storageContext';
 import { ProfileContext } from './ProfileContext';
 
-
+const retrieveData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('state');
+    console.log(value);
+    
+  } catch (error) {
+    console.log(error);
+    // Error retrieving data
+  }
+};
 //What do I want?
 //1: Allergies form
 //2: intolerances checkbox
@@ -41,6 +50,7 @@ let styles = StyleSheet.create({
 });
 
 export default function Profile(props){
+  const [selected, setSelected] = React.useState(new Map());
 
   return(
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
@@ -57,11 +67,12 @@ export default function Profile(props){
         <DropdownDietComponent style={styles.dropdown}/>
 
         <ProfileInput />
-       <ProfileIntolerances />
+       <ProfileIntolerances state={[selected, setSelected]}/>
        {/* this is complete */}
         <ProfileSwitch /> 
       {/* {this is complete} */}
-        <ProfileButton style={{alignSelf:'center', width:'80%'}}/>
+        <Button onPress={()=>{retrieveData()}}/>
+        <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%'}}/>
      </View>
 
     {/* </View> */}
