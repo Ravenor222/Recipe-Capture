@@ -7,7 +7,7 @@ import ProfileInput from '../components/ProfileTextInput'
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownDietComponent from './DropdownDiet';
 import { StorageContextProvider } from '../contexts/storageContext';
-import { ProfileContext } from './ProfileContext';
+import { ProfileContext } from '../contexts/ProfileContext';
 
 
 //What do I want?

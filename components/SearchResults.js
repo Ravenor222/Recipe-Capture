@@ -1,4 +1,4 @@
-import { ProfileContext } from './ProfileContext';
+import { ProfileContext } from '../contexts/ProfileContext';
 import MyCarousel from './SearchResultCards'
 import React from 'react';
 import SearchIngredients from './SearchIngredients';

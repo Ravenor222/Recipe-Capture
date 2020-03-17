@@ -11,7 +11,7 @@ const ProfileButton = (props) => {
 
  const storeData = async () => {
      try {
-       await AsyncStorage.setItem('1',stringState );
+       await AsyncStorage.setItem('state',stringState );
      } catch (error) {
         console.log(error);
      }

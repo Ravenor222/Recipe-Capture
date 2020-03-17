@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
-import { ProfileContext, ProfileContextProvider } from './ProfileContext';
+import { ProfileContext, ProfileContextProvider } from '../contexts/ProfileContext';
 
 
 
