@@ -52,6 +52,7 @@ export default class Favourites extends React.Component {
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
                 <TouchableOpacity style={styles.card} onPress={() => { alert(`You've clicked`); }}>
+
                 <Card
                   key={recipe.id}
                   flex
