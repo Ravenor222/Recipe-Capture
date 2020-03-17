@@ -42,8 +42,8 @@ export default function MyCarousel (props) {
       containerStyle={styles.paginationContainer}
       dotColor={'rgba(255, 255, 255, 0.92)'}
       dotStyle={styles.paginationDot}
-      inactiveDotColor={'black'}
-      inactiveDotOpacity={0.4}
+      inactiveDotColor={'lightsalmon'}
+      inactiveDotOpacity={0.5}
       inactiveDotScale={0.8}
       />
     </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 },
   shadow: {
       position: 'absolute',
-      bottom: 0,
+      top: 30,
       left: itemHorizontalMargin,
       right: itemHorizontalMargin,
       shadowColor: 'black',
@@ -64,5 +64,13 @@ const styles = StyleSheet.create({
       shadowOffset: { width: 0, height: 10 },
       shadowRadius: 10,
       borderRadius: 8
+  },
+  paginationContainer: {
+      paddingVertical: 25
+  },
+  paginationDot: {
+      width: 8,
+      height: 8,
+      borderRadius: 4,
   }
 });
