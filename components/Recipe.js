@@ -16,8 +16,8 @@ const {width}  = Dimensions.get('screen');
 const imageHeight = Math.round(Dimensions.width * 9 / 16);
 const imageWidth = Dimensions.width;
 
-const formatSummary = function(summary) {
-  return summary.replace(/<\/?[^>]+(>|$)/g, "")
+const formatSummary = function(string) {
+  return string.replace(/<\/?[^>]+(>|$)/g, "")
 }
 
 const styles = StyleSheet.create({
