@@ -52,7 +52,7 @@ export default function Recipe({route, navigation}){
       <Image source={{uri: recipe.image}}
        style={{width: 414, height: 300}} />
       <View style={styles.container}>
-      <Header title={recipe.title} time={recipe.readyInMinutes} />
+      <Header recipe={recipe} />
       <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
       <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
       <FlatList
