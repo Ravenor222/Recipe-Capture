@@ -105,8 +105,7 @@ const recipes = [{
 const getItemAsync = async () => {
   const item = await AsyncStorage.getItem('favourites')
   const obj = JSON.parse(item);
-  // const current = obj['saved'];
-  // console.log(obj, "testing");
+  console.log(obj);
   return obj;
 }
 
@@ -116,8 +115,7 @@ const [state, setState] = useState("")
 
 
   useEffect(() => {
-    getItemAsync().then((favouritesState) => {console.log(favouritesState)})
- 
+    getItemAsync().then((favouritesState) => {setState(state=>({...favouritesState }))}) 
 
   },[]);
 

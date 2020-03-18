@@ -15,10 +15,10 @@ const addToFavourites = async (recipe, recipeId) => {
          }
 
           const stringFavourites = JSON.stringify(favourites);
-          await AsyncStorage.setItem('favourites', stringFavourites)
-
-
+          return await AsyncStorage.setItem('favourites', stringFavourites)
+          
         }
+
       console.log(favourites, "im past the if")
       favourites[recipeId] = recipe;
       const stringFavourites = JSON.stringify(favourites);
