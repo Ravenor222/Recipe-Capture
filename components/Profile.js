@@ -50,8 +50,8 @@ export default function Profile(props){
 
   return(
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
-      <NavBar style = {styles.nav}
-          title="Favourites"
+      <NavBar style ={{backgroundColor:'lightsalmon'}}
+          title="Profile"
           left={(
             <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
               <Icon 
@@ -80,7 +80,7 @@ export default function Profile(props){
           </View>
       
        <ProfileSwitch /> 
-       <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%', backgroundColor:'#ffa07a'}}/>
+       <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%', backgroundColor:'#962131'}}/>
      </View>
 
     {/* </View> */}
