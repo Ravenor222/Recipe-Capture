@@ -48,25 +48,26 @@ export default function Recipe({route, navigation}){
   const { recipe } = route.params
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+     <ScrollView>
       <Image source={{uri: recipe.image}}
        style={{width: 414, height: 300}} />
       <View style={styles.container}>
-      <Header title={recipe.title} time={recipe.readyInMinutes} />
-      <ScrollView>
+      <Header recipe={recipe} />
       <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
-      <Text style={{padding: 20, fontSize: 22, fontWeight: "bold"}}>Ingredients</Text>
+      <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
       <FlatList
           data={recipe.ingredients}
           renderItem={({ item }) => <IngredientList name={item} />}
         />
       <View>
+      <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
         <FlatList
           data={recipe.instructions}
           renderItem={({ item }) => <RecipeCard title={item.number} step={item.step} />}
         />
       </View>
-      </ScrollView>
     </View>
+      </ScrollView>
     </Block>
   )
 

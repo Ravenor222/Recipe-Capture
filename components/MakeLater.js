@@ -1,12 +1,12 @@
 import React from 'react';
 import Nav from './Nav';
 import {
-  ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity
+  ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity, AsyncStorage
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 // Galio components
 import {
-  Card, Block, NavBar, Icon, theme
+  Card, Block, NavBar, Icon, theme, Button
 } from 'galio-framework';
 
 const { width } = Dimensions.get('screen');
@@ -108,6 +108,22 @@ const recipes = [{
      ]
    }
   ]
+
+  // await AsyncStorage.setItem('state', stringState );
+
+  const addToMakeLater = async () => {
+    try {
+      const item = await AsyncStorage.getItem('state')
+      let state = JSON.parse(item);
+      state['saved'] = recipes[0];
+      const stringState = JSON.stringify(state);
+      await AsyncStorage.setItem('state', stringState)
+    }
+    catch(err) {
+      console.log(err);
+    }
+
+  }
   
 
 export default function MakeLater(props) {

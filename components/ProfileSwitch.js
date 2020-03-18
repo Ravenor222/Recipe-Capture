@@ -20,7 +20,6 @@ const ProfileSwitch = () => {
         />
 
     </Block>
-
     )
 };
 
