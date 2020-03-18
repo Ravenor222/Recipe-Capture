@@ -2,7 +2,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Card, Block, NavBar, Icon, theme } from 'galio-framework';
-import Nav from './Nav';
 
 const { width } = Dimensions.get('screen');
 

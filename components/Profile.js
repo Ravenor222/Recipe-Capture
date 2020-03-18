@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useState,useContext} from 'react';
 import { Text, View, TouchableOpacity,ImageBackground, AsyncStorage, StyleSheet } from 'react-native';
 import { Button, theme,NavBar ,Icon, Block } from 'galio-framework'
 import ProfileButton from '../components/ProfileButton'
@@ -9,19 +9,6 @@ import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownDietComponent from './DropdownDiet';
 import { StorageContextProvider } from '../contexts/storageContext';
 import { ProfileContext } from '../contexts/ProfileContext';
-import Nav from './Nav';
-
-
-const retrieveData = async () => {
-  try {
-    const value = await AsyncStorage.getItem('state');
-    console.log(value);
-    
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 
 let styles = StyleSheet.create({
   backgroundImage: {
@@ -51,7 +38,7 @@ let styles = StyleSheet.create({
 });
 
 export default function Profile(props){
-  const [selected, setSelected] = React.useState(new Map());
+  const [selected, setSelected] = useState(new Map());
 
   return(
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
