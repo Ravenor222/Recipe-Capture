@@ -14,7 +14,6 @@ const { width } = Dimensions.get('screen');
 const getSavedAsync = async () => {
   const item = await AsyncStorage.getItem('saved')
   const obj = JSON.parse(item);
-  console.log(obj);
   return obj;
 }
 
@@ -22,7 +21,7 @@ const pushSavedRecipes = (state) => {
   const keys = Object.keys(state)
   let results = [];
 
-  for ( let item of keys.filter((x)=> x!== "recipeId")) {
+  for ( let item of keys) {
     results.push(state[item]);
   }
   return results;
@@ -35,7 +34,7 @@ export default function MakeLater(props) {
   useEffect(() => {
     getSavedAsync().then((savedState) => {setState(state=>({...savedState }))}) 
 
-  },[]);
+  });
 
 
 

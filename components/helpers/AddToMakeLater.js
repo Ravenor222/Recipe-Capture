@@ -7,7 +7,6 @@ const addToSaved = async (recipe, recipeId) => {
     let saved = JSON.parse(item);
     
     if ( saved === null ) {
-      console.log("im null")
       
       saved = {
         recipeId:recipe
@@ -18,7 +17,6 @@ const addToSaved = async (recipe, recipeId) => {
       
     }
     
-    console.log(saved, "im past the if")
     saved[recipeId] = recipe;
     const stringsaved = JSON.stringify(saved);
     await AsyncStorage.setItem('saved', stringsaved)

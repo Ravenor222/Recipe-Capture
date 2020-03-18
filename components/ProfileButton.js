@@ -9,7 +9,6 @@ const ProfileButton = (props) => {
 
  const storeData = async () => {
      try {
-      console.log(state)
        await AsyncStorage.setItem('state',stringState );
      } catch (error) {
         console.log(error);
@@ -22,7 +21,6 @@ const ProfileButton = (props) => {
         iconSize={50} color="error" 
         style={props.style}
         onPress={async () => {
-            console.log(state);
             await storeData();
         }}
         >
