@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Text, View } from 'react-native'
-import { Button, Switch, Input, Block } from 'galio-framework'
+import { Button, Switch,theme, Input, Block } from 'galio-framework'
 import { StorageContext } from '../contexts/storageContext';
 
 
@@ -15,7 +15,7 @@ const ProfileSwitch = () => {
                     </Text>
             
                     <Switch 
-                    style={{alignSelf:'center', marginRight:'18%', backgroundColor:"red"}} 
+                    style={{alignSelf:'center', marginRight:'18%', trackColor:{false:"grey",true:"red"}}} 
                     onChange={(value)=>{setState(state => ({...state, pantry:value}));}}
                     />
 

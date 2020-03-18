@@ -32,7 +32,9 @@ let styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   button: {
-    alignSelf: "center"
+    alignSelf: "center",
+    borderRadius:10,
+
   },
   dropdown:{
     backgroundColor: "white",
@@ -40,7 +42,10 @@ let styles = StyleSheet.create({
     alignSelf: "center",
     paddingLeft: 5,
     paddingRight: 5,
-    marginTop:10
+    marginTop:10,
+    borderRadius:10,
+    borderColor:'grey',
+    borderWidth:1,
   },
   
 });
@@ -50,7 +55,7 @@ export default function Profile(props){
 
   return(
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
-      <NavBar style ={{backgroundColor:'lightsalmon'}}
+      <NavBar style ={{backgroundColor:'transparent'}}
           title="Profile"
           left={(
             <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
@@ -58,20 +63,12 @@ export default function Profile(props){
                 name="menu"
                 family="feather"
                 size={25}
-                color={theme.COLORS.WHITE}
+                color={theme.COLORS.GREY}
               />
             </TouchableOpacity>
           )}
-          titleStyle={{ color:'white', fontSize:25 }}/>
+          titleStyle={{ color:'Black', fontSize:25 }}/>
     <StorageContextProvider>
-    {/* <View style={{flex:1}}> */}
-
-      {/* <View style={{flex:0.3, backgroundColor:'red', flexDirection:'column', justifyContent:'flex-end'}}>
-        <Text style={{color:'white', alignSelf:'center', paddingBottom:20}}>
-          I'm someone
-        </Text>
-      </View> */}
-
      <View style={{flex:1, justifyContent:'space-around'}}>
         <DropdownDietComponent style={styles.dropdown}/>
         <ProfileInput />
@@ -80,7 +77,7 @@ export default function Profile(props){
           </View>
       
        <ProfileSwitch /> 
-       <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%', backgroundColor:'#962131'}}/>
+       <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%', backgroundColor:'#962131',borderRadius:10}}/>
      </View>
 
     {/* </View> */}
