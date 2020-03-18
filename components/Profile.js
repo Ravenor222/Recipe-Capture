@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { Text, View, TouchableOpacity,ImageBackground, AsyncStorage, StyleSheet } from 'react-native';
-import { Button, Switch, Input, Block } from 'galio-framework'
+import { Button, theme,NavBar ,Icon, Block } from 'galio-framework'
 import ProfileButton from '../components/ProfileButton'
 import ProfileSwitch from '../components/ProfileSwitch'
 import ProfileInput from '../components/ProfileTextInput'
@@ -9,6 +9,8 @@ import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownDietComponent from './DropdownDiet';
 import { StorageContextProvider } from '../contexts/storageContext';
 import { ProfileContext } from '../contexts/ProfileContext';
+import Nav from './Nav';
+
 
 const retrieveData = async () => {
   try {
@@ -48,6 +50,19 @@ export default function Profile(props){
 
   return(
     <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
+      <NavBar style = {styles.nav}
+          title="Favourites"
+          left={(
+            <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={25}
+                color={theme.COLORS.WHITE}
+              />
+            </TouchableOpacity>
+          )}
+          titleStyle={{ color:'white', fontSize:25 }}/>
     <StorageContextProvider>
     {/* <View style={{flex:1}}> */}
 
