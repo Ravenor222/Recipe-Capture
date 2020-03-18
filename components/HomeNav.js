@@ -2,6 +2,7 @@ import React from 'react';
 import CameraApp from './Camera';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Home'
+import SearchResults from './SearchResults';
 
 
 export default function HomeNav ({navigation}){
@@ -20,6 +21,9 @@ export default function HomeNav ({navigation}){
           },
           headerTintColor: "white"
       }}/>
+      <Stack.Screen name="RecipeResult" component={SearchResults} options={{
+        title: null,
+        headerShown: false }} />
     </Stack.Navigator>
   )
 

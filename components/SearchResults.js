@@ -1,12 +1,12 @@
-import { ProfileContext } from '../contexts/ProfileContext';
 import MyCarousel from './SearchResultCards'
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchIngredients from './SearchIngredients';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
 import Nav from './Nav';
+import axios from 'axios';
 
-let ingredients = ['Apple', 'Lettuce', 'Egg', 'Mango', 'Garlic']
+let ingredients = ['Apple', 'Mango']
 
 export default function SearchResults(props){
 
@@ -27,7 +27,7 @@ export default function SearchResults(props){
           titleStyle={{ color:'white', fontSize:25 }}
         />
         <View>
-          <MyCarousel/>
+          <MyCarousel />
           <SearchIngredients ingredients={ingredients}/>
         </View>
     </>

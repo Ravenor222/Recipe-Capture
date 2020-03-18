@@ -20,7 +20,8 @@ const itemWidth = slideWidth + itemHorizontalMargin * 2;
 const sliderWidth = Dimensions.get('window').width;
 
 export default function MyCarousel (props) {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(0);
+
 
   const _renderItem = ({item}) => {
     return <SliderEntry data={item}/>;
