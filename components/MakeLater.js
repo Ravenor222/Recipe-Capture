@@ -14,6 +14,7 @@ const { width } = Dimensions.get('screen');
 const getSavedAsync = async () => {
   const item = await AsyncStorage.getItem('saved')
   const obj = JSON.parse(item);
+  console.log(obj);
   return obj;
 }
 
@@ -34,7 +35,7 @@ export default function MakeLater(props) {
   useEffect(() => {
     getSavedAsync().then((savedState) => {setState(state=>({...savedState }))}) 
 
-  });
+  },[]);/// -> Need to depend on a value to update, but what?
 
 
 
