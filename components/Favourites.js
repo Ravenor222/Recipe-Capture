@@ -5,14 +5,14 @@ import { Card, Block, NavBar, Icon, theme, Button } from 'galio-framework';
 
 const { width } = Dimensions.get('screen');
 
-const getItemAsync = async () => {
+const getFavouritesAsync = async () => {
   const item = await AsyncStorage.getItem('favourites')
   const obj = JSON.parse(item);
   console.log(obj);
   return obj;
 }
 
-const pushRecipes = (state) => {
+const pushFavouritesRecipes = (state) => {
   const keys = Object.keys(state)
   let results = [];
 
@@ -22,15 +22,14 @@ const pushRecipes = (state) => {
   return results;
 }
 
-
 export default function Favourites (props){
 const [state, setState] = useState("")
-const recipes = pushRecipes(state);
+const recipes = pushFavouritesRecipes(state);
 
 
 
   useEffect(() => {
-    getItemAsync().then((favouritesState) => {setState(state=>({...favouritesState }))}) 
+    getFavouritesAsync().then((favouritesState) => {setState(state=>({...favouritesState }))}) 
 
   },[]);
 
@@ -52,7 +51,7 @@ const recipes = pushRecipes(state);
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:25 }}/>
-          <Button onPress={()=>{console.log(keys)}}/>
+          <Button onPress={()=>{console.log(recipes)}}/>
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
