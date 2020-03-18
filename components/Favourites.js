@@ -1,7 +1,7 @@
 
-import React from 'react';
-import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
-import { Card, Block, NavBar, Icon, theme } from 'galio-framework';
+import React, {useEffect, useState} from 'react';
+import { ScrollView, StyleSheet, Dimensions, TouchableOpacity,AsyncStorage } from 'react-native';
+import { Card, Block, NavBar, Icon, theme, Button } from 'galio-framework';
 
 const { width } = Dimensions.get('screen');
 
@@ -102,9 +102,27 @@ const recipes = [{
    ]
  }
 ]
-  
+const getItemAsync = async () => {
+  const item = await AsyncStorage.getItem('favourites')
+  const obj = JSON.parse(item);
+  // const current = obj['saved'];
+  // console.log(obj, "testing");
+  return obj;
+}
+
 
 export default function Favourites (props){
+const [state, setState] = useState("")
+
+
+  useEffect(() => {
+    getItemAsync().then((favouritesState) => {console.log(favouritesState)})
+ 
+
+  },[]);
+
+
+
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
 {/* //       <Nav title="My Favourites" navigation={props.navigation} /> */}
@@ -121,6 +139,7 @@ export default function Favourites (props){
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:25 }}/>
+          <Button onPress={()=>{console.log(state)}}/>
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
@@ -136,6 +155,8 @@ export default function Favourites (props){
                   image={recipe.image}
                   imageBlockStyle={[styles.noRadius]}
                   footerStyle={{paddingLeft: 5, marginRight:70}}
+
+
                 >
                 </Card>
               </TouchableOpacity>

@@ -1,16 +1,18 @@
 import React, {useContext} from 'react';
 import Nav from './Nav';
-import { View, TouchableOpacity, ShadowPropTypesIOS, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, ShadowPropTypesIOS, StyleSheet} from 'react-native';
 import { ProfileContext } from '../contexts/ProfileContext';
+import addToMakeLater from '../components/helpers/AddToMakeLater'
+import addToFavourites from '../components/helpers/AddToFavourites'
 
 import {
-  Card, Block, NavBar, Icon, theme, Text
+  Card, Block, NavBar, Icon, theme, Text, Button
 } from 'galio-framework';
 
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
+    height: 100,
     paddingTop: 28,
     paddingBottom: 28,
     backgroundColor: 'white'
@@ -30,11 +32,22 @@ const styles = StyleSheet.create({
 }
 })
 
-export default function Header({title, time}) {
+
+
+
+export default function Header(props) {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.time}>Ready in {time} minutes</Text>
+      <Text style={styles.title}>{props.recipe.title}</Text>
+      <Text style={styles.time}>Ready in {props.recipe.readyInMinutes} minutes</Text>
+      <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
+
+      <Button style={{width:'25%', marginHorizontal:8, backgroundColor:'lightsalmon', shadowColor:'transparent', height:30, marginTop:10}} onPress={addToMakeLater}><Text style={{fontWeight:'bold', color:'white'}}>Saves</Text></Button>
+      <Button style={{ width:'25%', marginHorizontal:8, backgroundColor:'lightsalmon', shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
+        addToFavourites(props.recipe, props.recipe.id)
+      }}><Text style={{fontWeight:'bold', color:'white'}}>Faves</Text></Button>
+
+      </Block>
     </View>
   )
 }
