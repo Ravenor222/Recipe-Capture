@@ -3,22 +3,13 @@ import { AsyncStorage, View } from 'react-native'
 import { Button } from 'galio-framework';
 import { StorageContext } from '../contexts/storageContext';
 
-const obj = {
-
-}
-
-
 const ProfileButton = (props) => {
     const [state, setState] = useContext(StorageContext);
     const stringState = JSON.stringify(state)
-    const selected = props.state[0]
-    const setSelected = props.state[1];
-
-
 
  const storeData = async () => {
      try {
-        console.log(state);
+      console.log(state)
        await AsyncStorage.setItem('state',stringState );
      } catch (error) {
         console.log(error);

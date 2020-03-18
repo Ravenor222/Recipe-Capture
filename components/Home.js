@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ProfileContextProvider } from './ProfileContext';
+import { ProfileContextProvider } from '../contexts/ProfileContext';
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';

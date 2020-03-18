@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import Nav from './Nav';
 import { View, TouchableOpacity, ShadowPropTypesIOS, StyleSheet } from 'react-native';
-import { ProfileContext } from './ProfileContext';
+import { ProfileContext } from '../contexts/ProfileContext';
 
 import {
   Card, Block, NavBar, Icon, theme, Text

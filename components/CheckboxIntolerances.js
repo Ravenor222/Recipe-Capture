@@ -1,7 +1,5 @@
+import React, {useCallback, useContext} from 'react';
 
-
-
-import React from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -11,7 +9,6 @@ import {
 } from 'react-native';
 import Constants from 'expo-constants';
 import { StorageContext } from '../contexts/storageContext';
-
 
 
 const DATA = [
@@ -86,13 +83,12 @@ function Item({ id, title, selected, onSelect }) {
 }
 
 export default function App(props) {
-  // console.log(props.state[0])
   const selected = props.state[0]
   const setSelected = props.state[1]
-  // const [selected, setSelected] = React.useState(new Map());
-  const [state, setState] = React.useContext(StorageContext);
+  const [state, setState] = useContext(StorageContext);
 
-  const onSelect = React.useCallback(
+  const onSelect = useCallback(
+
     id => {
       
       const newSelected = new Map(selected);

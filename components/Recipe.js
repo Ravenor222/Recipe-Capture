@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import Nav from './Nav';
 import {  Dimensions, ScrollView, View, TouchableOpacity, ShadowPropTypesIOS, FlatList, StyleSheet, Image, SafeAreaView } from 'react-native';
-import { ProfileContext } from './ProfileContext';
+import { ProfileContext } from '../contexts/ProfileContext';
 import Header from './Header';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';

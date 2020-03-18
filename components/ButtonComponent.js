@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Button } from 'galio-framework';
-import { ProfileContext } from './ProfileContext';
+import { ProfileContext } from '../contexts/ProfileContext';
 
 const ButtonComponent = (props) => {
     const [state, setState] = useContext(ProfileContext);

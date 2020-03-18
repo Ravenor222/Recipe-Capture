@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ProfileContext } from './ProfileContext';
+import { ProfileContext } from '../contexts/ProfileContext';
 import { Dropdown } from 'react-native-material-dropdown';
 import { StyleSheet} from 'react-native';
 
