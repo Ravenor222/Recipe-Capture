@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState} from 'react';
 import { ScrollView, StyleSheet, Dimensions, TouchableOpacity,AsyncStorage } from 'react-native';
 import { Card, Block, NavBar, Icon, theme, Button } from 'galio-framework';

@@ -36,7 +36,6 @@ app.post('/', async (req,res) => {
     let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount, illustration: item.image, id: item.id, instructions: item.analyzedInstructions, missedIngredients: item.missedIngredients, summary: item.summary, usedIngredients: item.usedIngredients};
     recipesArray.push(obj);
   }
-
   final = recipesArray;
 
 })

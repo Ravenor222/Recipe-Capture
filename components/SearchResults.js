@@ -22,7 +22,6 @@ export default function SearchResults(props){
 
   return(
     <>
-    { console.log(recipes[1].instructions)}
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(
