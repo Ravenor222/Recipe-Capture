@@ -40,7 +40,7 @@ export default function SearchResults(props){
         />
         <View>
           {/* <ImageBackground source={require("./photos/food.png")} style={styles.backgroundImage}></ImageBackground> */}
-          <MyCarousel recipes={recipes}/>
+          <MyCarousel recipes={recipes} navigation={props.navigation}/>
           <SearchIngredients ingredients={ingredients}/>
         </View>
     </>

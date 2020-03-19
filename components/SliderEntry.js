@@ -33,23 +33,24 @@ export default class SliderEntry extends Component {
     }
 
     render () {
-        const { data: { title, time, missing } } = this.props;
+        const { data: recipe } = this.props;
 
-        const uppercaseTitle = title ? (
+
+        const uppercaseTitle = recipe.title ? (
             <Text
               style={[styles.title]}
               numberOfLines={2}
             >
-                { title.toUpperCase() }
+                { recipe.title.toUpperCase() }
             </Text>
         ) : false;
 
-        const missingIng = missing ? (
+        const missingIng = recipe.missing ? (
           <Text
             style={[styles.time]}
             numberOfLines={2}
           >
-            Missing Ingredients: { missing }
+            Missing Ingredients: { recipe.missing }
           </Text>
         ) : false;
 
@@ -57,7 +58,7 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => { alert(`You've clicked '${title}'`); }}>
+              onPress={() => {this.props.navigation.navigate('Recipe', {recipe});}}>
                 <View style={styles.shadow} />
                 <View style={[styles.imageContainer]}>
                     { this.image }
@@ -70,7 +71,7 @@ export default class SliderEntry extends Component {
                       style={[styles.time]}
                       numberOfLines={2}
                     >
-                    { time } minutes
+                    { recipe.time } minutes
                     </Text>
                 </View>
             </TouchableOpacity>

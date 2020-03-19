@@ -19,7 +19,7 @@ export default function MyCarousel (props) {
   const [active, setActive] = useState(0);
 
   const _renderItem = ({item}) => {
-    return <SliderEntry data={item}/>;
+    return <SliderEntry data={item} navigation={props.navigation}/>;
   }
   return (
     <View style={styles.exampleContainer, styles.shadow}>
