@@ -15,14 +15,14 @@ export default function SearchResults(props){
 
 
   useEffect(() => {
-    axios.get('http://192.168.1.72:3001/')
+    axios.get('http://192.168.1.79:3001/')
     .then(res => setRecipes(res.data))
     .catch(err => console.log(err));
   },[])
 
   return(
     <>
-    { console.log(recipes[1].instructions)}
+    {/* { console.log(recipes[1].instructions)} */}
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(

@@ -64,7 +64,7 @@ export default function Recipe({route, navigation}){
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
      <ScrollView>
-      <Image source={{uri: recipe.image}}
+      <Image source={{uri: recipe.illustration}}
        style={{width: 414, height: 300}} />
       <View style={styles.container}>
       <Header recipe={recipe} />

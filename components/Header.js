@@ -39,7 +39,7 @@ export default function Header(props) {
   return (
     <View style={styles.header}>
       <Text style={styles.title}>{props.recipe.title}</Text>
-      <Text style={styles.time}>Ready in {props.recipe.readyInMinutes} minutes</Text>
+      <Text style={styles.time}>Ready in {props.recipe.time} minutes</Text>
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
       <Button style={{width:'25%', marginHorizontal:8, backgroundColor:'lightsalmon', shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
