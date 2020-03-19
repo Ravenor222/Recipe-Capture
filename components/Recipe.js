@@ -20,6 +20,20 @@ const formatSummary = function(string) {
   return string.replace(/<\/?[^>]+(>|$)/g, "")
 }
 
+const formatIngredients = function(missed, used) {
+  const results = [];
+  for (let ing of missed) {
+    results.push(ing["original"])
+  };
+
+  for (let ing of used) {
+    results.push(ing["original"])
+  }
+
+  return results;
+}
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -46,17 +60,18 @@ const styles = StyleSheet.create({
 
 export default function Recipe({route, navigation}){
   const { recipe } = route.params
+  const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
      <ScrollView>
-      <Image source={{uri: recipe.image}}
+      <Image source={{uri: recipe.illustration}}
        style={{width: 414, height: 300}} />
       <View style={styles.container}>
       <Header recipe={recipe} />
       <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
       <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
       <FlatList
-          data={recipe.ingredients}
+          data={ingredients}
           renderItem={({ item }) => <IngredientList name={item} />}
         />
       <View>

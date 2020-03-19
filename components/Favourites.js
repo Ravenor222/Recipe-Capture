@@ -132,7 +132,7 @@ const recipes = pushFavouritesRecipes(state);
                   borderless
                   shadowColor={theme.COLORS.BLACK}
                   style={styles.cardBackground}
-                  caption={`Ready in ${recipe.readyInMinutes} minutes`}
+                  caption={`Ready in ${recipe.time} minutes`}
                   image={recipe.image}
                   imageBlockStyle={[styles.noRadius]}
                   footerStyle={{paddingLeft: 5, marginRight:70}}

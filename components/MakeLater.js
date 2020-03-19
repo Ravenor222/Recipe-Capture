@@ -34,10 +34,12 @@ export default function MakeLater(props) {
   const [state, setState] = useState("")
   const recipes = pushSavedRecipes(state)
 
+
   // useEffect(() => {
   //   getSavedAsync().then((savedState) => {setState(state=>({...savedState }))}) 
 
   // });/// -> Need to depend on a value to update, but what?
+
 
 
   useFocusEffect(
@@ -75,7 +77,7 @@ export default function MakeLater(props) {
                   borderless
                   shadowColor={theme.COLORS.BLACK}
                   style={styles.cardBackground}
-                  caption={`Ready in ${recipe.readyInMinutes} minutes`}
+                  caption={`Ready in ${recipe.time} minutes`}
                   image={recipe.image}
                   imageBlockStyle={[styles.noRadius]}
                   footerStyle={{paddingLeft: 5, marginRight:70}}
