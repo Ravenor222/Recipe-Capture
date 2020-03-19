@@ -36,6 +36,7 @@ const formatIngredients = function(missed, used) {
 }
 
 
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -63,6 +64,8 @@ const styles = StyleSheet.create({
 export default function Recipe({route, navigation}){
   const { recipe } = route.params
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
+  const instructions = recipe.instructions
+
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
      <ScrollView>
@@ -79,8 +82,8 @@ export default function Recipe({route, navigation}){
       <View>
       <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
         <FlatList
-          data={recipe.instructions}
-          renderItem={({ item }) => <RecipeCard title={item.number} step={item.step} />}
+          data={instructions}
+          renderItem={({ item }) => <RecipeCard title={item.steps.number} step={item.steps.step} />}
         />
       </View>
     </View>

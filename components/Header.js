@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import Nav from './Nav';
-import { View, TouchableOpacity, ShadowPropTypesIOS, StyleSheet} from 'react-native';
+import { View, TouchableOpacity, ShadowPropTypesIOS, StyleSheet, Alert} from 'react-native';
 import { ProfileContext } from '../contexts/ProfileContext';
 import addToSaved from '../components/helpers/AddToMakeLater'
 import addToFavourites from '../components/helpers/AddToFavourites'
@@ -43,11 +43,11 @@ export default function Header(props) {
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
       <Button style={{width:'25%', marginHorizontal:8, backgroundColor:'lightsalmon', shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-        addToSaved(props.recipe, props.recipe.id);
+        addToSaved(props.recipe, props.recipe.id).then(res => Alert.alert("Saved!", "This recipe has been saved for later", [{text: "Done", onPress: () => console.log("Alert closed.")}]));
       }}><Text style={{fontWeight:'bold', color:'white'}}>Saves</Text></Button>
         
       <Button style={{ width:'25%', marginHorizontal:8, backgroundColor:'lightsalmon', shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
-        addToFavourites(props.recipe, props.recipe.id);
+        addToFavourites(props.recipe, props.recipe.id).then(res => Alert.alert("Saved!", "This recipe has been added to your Favourites", [{text: "Done", onPress: () => console.log("Alert closed.")}]));
       }}><Text style={{fontWeight:'bold', color:'white'}}>Faves</Text></Button>
 
       </Block>
