@@ -110,7 +110,7 @@ export default function App(props) {
     <SafeAreaView style={styles.container}>
       <FlatList
         horizontal={false}
-        style={{alignSelf:'center', flexGrow:0}}
+        style={{alignSelf:'center', flexGrow:0, marginVertical:30}}
 
         numColumns={3}
         data={DATA}

@@ -24,6 +24,7 @@ app.post('/', async (req,res) => {
 
   let filtered = results.filter( x => x.value > 0.80 && x.name !== "vegetable" && x.name !== "relish" && x.name !== "sweet" && x.name !== "juice" && x.name !== "pasture" && x.name !== "herb" && x.name !== "condiment" && x.name !== "fruit" && x.name !== "citrus")
 
+
   let ingredients = [];
   for (let item of filtered) {
     ingredients.push(item.name)

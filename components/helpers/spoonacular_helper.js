@@ -2,6 +2,7 @@ const axios = require('axios')
 
 const getRecipes = async (API_KEY, results) => {
 
+
     console.log(results);
     
     let result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${results.join(",+")}&instructionsRequired=true&excludeIngredients=${null}&fillIngredients=true&intolerances=${null}&addRecipeInformation=true&cuisine=${null}&diet=${null}&maxFat=55&number=5&apiKey=${API_KEY}`)
