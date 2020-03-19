@@ -55,7 +55,7 @@ export default function Profile(props){
               />
             </TouchableOpacity>
           )}
-          titleStyle={{ color:'Black', fontSize:25 }}/>
+          titleStyle={{ color: '#f0f', fontSize:25 }}/>
     <StorageContextProvider>
     <ScrollView containerStyle={{flex:1, justifyContent:'space-around'}}>
      {/* <View > */}

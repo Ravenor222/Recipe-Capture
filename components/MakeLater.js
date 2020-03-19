@@ -78,7 +78,7 @@ export default function MakeLater(props) {
                   shadowColor={theme.COLORS.BLACK}
                   style={styles.cardBackground}
                   caption={`Ready in ${recipe.time} minutes`}
-                  image={recipe.image}
+                  image={recipe.illustration}
                   imageBlockStyle={[styles.noRadius]}
                   footerStyle={{paddingLeft: 5, marginRight:70}}
                 >

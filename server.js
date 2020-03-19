@@ -15,14 +15,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 var final = [];
 
 app.get('/', function (req, res) {
+  //console.log(final, 'final');
   res.json(final);
 })
 
 app.post('/', async (req,res) => {
 
+  
   let time = req.body.data.state.time;
   let cuisine = req.body.data.state.cuisine;
-
+  
   let results = await identifyImage(req.body.data.photo)
 
   let filtered = results.filter( x => x.value > 0.80 && x.name !== "vegetable" && x.name !== "relish" && x.name !== "sweet" && x.name !== "juice" && x.name !== "pasture" && x.name !== "herb" && x.name !== "condiment" && x.name !== "fruit" && x.name !== "citrus")
@@ -36,12 +38,14 @@ app.post('/', async (req,res) => {
   let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine)
 
   let recipesArray = [];
+
   for(const item of recipes){
     let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount, illustration: item.image, id: item.id, instructions: item.analyzedInstructions, missedIngredients: item.missedIngredients, summary: item.summary, usedIngredients: item.usedIngredients};
     recipesArray.push(obj);
   }
-  final = recipesArray;
 
+  recipesArray.push(ingredients)
+  final = recipesArray;
 })
 
 app.listen(PORT, () => {
