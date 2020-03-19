@@ -1,35 +1,28 @@
 import MyCarousel from './SearchResultCards'
 import React, { useEffect, useState } from 'react';
 import SearchIngredients from './SearchIngredients';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
 import Nav from './Nav';
 import axios from 'axios';
-//import searchPage from './helpers/search_result_helper';
 
 let ingredients = ['Apple', 'Mango']
-const searchPage = (arr) => {
-  let results = [];
-  for(const item of arr){
-    let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount, illustration: item.image, id: item.id};
-    results.push(obj);
-  }
-  return results;
-}
 
 
 export default function SearchResults(props){
 
   const[recipes, setRecipes] = useState(1)
 
+
   useEffect(() => {
-    axios.get('http://192.168.1.79:3001/')
-    .then(res => setRecipes(searchPage(res.data)))
+    axios.get('http://192.168.1.72:3001/')
+    .then(res => setRecipes(res.data))
     .catch(err => console.log(err));
   },[])
 
   return(
     <>
+    { console.log(recipes[1].instructions)}
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(
@@ -45,6 +38,7 @@ export default function SearchResults(props){
           titleStyle={{ color:'white', fontSize:25 }}
         />
         <View>
+          {/* <ImageBackground source={require("./photos/food.png")} style={styles.backgroundImage}></ImageBackground> */}
           <MyCarousel recipes={recipes}/>
           <SearchIngredients ingredients={ingredients}/>
         </View>
@@ -59,5 +53,10 @@ const styles = StyleSheet.create({
   container :{
     flex: 1,
     justifyContent:'space-between'
+  },
+  backgroundImage: {
+    width:'100%',
+    height:'100%',
+    zIndex: -1
   }
-})
+});
