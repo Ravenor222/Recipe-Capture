@@ -23,7 +23,7 @@ export default function SearchResults(props){
   const[recipes, setRecipes] = useState(1)
 
   useEffect(() => {
-    axios.get('http://192.168.1.72:3001/')
+    axios.get('http://192.168.1.79:3001/')
     .then(res => setRecipes(searchPage(res.data)))
     .catch(err => console.log(err));
   },[])
