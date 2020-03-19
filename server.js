@@ -15,10 +15,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 var final = [];
 
 app.get('/', function (req, res) {
+  console.log(final, 'final');
   res.json(final);
 })
 
 app.post('/', async (req,res) => {
+
+  let time = req.body.data.state.time;
+  let cuisine = req.body.data.state.cuisine;
 
   let results = await identifyImage(req.body.data.photo)
 
@@ -30,7 +34,7 @@ app.post('/', async (req,res) => {
     ingredients.push(item.name)
   }
   
-  let recipes = await getRecipes(process.env.SPOON_KEY, ingredients)
+  let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine)
 
   let recipesArray = [];
   for(const item of recipes){
@@ -38,7 +42,7 @@ app.post('/', async (req,res) => {
     recipesArray.push(obj);
   }
   final = recipesArray;
-
+  console.log('im done')
 })
 
 app.listen(PORT, () => {

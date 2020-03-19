@@ -1,6 +1,7 @@
 import MyCarousel from './SearchResultCards'
-import React, { useEffect, useState } from 'react';
-import SearchIngredients from './SearchIngredients';
+import React, { useEffect, useState,useCallback } from 'react';
+import SearchIngredients from './SearchIngredients'
+import { useFocusEffect } from '@react-navigation/native';;
 import { StyleSheet, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
 import Nav from './Nav';
@@ -13,12 +14,16 @@ export default function SearchResults(props){
 
   const[recipes, setRecipes] = useState(1)
 
+  useFocusEffect(
+    useCallback(() => {
+      axios.get('http://192.168.1.10:3001/')
+      .then(res => setRecipes(res.data))
+      .catch(err => console.log(err, "error"));
+    },[])
+  )
 
-  useEffect(() => {
-    axios.get('http://192.168.1.79:3001/')
-    .then(res => setRecipes(res.data))
-    .catch(err => console.log(err));
-  },[])
+
+  console.log(recipes)
 
   return(
     <>

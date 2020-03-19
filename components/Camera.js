@@ -6,16 +6,11 @@ import axios from 'axios';
 import { ProfileContext, ProfileContextProvider } from '../contexts/ProfileContext';
 
 
-
 export default function CameraApp (props){
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [spinner, setSpinner] = useState(false);
   const [display, setDisplay] = useState('flex');
-
-    // => This is the current state that is being sent upon transition from home page to camera
-    // console.log(props.route.params.state)
-
 
   useEffect(() => {
     (async () => {
@@ -48,7 +43,7 @@ export default function CameraApp (props){
                 //'http://192.168.88.103:3001/'
               
 
-                axios.post('http://192.168.1.79:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                axios.post('http://192.168.1.10:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
 
                 .then(res => console.log('success'))
                 .catch(err => console.log("error"))
