@@ -6,7 +6,7 @@ import FavouritesNav from './components/FavouritesNav';
 import MakeLater from './components/MakeLater';
 import MakeLaterNav from './components/MakeLaterNav';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import SearchResults from './components/SearchResults';
+import SearchResultsNav from './components/SearchResultsNav';
 
 
 const Drawer = createDrawerNavigator();
@@ -22,7 +22,7 @@ export default function App() {
         <Drawer.Screen name="Profile" component={Profile} />
         <Drawer.Screen name="Favourites" component={FavouritesNav} />
         <Drawer.Screen name="Saved for Later" component={MakeLaterNav} />
-        <Drawer.Screen name="Recipes" component={SearchResults} />
+        <Drawer.Screen name="Search Results" component={SearchResultsNav} />
 
       </Drawer.Navigator>
     </NavigationContainer>

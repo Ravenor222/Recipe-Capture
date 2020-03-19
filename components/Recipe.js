@@ -10,6 +10,8 @@ import {
   Card, Block, NavBar, Icon, theme, Text
 } from 'galio-framework';
 
+//test: pls delete
+
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
 const {width}  = Dimensions.get('screen');
