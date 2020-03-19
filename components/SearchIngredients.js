@@ -5,6 +5,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import getRecipes from './helpers/spoonacular_helper';
 const { width: viewportWidth } = Dimensions.get('window');
 
+const searchPage = (arr) => {
+  let results = [];
+  for(const item of arr){
+    let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount};
+    results.push(obj);
+  }
+  return results;
+}
+
 export default function SearchIngredients(props){
 
   const [ingredients, setIngredients] = useState(props.ingredients)
@@ -35,7 +44,8 @@ export default function SearchIngredients(props){
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
         let result = ingredients.length !== 0 ? await getRecipes('215317af67ff419fa1c1dca0706ece0b', ingredients) : false;
-        console.log(result)
+        // searchPage(result);
+        console.log(result);
       }}>Search Again</Button>
     </View>
   );
