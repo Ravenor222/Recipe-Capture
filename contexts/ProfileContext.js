@@ -5,8 +5,8 @@ const ProfileContext = createContext([{}, () => {}]);
 const  ProfileContextProvider = (props) => {
 
   const [state, setState] = useState({
-    time: "test",
-    cuisine: "test",
+    time: "Any",
+    cuisine: "Any",
   });
 
   return (

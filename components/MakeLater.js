@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import Nav from './Nav';
+import ClearSaved from './ClearSaved';
 import {
   ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity, AsyncStorage
 } from 'react-native';
@@ -65,7 +66,7 @@ export default function MakeLater(props) {
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:25 }}/>
-          <Button onPress={()=>{console.log(recipes)}}/>
+          <Button onPress={ClearSaved}/>
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
