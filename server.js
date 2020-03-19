@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 
 
 app.post('/', (req,res)=>{
-  // console.log(req.body)
+  console.log("posted")
   identifyImage(req.body.data.photo)
   .then((response) => {
     const results = [];
@@ -25,8 +25,15 @@ app.post('/', (req,res)=>{
       results.push(item.name)
     }
     //THESE ARE THE SPOONACULAR RESULTS WITH THE GIVEN TAGS
+    let extendedIngredients = [];
     const recipes =  getRecipes(process.env.SPOON_KEY, results)
-    console.log(recipes);
+
+    .then(recipes=> console.log(recipes));
+
+
+
+    // 
+    // console.log(recipes);//=> this is a promise
     /// -> POST TO THE PHONE
   })
   .catch((err) => alert(err))
