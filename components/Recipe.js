@@ -65,7 +65,7 @@ export default function Recipe({route, navigation}){
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-     <ScrollView>
+     <ScrollView style={{height:300}}>
       <Image source={{uri: recipe.illustration}}
        style={{width: 414, height: 300}} />
       <View style={styles.container}>
@@ -79,7 +79,7 @@ export default function Recipe({route, navigation}){
       <View>
       <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
         <FlatList
-          data={recipe.instructions}
+          data={recipe.instructions[0].steps}
           renderItem={({ item }) => <RecipeCard title={item.number} step={item.step} />}
         />
       </View>
@@ -89,3 +89,44 @@ export default function Recipe({route, navigation}){
   )
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
