@@ -12,8 +12,6 @@ export default function CameraApp (props){
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [spinner, setSpinner] = useState(false);
   const [display, setDisplay] = useState('flex');
-  const [recipes, setRecipes] = useState(null)
-
 
     // => This is the current state that is being sent upon transition from home page to camera
     // console.log(props.route.params.state)
@@ -41,17 +39,16 @@ export default function CameraApp (props){
             onPress = {async () => {
               setSpinner(true);
               setDisplay('none')
-              //setTimeout(()=> {props.navigation.navigate("RecipeResult")}, 5000)
               const options = {
                 base64: true
               }
+              // setTimeout(()=> {props.navigation.navigate("RecipeResult")}, 8000)
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
                 //'http://192.168.88.103:3001/'
-                await axios.post('http://192.168.1.72:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                axios.post('http://192.168.1.72:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
                 .catch(err => console.log("error"))
-
               }
             }}>
             <ActivityIndicator size="large" color="#FFFFFF" animating={spinner} style={styles.spinner}/>
