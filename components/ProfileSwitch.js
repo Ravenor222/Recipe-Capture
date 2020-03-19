@@ -15,7 +15,7 @@ const ProfileSwitch = () => {
         </Text>
 
         <Switch 
-        style={{alignSelf:'center', marginRight:'18%', trackColor:{false:"grey",true:"red"}}} 
+        style={{marginVertical:30 ,alignSelf:'center', marginRight:'18%', trackColor:{false:"grey",true:"red"}}} 
         onChange={(value)=>{setState(state => ({...state, pantry:value}));}}
         />
 
