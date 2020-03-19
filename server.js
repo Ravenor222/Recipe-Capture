@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var final = [];
 
 app.get('/', function (req, res) {
+  console.log(final, 'final');
   res.json(final);
 })
 
@@ -41,7 +42,7 @@ app.post('/', async (req,res) => {
     recipesArray.push(obj);
   }
   final = recipesArray;
-
+  console.log('im done')
 })
 
 app.listen(PORT, () => {
