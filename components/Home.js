@@ -5,7 +5,7 @@ import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
 
 import {
-  Platform, TouchableOpacity, ImageBackground, StyleSheet
+  ScrollView, Dimensions, Platform, TouchableOpacity, ImageBackground, StyleSheet, Image
 } from 'react-native';
 
 import {
@@ -88,6 +88,7 @@ export default function Home ({navigation}){
         />
 
       <ProfileContextProvider> 
+   
 
         <DropdownTimeComponent 
          list={time} 

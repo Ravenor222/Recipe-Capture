@@ -1,5 +1,5 @@
 import React, {useState,useContext} from 'react';
-import { Text, View, TouchableOpacity,ImageBackground, AsyncStorage, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity,ImageBackground, AsyncStorage, StyleSheet,ScrollView } from 'react-native';
 import { Button, theme,NavBar ,Icon, Block } from 'galio-framework'
 import ProfileButton from '../components/ProfileButton'
 import ProfileSwitch from '../components/ProfileSwitch'
@@ -21,6 +21,7 @@ let styles = StyleSheet.create({
   button: {
     alignSelf: "center",
     borderRadius:10,
+    marginVertical:30,
 
   },
   dropdown:{
@@ -29,7 +30,7 @@ let styles = StyleSheet.create({
     alignSelf: "center",
     paddingLeft: 5,
     paddingRight: 5,
-    marginTop:10,
+    marginVertical:30,
     borderRadius:10,
     borderColor:'grey',
     borderWidth:1,
@@ -56,17 +57,18 @@ export default function Profile(props){
           )}
           titleStyle={{ color:'Black', fontSize:25 }}/>
     <StorageContextProvider>
-     <View style={{flex:1, justifyContent:'space-around'}}>
+    <ScrollView containerStyle={{flex:1, justifyContent:'space-around'}}>
+     {/* <View > */}
         <DropdownDietComponent style={styles.dropdown}/>
-        <ProfileInput />
+        <ProfileInput/>
           <View style={{flex:0.42}}>
             <ProfileIntolerances state={[selected, setSelected]}/>
           </View>
       
        <ProfileSwitch /> 
        <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'80%', backgroundColor:'#962131',borderRadius:10}}/>
-     </View>
-
+     {/* </View> */}
+    </ScrollView>         
     {/* </View> */}
     </StorageContextProvider>
     </ImageBackground>

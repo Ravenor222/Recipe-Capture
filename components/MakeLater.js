@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import Nav from './Nav';
 import {
   ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity, AsyncStorage
@@ -9,6 +9,8 @@ import {
   Card, Block, NavBar, Icon, theme, Button
 } from 'galio-framework';
 const { width } = Dimensions.get('screen');
+import { useFocusEffect } from '@react-navigation/native';
+
 
  
 const getSavedAsync = async () => {
@@ -32,13 +34,18 @@ export default function MakeLater(props) {
   const [state, setState] = useState("")
   const recipes = pushSavedRecipes(state)
 
-  useEffect(() => {
-    getSavedAsync().then((savedState) => {setState(state=>({...savedState }))}) 
+  // useEffect(() => {
+  //   getSavedAsync().then((savedState) => {setState(state=>({...savedState }))}) 
 
-  },[]);/// -> Need to depend on a value to update, but what?
+  // });/// -> Need to depend on a value to update, but what?
 
 
+  useFocusEffect(
+    useCallback(() => {
+     getSavedAsync().then((savedState) => {setState(state=>({...savedState }))}) 
 
+    },[])
+  )
 
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
