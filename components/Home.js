@@ -64,7 +64,7 @@ export default function Home ({navigation}){
   }, {
     value: '30 minutes or less'
   } , {
-    value: '1 hour or less'
+    value: '60 minutes or less'
   }]
 
   return (

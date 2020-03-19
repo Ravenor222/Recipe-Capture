@@ -22,6 +22,9 @@ export default function SearchResults(props){
     },[])
   )
 
+
+  console.log(recipes)
+
   return(
     <>
       <NavBar safe style = {styles.nav}

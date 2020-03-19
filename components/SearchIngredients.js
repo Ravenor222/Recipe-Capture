@@ -43,7 +43,7 @@ export default function SearchIngredients(props){
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
-        let result = ingredients.length !== 0 ? await getRecipes('215317af67ff419fa1c1dca0706ece0b', ingredients) : false;
+        let result = ingredients.length !== 0 ? await getRecipes(process.env.SPOON_KEY, ingredients) : false;
         // searchPage(result);
         console.log(result);
       }}>Search Again</Button>
