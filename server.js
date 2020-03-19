@@ -20,6 +20,9 @@ app.get('/', function (req, res) {
 
 app.post('/', async (req,res) => {
 
+  let time = req.body.data.state.time;
+  let cuisine = req.body.data.state.cuisine;
+
   let results = await identifyImage(req.body.data.photo)
 
   let filtered = results.filter( x => x.value > 0.80 && x.name !== "vegetable" && x.name !== "relish" && x.name !== "sweet" && x.name !== "juice" && x.name !== "pasture" && x.name !== "herb" && x.name !== "condiment" && x.name !== "fruit" && x.name !== "citrus")
@@ -30,7 +33,7 @@ app.post('/', async (req,res) => {
     ingredients.push(item.name)
   }
   
-  let recipes = await getRecipes(process.env.SPOON_KEY, ingredients)
+  let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine)
 
   let recipesArray = [];
   for(const item of recipes){
