@@ -14,7 +14,7 @@ export default function CameraApp (props){
   const [display, setDisplay] = useState('flex');
 
     // => This is the current state that is being sent upon transition from home page to camera
-    // console.log(props.route.params.state)
+    //console.log(props.route.params.state)
 
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function CameraApp (props){
               const options = {
                 base64: true
               }
-              setTimeout(()=> {props.navigation.navigate("RecipeResult")}, 8000)
+              // setTimeout(()=> {props.navigation.navigate("RecipeResult")}, 8000)
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
                 //'http://192.168.88.103:3001/'

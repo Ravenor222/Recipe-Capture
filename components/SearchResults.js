@@ -15,10 +15,12 @@ export default function SearchResults(props){
 
 
   useEffect(() => {
-    axios.get('http://192.168.1.79:3001/')
+    axios.get('http://192.168.1.72:3001/')
     .then(res => setRecipes(res.data))
     .catch(err => console.log(err));
   },[])
+
+  console.log(recipes)
 
   return(
     <>
