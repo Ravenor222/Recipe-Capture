@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ProfileContextProvider } from '../contexts/ProfileContext';
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownTimeComponent from './DropDownTime'
@@ -8,14 +7,11 @@ import ButtonComponent from './ButtonComponent';
 import {
   ScrollView, Dimensions, Platform, TouchableOpacity, ImageBackground, StyleSheet, Image
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 
-// Galio components
 import {
   NavBar, Icon, theme
 } from 'galio-framework';
 
-const { width } = Dimensions.get('screen');
 
 
 export default function Home ({navigation}){
@@ -105,7 +101,6 @@ export default function Home ({navigation}){
         <ButtonComponent 
          style={styles.button} 
          navigation={navigation}/>
-       
       </ProfileContextProvider>
     </ImageBackground>
   

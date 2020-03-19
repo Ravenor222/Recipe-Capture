@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
@@ -10,7 +10,8 @@ import { ProfileContext, ProfileContextProvider } from '../contexts/ProfileConte
 export default function CameraApp (props){
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
-  const [state, setState] = useContext(ProfileContext);
+  const [spinner, setSpinner] = useState(false);
+  const [display, setDisplay] = useState('flex');
 
     // => This is the current state that is being sent upon transition from home page to camera
     // console.log(props.route.params.state)
@@ -31,29 +32,28 @@ export default function CameraApp (props){
 
   return (
     <View style={{ flex: 1 }}>
-      
       <Camera style={{ flex: 1 }} type={type} ref={ref=>{this.camera = ref}}>
         <View style={{flex:1, flexDirection:"column",justifyContent:"flex-end",margin:20}}>
           <TouchableOpacity
             style = {{alignSelf: 'center', backgroundColor: 'transparent'}}
             onPress = {async () => {
+              setSpinner(true);
+              setDisplay('none')
               const options = {
                 base64: true
               }
+              // setTimeout(()=> {props.navigation.navigate("RecipeResult")}, 8000)
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
-                
-                
                 //'http://192.168.88.103:3001/'
 
-
-                axios.post('http://835c59ba.ngrok.io/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
-
-                .then(res => console.log("success"))
+                axios.post('http://192.168.1.72:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                .then(res => console.log('success'))
                 .catch(err => console.log("error"))
               }
             }}>
-            <FontAwesome name="camera" style={{ color: "#fff", fontSize: 40}}/>
+            <ActivityIndicator size="large" color="#FFFFFF" animating={spinner} style={styles.spinner}/>
+            <FontAwesome name="camera" style={{ color: "#fff", fontSize: 40, display: display}}/>
           </TouchableOpacity>
         </View>
       </Camera>
@@ -61,4 +61,10 @@ export default function CameraApp (props){
 
   );
 }
+
+let styles = StyleSheet.create({
+  spinner:{
+    zIndex: 1
+  }
+})
 

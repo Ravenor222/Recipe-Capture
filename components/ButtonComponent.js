@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button } from 'galio-framework';
 import { ProfileContext } from '../contexts/ProfileContext';
 
 const ButtonComponent = (props) => {
     const [state, setState] = useContext(ProfileContext);
+    const [navigation, setNav] = useState(props.navigation)
 
     return(
         <Button 
@@ -11,7 +12,7 @@ const ButtonComponent = (props) => {
         color='info'
         iconSize={50}
         style={props.style} 
-        onPress={() => {props.navigation.navigate('Camera', {state: state});}} 
+        onPress={() => {props.navigation.navigate('Camera', {state: state, navigation:navigation});}} 
         >
         Start Now 
       </Button>
