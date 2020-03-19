@@ -12,10 +12,10 @@ app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-var recipess = [];
+var final = [];
 
 app.get('/', function (req, res) {
-  res.json(recipess);
+  res.json(final);
 })
 
 app.post('/', async (req,res) => {
@@ -30,8 +30,14 @@ app.post('/', async (req,res) => {
   }
   
   let recipes = await getRecipes(process.env.SPOON_KEY, ingredients)
-  recipess = recipes;
-  console.log(recipess)
+
+  let recipesArray = [];
+  for(const item of recipes){
+    let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount, illustration: item.image, id: item.id, instructions: item.analyzedInstructions, missedIngredients: item.missedIngredients, summary: item.summary, usedIngredients: item.usedIngredients};
+    recipesArray.push(obj);
+  }
+
+  final = recipesArray;
 
 })
 
