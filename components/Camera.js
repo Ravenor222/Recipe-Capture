@@ -6,16 +6,11 @@ import axios from 'axios';
 import { ProfileContext, ProfileContextProvider } from '../contexts/ProfileContext';
 
 
-
 export default function CameraApp (props){
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [spinner, setSpinner] = useState(false);
   const [display, setDisplay] = useState('flex');
-
-    // => This is the current state that is being sent upon transition from home page to camera
-    //console.log(props.route.params.state)
-
 
   useEffect(() => {
     (async () => {
