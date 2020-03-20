@@ -16,7 +16,7 @@ const searchPage = (arr) => {
 
 export default function SearchIngredients(props){
 
-  const [ingredients, setIngredients] = useState(props.ingredients)
+  const [ingredients, setIngredients] = useState(['apple', 'banana'])
 
   return (
     <View style={styles.container}>
