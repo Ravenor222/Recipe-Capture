@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -16,10 +16,14 @@ const itemHorizontalMargin = wp(2);
 const itemWidth = slideWidth + itemHorizontalMargin * 2;
 const entryBorderRadius = 8;
 
-export default function SliderEntry (props){
+export default class SliderEntry extends Component {
 
-    const getImage = () => {
-      const { data: { illustration }} = props 
+    static propTypes = {
+        data: PropTypes.object.isRequired,
+    };
+
+    get image () {
+      const { data: { illustration }} = this.props 
       return (
         <Image
           source={{ uri: illustration }}
@@ -27,52 +31,53 @@ export default function SliderEntry (props){
         />
       );
     }
-    const { data: recipe } = props;
 
-    const uppercaseTitle = recipe.title ? (
-        <Text
-          style={[styles.title]}
-          numberOfLines={2}
-        >
-            { recipe.title.toUpperCase() }
-        </Text>
-    ) : false
-    const missingIng = recipe.missing ? (
-      <Text
-        style={[styles.time]}
-        numberOfLines={2}
-      >
-        Missing Ingredients: { recipe.missing }
-      </Text>
-    ) : false;
+    render () {
+        const { data: recipe } = this.props;
 
-    return (
-        <TouchableOpacity
-          activeOpacity={1}
-          style={styles.slideInnerContainer}
-          onPress={() => {props.navigation.navigate('Recipe', {recipe});}}>
-            <View style={styles.shadow} />
-            <View style={[styles.imageContainer]}>
-                { getImage() }
-                <View style={[styles.radiusMask]} />
-            </View>
-            <View style={[styles.textContainer]}>
-                { uppercaseTitle }
-                { missingIng }
-                <Text
-                  style={[styles.time]}
-                  numberOfLines={2}
-                >
-                { recipe.time } minutes
-                </Text>
-            </View>
-        </TouchableOpacity>
-    );
+
+        const uppercaseTitle = recipe.title ? (
+            <Text
+              style={[styles.title]}
+              numberOfLines={2}
+            >
+                { recipe.title.toUpperCase() }
+            </Text>
+        ) : false;
+
+        const missingIng = recipe.missing ? (
+          <Text
+            style={[styles.time]}
+            numberOfLines={2}
+          >
+            Missing Ingredients: { recipe.missing }
+          </Text>
+        ) : false;
+
+        return (
+            <TouchableOpacity
+              activeOpacity={1}
+              style={styles.slideInnerContainer}
+              onPress={() => {this.props.navigation.navigate('Recipe', {recipe});}}>
+                <View style={styles.shadow} />
+                <View style={[styles.imageContainer]}>
+                    { this.image }
+                    <View style={[styles.radiusMask]} />
+                </View>
+                <View style={[styles.textContainer]}>
+                    { uppercaseTitle }
+                    { missingIng }
+                    <Text
+                      style={[styles.time]}
+                      numberOfLines={2}
+                    >
+                    { recipe.time } minutes
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
 }
-
-SliderEntry.propTypes = {
-  data: PropTypes.object.isRequired
-};
 
 const styles = StyleSheet.create({
   slideInnerContainer: {
