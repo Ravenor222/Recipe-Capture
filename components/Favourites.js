@@ -88,48 +88,55 @@ const pushFavouritesRecipes = (state) => {
 export default function Favourites (props){
 const [state, setState] = useState("")
 const recipes = pushFavouritesRecipes(state);
+const fromFavourite = true
 
-const [faveState, setFaveState] = useState({
-  favourited: true, 
-  text: "Favourited"
-})
+// const [faveState, setFaveState] = useState({
+//   favourited: true, 
+//   text: "Favourited",
+//   color: "grey"
+// })
 
-const toggleFave = () => {
-  const {favourited} = faveState;
+// const toggleFave = () => {
+//   const {favourited} = faveState;
 
-  if (favourited) {
-    setFaveState({
-      favourited: false,
-      text: "Favourite"
-    })
-  } else {
-    setFaveState({
-      favourited: true, 
-      text: "Favourited"
-    })
-  }
-}
+//   if (favourited) {
+//     setFaveState({
+//       favourited: false,
+//       text: "Favourite",
+//       color: "lighsalmon"
+//     })
+//   } else {
+//     setFaveState({
+//       favourited: true, 
+//       text: "Favourited",
+//       color: "grey"
+//     })
+//   }
+// }
 
-const [saveState, setSaveState] = useState({
-  saved: false, 
-  text: "Save for later"
-});
+// const [saveState, setSaveState] = useState({
+//   saved: false, 
+//   text: "Save for later", 
+//   color: "lightsalmon"
+// });
 
-const toggleSave = () => {
-  const {saved} = saveState;
+// const toggleSave = () => {
+//   const {saved} = saveState;
 
-  if (saved) {
-    setSaveState({
-      saved: false,
-      text: "Save for later"
-    })
-  } else {
-    setSaveState({
-      saved: true, 
-      text: "Saved"
-    })
-  }
-};
+//   if (saved) {
+//     setSaveState({
+//       saved: false,
+//       text: "Save for later",
+//       color: "lightsalmon"
+//     })
+//   } else {
+//     setSaveState({
+//       saved: true, 
+//       text: "Saved",
+//       color: "grey"
+//     })
+//   }
+// };
 
 
   useFocusEffect(
@@ -159,7 +166,7 @@ const toggleSave = () => {
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe, toggleFave, faveState, toggleSave, saveState});}}>
+                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe, fromFavourite});}}>
                 <Card
                   key={recipe.id}
                   avatar='https://storage.needpix.com/rsynced_images/pale-pink-heart.jpg'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Favourites from './Favourites';
-import Recipe from './Recipe';
+import faveRecipe from './faveRecipe';
 
 
 
@@ -13,7 +13,7 @@ export default function FavouritesNav ({navigation}){
       <Stack.Screen name="Favourites" component={Favourites} options={{
         title: null,
         headerShown: false }} />
-      <Stack.Screen name="Recipe" component={Recipe} options={{
+      <Stack.Screen name="Recipe" component={faveRecipe} options={{
         title: null,
         headerTransparent: true,
         headerBackTitleStyle: {

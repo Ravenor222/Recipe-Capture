@@ -34,49 +34,8 @@ const pushSavedRecipes = (state) => {
 export default function MakeLater(props) {
   const [state, setState] = useState("")
   const recipes = pushSavedRecipes(state)
+  const fromSaved = true
 
-
-  const [saveState, setSaveState] = useState({
-    saved: true, 
-    text: "Saved"
-  })
-  
-  const toggleSave = () => {
-    const {saved} = saveState;
-  
-    if (saved) {
-      setSaveState({
-        saved: false,
-        text: "Save for later"
-      })
-    } else {
-      setSaveState({
-        saved: true, 
-        text: "Saved"
-      })
-    }
-  }
-
-  const [faveState, setFaveState] = useState({
-    favourited: false, 
-    text: "Favourite"
-  })
-  
-  const toggleFave = () => {
-    const {favourited} = faveState;
-  
-    if (favourited) {
-      setFaveState({
-        favourited: true,
-        text: "Favourited"
-      })
-    } else {
-      setFaveState({
-        favourited: false, 
-        text: "Favourite"
-      })
-    }
-  }
 
 
   useFocusEffect(
@@ -106,7 +65,7 @@ export default function MakeLater(props) {
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe, saveState, toggleSave, faveState, toggleFave });}} >
+                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe, fromSaved });}} >
                 <Card
                   key={recipe.id}
                   avatar='https://storage.needpix.com/rsynced_images/ribbon-1202758_1280.png'
