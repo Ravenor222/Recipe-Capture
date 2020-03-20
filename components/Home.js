@@ -93,6 +93,7 @@ export default function Home ({navigation}){
         <DropdownTimeComponent 
          list={time} 
          style={styles.dropdown}
+         value={time[0]}
          label="Ready in..." />
         <DropdownCuisineComponent 
          list={cuisine} 

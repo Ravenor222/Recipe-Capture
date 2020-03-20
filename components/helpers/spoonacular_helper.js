@@ -2,8 +2,6 @@ const axios = require('axios')
 
 const getRecipes = async (API_KEY, results, time, cuisine) => {
 
-    console.log(results)
-
     cuisine === 'Any' || cuisine === undefined  ? cuisine = null : cuisine = cuisine
     time === 'Any' || time === undefined  ? time = 300 : time = time.slice(0,2)
 
