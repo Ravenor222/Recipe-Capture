@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import MakeLater from './MakeLater';
-import Recipe from './Recipe';
+import savedRecipe from './savedRecipe';
 
 
 
@@ -13,7 +13,7 @@ export default function MakeLaterNav ({navigation}){
       <Stack.Screen name="Make Later" component={MakeLater} options={{
         title: null,
         headerShown: false }} />
-      <Stack.Screen name="Recipe" component={Recipe} options={{
+      <Stack.Screen name="Recipe" component={savedRecipe} options={{
         title: null,
         headerTransparent: true,
         headerBackTitleStyle: {

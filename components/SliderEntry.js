@@ -17,49 +17,6 @@ const itemWidth = slideWidth + itemHorizontalMargin * 2;
 const entryBorderRadius = 8;
 
 export default function SliderEntry (props){
-
-  const [faveState, setFaveState] = useState({
-    favourited: false, 
-    text: "Favourite"
-  })
-  
-  const toggleFave = () => {
-    const {favourited} = faveState;
-  
-    if (favourited) {
-      setFaveState({
-        favourited: false,
-        text: "Favourite"
-      })
-    } else {
-      setFaveState({
-        favourited: true, 
-        text: "Favourited"
-      })
-    }
-  }
-  
-  const [saveState, setSaveState] = useState({
-    saved: false, 
-    text: "Save for later"
-  });
-  
-  const toggleSave = () => {
-    const {saved} = saveState;
-  
-    if (saved) {
-      setSaveState({
-        saved: false,
-        text: "Save for later"
-      })
-    } else {
-      setSaveState({
-        saved: true, 
-        text: "Saved"
-      })
-    }
-  };
-  
   
 
     const getImage = () => {
@@ -95,7 +52,7 @@ export default function SliderEntry (props){
         <TouchableOpacity
           activeOpacity={1}
           style={styles.slideInnerContainer}
-          onPress={() => {props.navigation.navigate('Recipe', {recipe, toggleFave, faveState, toggleSave, saveState});}}>
+          onPress={() => {props.navigation.navigate('searchRecipe', {recipe});}}>
             <View style={styles.shadow} />
             <View style={[styles.imageContainer]}>
                 { getImage() }
