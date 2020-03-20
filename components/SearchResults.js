@@ -7,23 +7,24 @@ import { NavBar, Icon, theme } from 'galio-framework';
 import Nav from './Nav';
 import axios from 'axios';
 
-let ingredients = ['Apple', 'Mango']
 
 
 export default function SearchResults(props){
 
   const[recipes, setRecipes] = useState(1)
+  const[ingredients, setIngredients] = useState('')
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.79:3001/')
-      .then(res => setRecipes(res.data))
+      axios.get('http://192.168.1.72:3001/')
+      .then(res => {
+        setIngredients(res.data[0])
+        //returns everything but first elem
+        setRecipes(res.data.slice(1,));
+      })
       .catch(err => console.log(err, "error"));
     },[])
   )
-
-
-  console.log(recipes)
 
   return(
     <>
@@ -40,12 +41,11 @@ export default function SearchResults(props){
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:25 }}
-        />
-        <View>
-          {/* <ImageBackground source={require("./photos/food.png")} style={styles.backgroundImage}></ImageBackground> */}
-          <MyCarousel recipes={recipes} navigation={props.navigation}/>
-          <SearchIngredients ingredients={ingredients}/>
-        </View>
+      />
+      <View>
+        <MyCarousel recipes={recipes} navigation={props.navigation}/>
+        <SearchIngredients ingredients={ingredients}/>
+      </View>
     </>
   )
 
