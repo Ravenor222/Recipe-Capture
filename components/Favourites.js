@@ -89,6 +89,48 @@ export default function Favourites (props){
 const [state, setState] = useState("")
 const recipes = pushFavouritesRecipes(state);
 
+const [faveState, setFaveState] = useState({
+  favourited: true, 
+  text: "Favourited"
+})
+
+const toggleFave = () => {
+  const {favourited} = faveState;
+
+  if (favourited) {
+    setFaveState({
+      favourited: false,
+      text: "Favourite"
+    })
+  } else {
+    setFaveState({
+      favourited: true, 
+      text: "Favourited"
+    })
+  }
+}
+
+const [saveState, setSaveState] = useState({
+  saved: false, 
+  text: "Save for later"
+});
+
+const toggleSave = () => {
+  const {saved} = saveState;
+
+  if (saved) {
+    setSaveState({
+      saved: false,
+      text: "Saved"
+    })
+  } else {
+    setSaveState({
+      saved: true, 
+      text: "Save for later"
+    })
+  }
+};
+
 
   useFocusEffect(
     useCallback(() => {
@@ -96,14 +138,6 @@ const recipes = pushFavouritesRecipes(state);
 
     },[])
   )
-
-
-  // useEffect(() => {
-    // getFavouritesAsync().then((favouritesState) => {setState(state=>({...favouritesState }))}) 
-
-  // });/// -> Need to depend on a value to update, but what?
-
-
 
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
@@ -125,7 +159,7 @@ const recipes = pushFavouritesRecipes(state);
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe});}}>
+                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe, toggleFave, faveState, toggleSave, saveState});}}>
                 <Card
                   key={recipe.id}
                   avatar='https://storage.needpix.com/rsynced_images/pale-pink-heart.jpg'

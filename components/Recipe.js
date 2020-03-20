@@ -62,9 +62,11 @@ const styles = StyleSheet.create({
 
 
 export default function Recipe({route, navigation}){
-  const { recipe } = route.params
+  const {recipe, faveState, toggleFave, saveState, toggleSave} = route.params
+ 
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
-  const instructions = recipe.instructions
+
+  
 
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
@@ -72,7 +74,7 @@ export default function Recipe({route, navigation}){
       <Image source={{uri: recipe.illustration}}
        style={{width: 414, height: 300}} />
       <View style={styles.container}>
-      <Header recipe={recipe} />
+      <Header recipe={recipe} toggleFave={toggleFave} faveText={faveState.text} faveState={faveState} saveState={saveState} saveText={saveState.text} toggleSave={toggleSave} />
       <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
       <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
       <FlatList

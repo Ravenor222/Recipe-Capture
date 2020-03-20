@@ -18,6 +18,7 @@ const entryBorderRadius = 8;
 
 export default function SliderEntry (props){
 
+
     const getImage = () => {
       const { data: { illustration }} = props 
       return (
@@ -28,6 +29,7 @@ export default function SliderEntry (props){
       );
     }
     const { data: recipe } = props;
+
 
     const uppercaseTitle = recipe.title ? (
         <Text
