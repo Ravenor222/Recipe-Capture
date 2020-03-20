@@ -121,12 +121,12 @@ const toggleSave = () => {
   if (saved) {
     setSaveState({
       saved: false,
-      text: "Saved"
+      text: "Save for later"
     })
   } else {
     setSaveState({
       saved: true, 
-      text: "Save for later"
+      text: "Saved"
     })
   }
 };
