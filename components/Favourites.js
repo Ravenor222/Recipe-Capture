@@ -113,7 +113,7 @@ const toggleFave = () => {
 const [saveState, setSaveState] = useState({
   saved: false, 
   text: "Save for later"
-})
+});
 
 const toggleSave = () => {
   const {saved} = saveState;
@@ -129,7 +129,7 @@ const toggleSave = () => {
       text: "Save for later"
     })
   }
-}
+};
 
 
   useFocusEffect(
