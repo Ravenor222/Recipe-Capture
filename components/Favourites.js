@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet, Dimensions, TouchableOpacity,AsyncStorage } fro
 import { Card, Block, NavBar, Icon, theme, Button } from 'galio-framework';
 const { width } = Dimensions.get('screen');
 import { useFocusEffect } from '@react-navigation/native';
+import ClearFaves from './ClearFaves';
 
 
 const getFavouritesAsync = async () => {
@@ -120,7 +121,7 @@ const recipes = pushFavouritesRecipes(state);
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:25 }}/>
-          <Button onPress={()=>{console.log(recipes)}}/>
+          <Button onPress={ClearFaves}/>
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (

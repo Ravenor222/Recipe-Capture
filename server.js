@@ -38,13 +38,13 @@ app.post('/', async (req,res) => {
   let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine)
 
   let recipesArray = [];
+  recipesArray.push(ingredients)
 
   for(const item of recipes){
     let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount, illustration: item.image, id: item.id, instructions: item.analyzedInstructions, missedIngredients: item.missedIngredients, summary: item.summary, usedIngredients: item.usedIngredients};
     recipesArray.push(obj);
   }
-
-  recipesArray.push(ingredients)
+  //console.log(recipesArray)
   final = recipesArray;
 })
 
