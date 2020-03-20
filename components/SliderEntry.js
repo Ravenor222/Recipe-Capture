@@ -18,6 +18,7 @@ const entryBorderRadius = 8;
 
 export default class SliderEntry extends Component {
 
+
     static propTypes = {
         data: PropTypes.object.isRequired,
     };
@@ -35,6 +36,7 @@ export default class SliderEntry extends Component {
     render () {
         const { data: recipe } = this.props;
 
+  
 
         const uppercaseTitle = recipe.title ? (
             <Text
@@ -58,7 +60,7 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => {this.props.navigation.navigate('Recipe', {recipe});}}>
+              onPress={() => {this.props.navigation.navigate('Recipe', {recipe, state, toggleFave});}}>
                 <View style={styles.shadow} />
                 <View style={[styles.imageContainer]}>
                     { this.image }

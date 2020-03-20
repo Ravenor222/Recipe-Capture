@@ -16,7 +16,7 @@ export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.79:3001/')
+      axios.get('http://192.168.1.72:3001/')
       .then(res => setRecipes(res.data))
       .catch(err => console.log(err, "error"));
     },[])
