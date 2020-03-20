@@ -18,6 +18,7 @@ export default function SearchResults(props){
     useCallback(() => {
       axios.get('http://192.168.1.72:3001/')
       .then(res => {
+        console.log(res.data[0])
         setIngredients(res.data[0])
         //returns everything but first elem
         setRecipes(res.data.slice(1,));
