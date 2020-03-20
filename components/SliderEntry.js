@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -18,6 +18,49 @@ const entryBorderRadius = 8;
 
 export default function SliderEntry (props){
 
+  const [faveState, setFaveState] = useState({
+    favourited: false, 
+    text: "Favourite"
+  })
+  
+  const toggleFave = () => {
+    const {favourited} = faveState;
+  
+    if (favourited) {
+      setFaveState({
+        favourited: false,
+        text: "Favourite"
+      })
+    } else {
+      setFaveState({
+        favourited: true, 
+        text: "Favourited"
+      })
+    }
+  }
+  
+  const [saveState, setSaveState] = useState({
+    saved: false, 
+    text: "Save for later"
+  });
+  
+  const toggleSave = () => {
+    const {saved} = saveState;
+  
+    if (saved) {
+      setSaveState({
+        saved: false,
+        text: "Save for later"
+      })
+    } else {
+      setSaveState({
+        saved: true, 
+        text: "Saved"
+      })
+    }
+  };
+  
+  
 
     const getImage = () => {
       const { data: { illustration }} = props 
@@ -52,7 +95,7 @@ export default function SliderEntry (props){
         <TouchableOpacity
           activeOpacity={1}
           style={styles.slideInnerContainer}
-          onPress={() => {props.navigation.navigate('Recipe', {recipe});}}>
+          onPress={() => {props.navigation.navigate('Recipe', {recipe, toggleFave, faveState, toggleSave, saveState});}}>
             <View style={styles.shadow} />
             <View style={[styles.imageContainer]}>
                 { getImage() }
