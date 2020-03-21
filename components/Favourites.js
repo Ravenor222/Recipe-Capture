@@ -82,12 +82,10 @@ const [display, setDisplay] = useState('none')
 });
   
   useEffect(()=>{state ? setDisplay('none') : setDisplay('flex')},[state])
-
-
   useFocusEffect(
     useCallback(() => {
       getFavouritesAsync().then((favouritesState) => {setState(state=>({...favouritesState }))}) 
-
+    
     },[])
   )
 

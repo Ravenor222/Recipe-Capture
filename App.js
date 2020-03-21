@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeNav from './components/HomeNav';
+import Home from './components/Home'
 import Profile from './components/Profile';
 import FavouritesNav from './components/FavouritesNav';
 import MakeLaterNav from './components/MakeLaterNav';
