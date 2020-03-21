@@ -2,7 +2,7 @@ import React from 'react';
 import {AsyncStorage }from 'react-native';
 
 
-const toggleFavourites = async (recipe, recipeId, bool) => {
+export const toggleFavourites = async (recipe, recipeId, bool) => {
   if (bool === true) {
     try {
       const item = await AsyncStorage.getItem('favourites')
@@ -41,6 +41,19 @@ const toggleFavourites = async (recipe, recipeId, bool) => {
   }
 }
 
-export default toggleFavourites;
+export const isFavourited = async(recipeId) => {
+  try {
+    const item = await AsyncStorage.getItem('favourites')
+    let favourites = JSON.parse(item);
+    if (favourites[recipeId]) {
+      return true
+    }
+    return false
+  }
+  catch(err) {
+    console.log(err);
+  }
+};
+
 
 

@@ -5,14 +5,13 @@ import { ProfileContext } from '../contexts/ProfileContext';
 import Header from './Header';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
-import toggleMakeLaterList from './helpers/toggleMakeLaterList'
-import toggleFavourites from './helpers/toggleFavourites'
+import {toggleMakeLaterList, isSaved} from './helpers/toggleMakeLaterList'
+import {toggleFavourites, isFavourited} from './helpers/toggleFavourites'
 
 import {
   Card, Block, NavBar, Icon, theme, Text, Button
 } from 'galio-framework';
 
-//test: pls delete
 
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
@@ -89,7 +88,7 @@ export default function Recipe({route, navigation}){
 
  
   const [faveState, setFaveState] = useState({
-    favourited: false,
+    favourited: isFavourited(recipe.id) ? true : false,
     text: "Favourite",
     color: "lightsalmon"
   })
@@ -114,7 +113,7 @@ export default function Recipe({route, navigation}){
     
       
   const [makeLaterState, setMakeLaterState] = useState({
-    saved: false,
+    saved: isSaved(recipe.id) ? true : false,
     text: "Save for later", 
     color: "lightsalmon"
   });
