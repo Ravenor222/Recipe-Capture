@@ -10,7 +10,7 @@ export default function LoadingScreen(props) {
     
     
     useLayoutEffect(() => {
-        socket = io("http://192.168.1.10:3001");
+        socket = io("http://192.168.1.73:3001");
         socket.on("chat message", msg => {
         });
 

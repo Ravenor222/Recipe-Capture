@@ -48,7 +48,7 @@ export default function SearchIngredients(props){
       onPress={async ()=>{
         // let result = ingredients.length !== 0 ? await getRecipes("4b42fc1d242b48f4bf390ebe7c9192da", ingredients) : false;
         // searchPage(result);
-        axios.post('http://192.168.1.10:3001/recipes', {data:{ingredients}}).then((res)=>{
+        axios.post('http://192.168.1.73:3001/recipes', {data:{ingredients}}).then((res)=>{
           setRecipes(res.data.slice(1,));
           // console.log(res.data.slice(1,)), "search ingreds";
         }).catch((err)=> {

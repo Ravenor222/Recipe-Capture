@@ -16,7 +16,7 @@ export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.10:3001/')
+      axios.get('http://192.168.1.73:3001/')
       .then(res => {
         console.log(res.data.slice(1,), "search results"),
         // console.log(res.data, "data"),
@@ -46,6 +46,7 @@ export default function SearchResults(props){
           titleStyle={{ color:'white', fontSize:25 }}
       />
       <View>
+        {console.log(recipes)}
         <MyCarousel recipes={recipes} navigation={props.navigation}/>
         <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={recipes}/>
       </View>

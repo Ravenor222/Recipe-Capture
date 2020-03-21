@@ -19,13 +19,14 @@ export default function CameraApp (props){
 
 
   useLayoutEffect(() => {
-    socket = io("http://192.168.1.10:3001");
+    socket = io("http://192.168.1.73:3001");
     socket.on("chat message", msg => {
       setChatMessages({ chatMessages: [...chatMessages, msg]  })
     });
     //, { screen: 'RecipeResults' }
     socket.on("message", msg => {
-      msg==="this is the 3rd message" ?  props.navigation.navigate("Loading") : console.log("Im not navigating from Camera")
+      console.log(msg);
+      msg==="this is the 3rd message" ?  props.navigation.navigate("Loading") : console.log("Im not navigating camera");
       // if (msg === "this is the 3rd message") {
       //   props.navigation.navigate("RecipeResult")
       // }
@@ -36,7 +37,7 @@ export default function CameraApp (props){
   // console.log(chatMessage, "function");
   // setChatMessage({chatMessage: 'What the..'});
       const submitChatMessage = () =>{
-        axios.get('http://192.168.1.10:3001/')
+        axios.get('http://192.168.1.73:3001/')
         .catch(err=>console.log(err,"err"))
       }
 
@@ -74,7 +75,7 @@ export default function CameraApp (props){
                 let photo = await this.camera.takePictureAsync(options);
                 //'http://192.168.88.103:3001/'
 
-                axios.post('http://192.168.1.10:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                axios.post('http://192.168.1.73:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 
                 .then(res => console.log('success'))
                 .catch(err => console.log("error"))

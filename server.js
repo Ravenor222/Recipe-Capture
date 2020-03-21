@@ -29,7 +29,6 @@ io.on("connection", socket => {
 
   app.get('/', function (req, res) {
     console.log("Made a get request within io connection")
-    // io.emit('message', "this is the 2nd message");
     res.json(final);
   })
 
@@ -51,7 +50,8 @@ io.on("connection", socket => {
       ingredients.push(item.name)
     }
     
-    let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine)
+    let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine);
+
   
     let recipesArray = [];
     recipesArray.push(ingredients)
@@ -67,10 +67,19 @@ io.on("connection", socket => {
   
   app.post('/recipes', async (req, res) =>{
     //just make spoonacular request with given tags
+
     let ingredients = req.body.data.ingredients
-    let newRecipes = await getRecipes(process.env.SPOON_KEY,ingredients, time, cuisine )
-    res.json(newRecipes)
-    
+    let newRecipes = await getRecipes(process.env.SPOON_KEY,ingredients, time, cuisine );
+
+    let recipesArray = [];
+    recipesArray.push(ingredients)
+    for(const item of newRecipes){
+      let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount, illustration: item.image, id: item.id, instructions: item.analyzedInstructions, missedIngredients: item.missedIngredients, summary: item.summary, usedIngredients: item.usedIngredients};
+      recipesArray.push(obj);
+    }
+    final = recipesArray;
+
+    res.json(final)
   })
 
 
@@ -84,4 +93,4 @@ io.on("connection", socket => {
 //     console.log(`Example app listening on port ${PORT}!`);
 // });
 
-server.listen(3001, () => console.log("server running on port:" + 3001));
+server.listen(PORT, () => console.log("server running on port:" + PORT));
