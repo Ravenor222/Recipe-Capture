@@ -2,7 +2,7 @@ import MyCarousel from './SearchResultCards'
 import React, { useEffect, useState,useCallback } from 'react';
 import SearchIngredients from './SearchIngredients'
 import { useFocusEffect } from '@react-navigation/native';
-import { StyleSheet, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ImageBackground, SafeAreaView } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
 import Nav from './Nav';
 import axios from 'axios';
@@ -16,7 +16,7 @@ export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.73:3001/')
+      axios.get('http://192.168.1.70:3001/')
 
       .then(res => {
         console.log(res.data.slice(1,), "search results"),
@@ -31,7 +31,7 @@ export default function SearchResults(props){
   )
 
   return(
-    <>
+    <SafeAreaView>
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(
@@ -51,7 +51,7 @@ export default function SearchResults(props){
         <MyCarousel recipes={recipes} navigation={props.navigation}/>
         <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={recipes}/>
       </View>
-    </>
+    </SafeAreaView>
   )
 
 }

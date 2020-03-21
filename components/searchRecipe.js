@@ -5,8 +5,8 @@ import { ProfileContext } from '../contexts/ProfileContext';
 import Header from './Header';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
-import {toggleMakeLaterList, isSaved} from './helpers/toggleMakeLaterList'
-import {toggleFavourites, isFavourited} from './helpers/toggleFavourites'
+import {toggleMakeLaterList, isSaved} from './helpers/toggleMakeLaterList';
+import {toggleFavourites, isFavourited} from './helpers/toggleFavourites';
 
 import {
   Card, Block, NavBar, Icon, theme, Text, Button
