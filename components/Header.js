@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import Nav from './Nav';
 import { View, TouchableOpacity, ShadowPropTypesIOS, StyleSheet, Alert} from 'react-native';
 import { ProfileContext } from '../contexts/ProfileContext';
-import toggleSaved from './helpers/toggleSaved'
+import toggleMakeLaterList from './helpers/toggleMakeLaterList'
 import toggleFavourites from './helpers/toggleFavourites'
 
 import {
@@ -46,7 +46,7 @@ export default function Header(props) {
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
       <Button style={{width:'25%', marginHorizontal:8, backgroundColor: props.saveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-        toggleSaved(props.recipe, props.recipe.id, props.saveState.saved ? false : true).then(res => Alert.alert("Saved!", "This recipe has been saved for later", [{text: "Done", onPress: () => props.toggleSave()}]));
+        toggleMakeLaterList(props.recipe, props.recipe.id, props.saveState.saved ? false : true).then(res => Alert.alert("Saved!", "This recipe has been saved for later", [{text: "Done", onPress: () => props.toggleSave()}]));
       }}><Text style={{fontWeight:'bold', color:'white'}}>{props.saveState.text}</Text></Button>
         
       <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: props.faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {

@@ -13,7 +13,7 @@ export default function FavouritesNav ({navigation}){
       <Stack.Screen name="Favourites" component={Favourites} options={{
         title: null,
         headerShown: false }} />
-      <Stack.Screen name="Recipe" component={faveRecipe} options={{
+      <Stack.Screen name="faveRecipe" component={faveRecipe} options={{
         title: null,
         headerTransparent: true,
         headerBackTitleStyle: {

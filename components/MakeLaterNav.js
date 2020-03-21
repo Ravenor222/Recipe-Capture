@@ -13,7 +13,7 @@ export default function MakeLaterNav ({navigation}){
       <Stack.Screen name="Make Later" component={MakeLater} options={{
         title: null,
         headerShown: false }} />
-      <Stack.Screen name="Recipe" component={savedRecipe} options={{
+      <Stack.Screen name="savedRecipe" component={savedRecipe} options={{
         title: null,
         headerTransparent: true,
         headerBackTitleStyle: {
