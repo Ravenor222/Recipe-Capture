@@ -37,6 +37,9 @@ io.on("connection", socket => {
     console.log("Made a post request within io connection")
     io.emit('message', "this is the 3rd message"); 
 
+    const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
+    
+
      time = req.body.data.state.time;
      cuisine = req.body.data.state.cuisine;
     
@@ -50,8 +53,8 @@ io.on("connection", socket => {
       ingredients.push(item.name)
     }
     
-    let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine);
-
+    let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet);
+    console.log(recipes);
   
     let recipesArray = [];
     recipesArray.push(ingredients)

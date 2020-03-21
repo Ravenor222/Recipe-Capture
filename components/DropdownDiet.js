@@ -4,11 +4,21 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { StyleSheet } from 'react-native'
 
 let diet = [{
-    value: 'GF'
+    value: 'Gluten Free'
   }, {
-    value: 'Keto'
-  } , {
-    value: 'Atkins'
+    value: 'Ketogenic'
+  }, {
+    value: 'Vegetarian'
+  }, {
+    value: 'Lacto-Vegetarian'
+  }, {
+    value: 'Ovo-Vegetarian'
+  }, {
+    value: 'Vegan'
+  }, {
+    value: 'Pescatarian'
+  }, {
+    value: 'Paleo'
   }]
 
 
