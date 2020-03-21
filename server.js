@@ -3,6 +3,9 @@ const express = require('express')
 const app = express()
 const PORT = 3001;
 const bodyParser = require("body-parser");
+const server = require("http").createServer(app);
+const io = require("socket.io").listen(server);
+ 
 
 const identifyImage = require('./components/helpers/clarifai_helper');
 const getRecipes = require('./components/helpers/spoonacular_helper')
@@ -12,16 +15,38 @@ app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({extended: true}));
 
 
+
 var final = [];
 
-app.get('/', function (req, res) {
-  //console.log(final, 'final');
-  res.json(final);
-})
+io.on("connection", socket => {
+  console.log("a user connected :D");
 
-app.post('/', async (req,res) => {
+  socket.on("chat message", msg => {
+      console.log(msg,"test");
+      io.emit("chat message", msg);
+  });
 
   
+  io.emit('message', 'This is the 1st test message');
+  
+
+  app.get('/', function (req, res) {
+  console.log("Made a get request within io connection")
+  io.emit('message', "this is the 2nd message");
+  res.json(final);
+  })
+
+
+
+
+
+  
+});
+
+
+
+app.post('/', async (req,res) => {
+  console.log("posted")
   let time = req.body.data.state.time;
   let cuisine = req.body.data.state.cuisine;
   
@@ -46,9 +71,11 @@ app.post('/', async (req,res) => {
   }
   //console.log(recipesArray)
   final = recipesArray;
+  console.log("done")
 })
 
-app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}!`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Example app listening on port ${PORT}!`);
+// });
 
+server.listen(3001, () => console.log("server running on port:" + 3001));

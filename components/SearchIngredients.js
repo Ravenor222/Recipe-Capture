@@ -43,7 +43,7 @@ export default function SearchIngredients(props){
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
-        let result = ingredients.length !== 0 ? await getRecipes(process.env.SPOON_KEY, ingredients) : false;
+        let result = ingredients.length !== 0 ? await getRecipes("4b42fc1d242b48f4bf390ebe7c9192da", ingredients) : false;
         // searchPage(result);
         console.log(result);
       }}>Search Again</Button>
@@ -64,13 +64,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     position:'absolute',
-    top:500
+    top:400
   },
   button:{
     alignSelf: "center",
     color:'white',
     width: 114,
-    margin:2
+    margin:2,
+
   }, 
   searchButton :{
     marginTop: 10,

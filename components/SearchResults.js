@@ -16,9 +16,11 @@ export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.72:3001/')
+      axios.get('http://192.168.1.10:3001/')
       .then(res => {
-        console.log(res.data[0])
+        console.log(res.data[0], "data[0]"),
+        console.log(res.data, "data"),
+        console.log(res.data[0][0]),
         setIngredients(res.data[0])
         //returns everything but first elem
         setRecipes(res.data.slice(1,));
