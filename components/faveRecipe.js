@@ -5,7 +5,7 @@ import { ProfileContext } from '../contexts/ProfileContext';
 import Header from './Header';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
-import toggleSaved from './helpers/toggleSaved'
+import toggleMakeLaterList from './helpers/toggleMakeLaterList'
 import toggleFavourites from './helpers/toggleFavourites'
 
 import {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
 
 export default function Recipe({route, navigation}){
-  const {recipe, fromFavourite, fromSaved} = route.params
+  const {recipe} = route.params
  
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
 
@@ -113,29 +113,29 @@ export default function Recipe({route, navigation}){
   }
     
       
-    const [saveState, setSaveState] = useState({
-      saved: false,
-      text: "Save for later", 
-      color: "lightsalmon"
-    });
+  const [makeLaterState, setMakeLaterState] = useState({
+    saved: false,
+    text: "Save for later", 
+    color: "lightsalmon"
+  });
       
-    const toggleSave = () => {
-      const {saved} = saveState;
+  const toggleMakeLaterState = () => {
+    const {saved} = makeLaterState;
       
-      if (saved) {
-        setSaveState( prevState => ({
-          saved: false,
-          text: "Save for later",
-          color: "lightsalmon"
-        }))
-      } else {
-        setSaveState( prevState => ({
-          saved: true, 
-          text: "Saved",
-          color: "grey"
-        }))
-      }
-    };
+    if (saved) {
+      setMakeLaterState( prevState => ({
+        saved: false,
+        text: "Save for later",
+        color: "lightsalmon"
+      }))
+    } else {
+      setMakeLaterState( prevState => ({
+        saved: true, 
+        text: "Saved",
+        color: "grey"
+      }))
+    }
+  };
 
 
   
@@ -146,18 +146,17 @@ export default function Recipe({route, navigation}){
       <Image source={{uri: recipe.illustration}}
        style={{width: 414, height: 300}} />
       <View style={styles.container}>
-      {/* <Header recipe={recipe} toggleFave={toggleFave} faveState={faveState} saveState={saveState} toggleSave={toggleSave} /> */}
       <View style={styles.header}>
       <Text style={styles.title}>{recipe.title}</Text>
       <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
-      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: saveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-        toggleSaved(recipe, recipe.id, saveState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Done", onPress: () => toggleSave()}]));
-      }}><Text style={{fontWeight:'bold', color:'white'}}>{saveState.text}</Text></Button>
+      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: makeLaterState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
+        toggleMakeLaterList(recipe, recipe.id, makeLaterState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLaterState()}]));
+      }}><Text style={{fontWeight:'bold', color:'white'}}>{makeLaterState.text}</Text></Button>
         
       <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
-        toggleFavourites(recipe, recipe.id, faveState.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Done", onPress: () => toggleFave()}]));
+        toggleFavourites(recipe, recipe.id, faveState.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleFave()}]));
       }}><Text style={{fontWeight:'bold', color:'white'}}>{faveState.text}</Text></Button>
 
       </Block>

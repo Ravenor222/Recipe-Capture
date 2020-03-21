@@ -17,7 +17,6 @@ import { useFocusEffect } from '@react-navigation/native';
 const getSavedAsync = async () => {
   const item = await AsyncStorage.getItem('saved')
   const obj = JSON.parse(item);
-  console.log(obj);
   return obj;
 }
 
@@ -34,7 +33,6 @@ const pushSavedRecipes = (state) => {
 export default function MakeLater(props) {
   const [state, setState] = useState("")
   const recipes = pushSavedRecipes(state)
-  const fromSaved = true
 
 
 
@@ -47,7 +45,6 @@ export default function MakeLater(props) {
 
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-        {/* <Nav title="Saved Recipes" navigation={navigation}  /> */}
         <NavBar style = {styles.nav}
           title="Saved Recipes"
           left={(
@@ -65,7 +62,7 @@ export default function MakeLater(props) {
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe, fromSaved });}} >
+                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('savedRecipe', {recipe});}} >
                 <Card
                   key={recipe.id}
                   avatar='https://storage.needpix.com/rsynced_images/ribbon-1202758_1280.png'
