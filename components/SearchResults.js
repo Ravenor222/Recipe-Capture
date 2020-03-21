@@ -1,7 +1,7 @@
 import MyCarousel from './SearchResultCards'
 import React, { useEffect, useState,useCallback } from 'react';
 import SearchIngredients from './SearchIngredients'
-import { useFocusEffect } from '@react-navigation/native';;
+import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
 import Nav from './Nav';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useCallback, useLayoutEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { Text, View, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, ActivityIndicator, StyleSheet, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
@@ -25,11 +25,10 @@ export default function CameraApp (props){
     });
 
     socket.on("message", msg => {
-      console.log(msg);
-      if(msg === "this is the 2nd message") {
-        console.log("its the right message")
-        console.log("Here you would command the screen navigation")
-      }
+      msg==="this is the 3rd message" ?  props.navigation.navigate("RecipeResult") : console.log("Not navigating")
+      // if (msg === "this is the 3rd message") {
+      //   props.navigation.navigate("RecipeResult")
+      // }
 
     });
   },[]);
