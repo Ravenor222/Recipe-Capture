@@ -1,5 +1,5 @@
 import React, {useState,useContext} from 'react';
-import { Text, View, TouchableOpacity,ImageBackground, AsyncStorage, StyleSheet,ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity,ImageBackground, AsyncStorage, StyleSheet,ScrollView, Image } from 'react-native';
 import { Button, theme,NavBar ,Icon, Block } from 'galio-framework'
 import ProfileButton from '../components/ProfileButton'
 import ProfileSwitch from '../components/ProfileSwitch'
