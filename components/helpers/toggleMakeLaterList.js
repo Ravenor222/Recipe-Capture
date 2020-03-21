@@ -1,7 +1,7 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
 
-const toggleSaved = async (recipe, recipeId, bool) => {
+const toggleMakeLaterList = async (recipe, recipeId, bool) => {
   if (bool === true) {
     try {
       const item = await AsyncStorage.getItem('saved')
@@ -37,9 +37,7 @@ const toggleSaved = async (recipe, recipeId, bool) => {
       console.log(err);
     }
   }
-  
-  
-}  
+}; 
 
 
-export default toggleSaved
+export default toggleMakeLaterList;

@@ -39,10 +39,8 @@ const toggleFavourites = async (recipe, recipeId, bool) => {
       console.log(err);
     }
   }
-    
+}
 
-  }
-
-export default toggleFavourites
+export default toggleFavourites;
 
 

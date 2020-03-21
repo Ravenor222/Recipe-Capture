@@ -10,7 +10,6 @@ import ClearFaves from './ClearFaves';
 const getFavouritesAsync = async () => {
   const item = await AsyncStorage.getItem('favourites')
   const obj = JSON.parse(item);
-  console.log(obj);
   return obj;
 }
 
@@ -86,57 +85,8 @@ const pushFavouritesRecipes = (state) => {
 
 
 export default function Favourites (props){
-const [state, setState] = useState("")
-const recipes = pushFavouritesRecipes(state);
-const fromFavourite = true
-
-// const [faveState, setFaveState] = useState({
-//   favourited: true, 
-//   text: "Favourited",
-//   color: "grey"
-// })
-
-// const toggleFave = () => {
-//   const {favourited} = faveState;
-
-//   if (favourited) {
-//     setFaveState({
-//       favourited: false,
-//       text: "Favourite",
-//       color: "lighsalmon"
-//     })
-//   } else {
-//     setFaveState({
-//       favourited: true, 
-//       text: "Favourited",
-//       color: "grey"
-//     })
-//   }
-// }
-
-// const [saveState, setSaveState] = useState({
-//   saved: false, 
-//   text: "Save for later", 
-//   color: "lightsalmon"
-// });
-
-// const toggleSave = () => {
-//   const {saved} = saveState;
-
-//   if (saved) {
-//     setSaveState({
-//       saved: false,
-//       text: "Save for later",
-//       color: "lightsalmon"
-//     })
-//   } else {
-//     setSaveState({
-//       saved: true, 
-//       text: "Saved",
-//       color: "grey"
-//     })
-//   }
-// };
+  const [state, setState] = useState("")
+  const recipes = pushFavouritesRecipes(state);
 
 
   useFocusEffect(
@@ -148,7 +98,6 @@ const fromFavourite = true
 
     return (
       <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
-{/* //       <Nav title="My Favourites" navigation={props.navigation} /> */}
       <NavBar style = {styles.nav}
           title="Favourites"
           left={(
@@ -166,7 +115,7 @@ const fromFavourite = true
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
-                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('Recipe', {recipe, fromFavourite});}}>
+                <TouchableOpacity style={styles.card} onPress={() => {props.navigation.navigate('faveRecipe', {recipe});}}>
                 <Card
                   key={recipe.id}
                   avatar='https://storage.needpix.com/rsynced_images/pale-pink-heart.jpg'
