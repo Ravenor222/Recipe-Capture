@@ -35,7 +35,7 @@ io.on("connection", socket => {
 
   app.post('/', async (req,res) => {
     console.log("Made a post request within io connection")
-      
+    io.emit('message', "this is the 3rd message"); 
 
     let time = req.body.data.state.time;
     let cuisine = req.body.data.state.cuisine;
@@ -60,7 +60,7 @@ io.on("connection", socket => {
       recipesArray.push(obj);
     }
     final = recipesArray;
-    io.emit('message', "this is the 3rd message");
+    io.emit('message', "this is the 4th message");
   })
 });
 

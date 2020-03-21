@@ -23,9 +23,9 @@ export default function CameraApp (props){
     socket.on("chat message", msg => {
       setChatMessages({ chatMessages: [...chatMessages, msg]  })
     });
-
+    //, { screen: 'RecipeResults' }
     socket.on("message", msg => {
-      msg==="this is the 3rd message" ?  props.navigation.navigate("RecipeResult") : console.log("Not navigating")
+      msg==="this is the 3rd message" ?  props.navigation.navigate("Loading") : console.log("Im not navigating from Camera")
       // if (msg === "this is the 3rd message") {
       //   props.navigation.navigate("RecipeResult")
       // }
