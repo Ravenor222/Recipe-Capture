@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
+import React, { useState, useEffect,useCallback, useLayoutEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { Text, View, TouchableOpacity, ActivityIndicator, StyleSheet, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { ProfileContext, ProfileContextProvider } from '../contexts/ProfileContext';
+import io from "socket.io-client";
+
 
 
 export default function CameraApp (props){
@@ -11,6 +14,32 @@ export default function CameraApp (props){
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [spinner, setSpinner] = useState(false);
   const [display, setDisplay] = useState('flex');
+  const [chatMessage, setChatMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
+
+
+  useLayoutEffect(() => {
+    socket = io("http://192.168.1.73:3001");
+    socket.on("chat message", msg => {
+      setChatMessages({ chatMessages: [...chatMessages, msg]  })
+    });
+    //, { screen: 'RecipeResults' }
+    socket.on("message", msg => {
+      console.log(msg);
+      msg==="this is the 3rd message" ?  props.navigation.navigate("Loading") : console.log("Im not navigating camera");
+      // if (msg === "this is the 3rd message") {
+      //   props.navigation.navigate("RecipeResult")
+      // }
+
+    });
+  },[]);
+  // socket.emit('chat message', chatMessage);
+  // console.log(chatMessage, "function");
+  // setChatMessage({chatMessage: 'What the..'});
+      const submitChatMessage = () =>{
+        axios.get('http://192.168.1.73:3001/')
+        .catch(err=>console.log(err,"err"))
+      }
 
   useEffect(() => {
     (async () => {
@@ -25,13 +54,17 @@ export default function CameraApp (props){
     return <Text>No access to camera</Text>;
   }
 
+
+
   return (
     <View style={{ flex: 1 }}>
       <Camera style={{ flex: 1 }} type={type} ref={ref=>{this.camera = ref}}>
         <View style={{flex:1, flexDirection:"column",justifyContent:"flex-end",margin:20}}>
           <TouchableOpacity
             style = {{alignSelf: 'center', backgroundColor: 'transparent'}}
-            onPress = {async () => {
+            // onPress={submitChatMessage}
+            onPress = {
+              async () => {
               setSpinner(true);
               setDisplay('none')
               const options = {
@@ -42,14 +75,15 @@ export default function CameraApp (props){
                 let photo = await this.camera.takePictureAsync(options);
                 //'http://192.168.88.103:3001/'
 
-
-                axios.post('http://192.168.1.70:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
-
+                axios.post('http://192.168.1.73:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                
 
                 .then(res => console.log('success'))
                 .catch(err => console.log("error"))
               }
-            }}>
+              
+            }}
+            >
             <ActivityIndicator size="large" color="#FFFFFF" animating={spinner} style={styles.spinner}/>
             <FontAwesome name="camera" style={{ color: "#fff", fontSize: 40, display: display}}/>
           </TouchableOpacity>
