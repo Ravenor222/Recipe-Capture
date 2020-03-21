@@ -54,7 +54,6 @@ io.on("connection", socket => {
     }
     
     let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet);
-    console.log(recipes);
   
     let recipesArray = [];
     recipesArray.push(ingredients)
