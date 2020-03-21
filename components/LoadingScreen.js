@@ -20,9 +20,9 @@ export default function LoadingScreen(props) {
       },[]);
 
     return (
-        <View>
-            <Text>This is a loading Screen!</Text>
-            <Text>Enjoy it while you can!</Text>
+        <View >
+            <Text >This is a loading Screen!</Text>
+            <Text >Enjoy it while you can!</Text>
         </View>
     )
 }
