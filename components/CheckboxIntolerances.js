@@ -17,48 +17,48 @@ const DATA = [
     title: 'Dairy',
   },
   {
-    id: 'Keto',
-    title: 'Keto',
+    id: 'Egg',
+    title: 'Egg',
   },
   {
-    id: 'Gluten-free1',
-    title: 'Gluten-free1',
+    id: 'Gluten',
+    title: 'Gluten',
   },
   {
-    id: 'Gluten-free2',
-    title: 'Gluten-free2',
+    id: 'Grain',
+    title: 'Grain',
   },
   {
-    id: 'Gluten-free3',
-    title: 'Gluten-free3',
+    id: 'Seafood',
+    title: 'Seafood',
   },
   {
-    id: 'Gluten-free4',
-    title: 'Gluten-free4',
+    id: 'Shellfish',
+    title: 'Shellfish',
   },
   {
-    id: 'Gluten-free5',
-    title: 'Gluten-free5',
+    id: 'Sesame',
+    title: 'Sesame',
   },
   {
-    id: 'Gluten-free6',
-    title: 'Gluten-free6',
+    id: 'Sulfite',
+    title: 'Sulfite',
   },
   {
-    id: 'Gluten-free7',
-    title: 'Gluten-free7',
+    id: 'Soy',
+    title: 'Soy',
   },
   {
-    id: 'Gluten-f',
-    title: 'Gluten-f',
+    id: 'Wheat',
+    title: 'Wheat',
   },
   {
-    id: 'Gluten-fre',
-    title: 'Gluten-fre',
+    id: 'Tree nut',
+    title: 'Tree nut',
   },
   {
-    id: 'Gluten-fr',
-    title: 'Gluten-fr',
+    id: 'Peanut',
+    title: 'Peanut',
   },
   
 ];

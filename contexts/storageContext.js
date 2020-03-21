@@ -9,7 +9,7 @@ const  StorageContextProvider = (props) => {
     diet:null,
     intolerances:null, // -> maybe null
     pantry: false,
-    allergies:"",
+    allergies:null,
     
 });
 
