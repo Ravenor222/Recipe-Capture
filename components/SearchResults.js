@@ -18,9 +18,9 @@ export default function SearchResults(props){
     useCallback(() => {
       axios.get('http://192.168.1.10:3001/')
       .then(res => {
-        console.log(res.data[0], "data[0]"),
-        console.log(res.data, "data"),
-        console.log(res.data[0][0]),
+        console.log(res.data.slice(1,), "search results"),
+        // console.log(res.data, "data"),
+        // console.log(res.data[0][0]),
         setIngredients(res.data[0])
         //returns everything but first elem
         setRecipes(res.data.slice(1,));
@@ -47,7 +47,7 @@ export default function SearchResults(props){
       />
       <View>
         <MyCarousel recipes={recipes} navigation={props.navigation}/>
-        <SearchIngredients ingredients={ingredients}/>
+        <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={recipes}/>
       </View>
     </>
   )

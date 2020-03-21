@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({extended: true, parameterLimit: 100000, limit: '5
 app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({extended: true}));
 
-
+let time; //testing
+let cuisine; //testing
 
 var final = [];
 
@@ -37,8 +38,8 @@ io.on("connection", socket => {
     console.log("Made a post request within io connection")
     io.emit('message', "this is the 3rd message"); 
 
-    let time = req.body.data.state.time;
-    let cuisine = req.body.data.state.cuisine;
+     time = req.body.data.state.time;
+     cuisine = req.body.data.state.cuisine;
     
     let results = await identifyImage(req.body.data.photo)
   
@@ -62,6 +63,18 @@ io.on("connection", socket => {
     final = recipesArray;
     io.emit('message', "this is the 4th message");
   })
+
+  
+  app.post('/recipes', async (req, res) =>{
+    //just make spoonacular request with given tags
+    let ingredients = req.body.data.ingredients
+    let newRecipes = await getRecipes(process.env.SPOON_KEY,ingredients, time, cuisine )
+    res.json(newRecipes)
+    
+  })
+
+
+
 });
 
 
