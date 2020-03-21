@@ -27,7 +27,6 @@ export default function Favourites (props){
 
 const [state, setState] = useState("")
 const recipes = pushFavouritesRecipes(state);
-const fromFavourite = true;
 const [display, setDisplay] = useState('none')
 
 

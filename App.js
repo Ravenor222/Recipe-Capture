@@ -4,10 +4,10 @@ import HomeNav from './components/HomeNav';
 import Home from './components/Home'
 import Profile from './components/Profile';
 import FavouritesNav from './components/FavouritesNav';
-import MakeLater from './components/MakeLater';
 import MakeLaterNav from './components/MakeLaterNav';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import SearchResultsNav from './components/SearchResultsNav';
+
 
 
 const Drawer = createDrawerNavigator();

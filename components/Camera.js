@@ -22,13 +22,15 @@ export default function CameraApp (props){
   const [display, setDisplay] = useState('flex');
   const [chatMessage, setChatMessage] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
+
   const profileSettings = getAsync()
   .then(x => x)  
   .catch(x=>console.error(x));
 
 
+
   useLayoutEffect(() => {
-    socket = io("http://192.168.1.73:3001");
+    socket = io("http://192.168.1.70:3001");
     socket.on("chat message", msg => {
       setChatMessages({ chatMessages: [...chatMessages, msg]  })
     });
@@ -74,7 +76,8 @@ export default function CameraApp (props){
                 let photo = await this.camera.takePictureAsync(options);
                 //'http://192.168.88.103:3001/'
 
-                axios.post('http://192.168.1.73:3001/', {data: {photo: photo.base64, state:props.route.params.state, profileState:profileSettings}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                axios.post('http://192.168.1.70:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+
                 
 
                 .then(res => console.log('success'))

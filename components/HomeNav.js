@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Home'
 import SearchResults from './SearchResults';
 import LoadingScreen from './LoadingScreen'
+import searchRecipe from './searchRecipe';
 
 
 export default function HomeNav ({navigation}){
@@ -29,6 +30,14 @@ export default function HomeNav ({navigation}){
         title:null,
         headerShown:false,
       }} />
+      <Stack.Screen name="searchRecipe" component={searchRecipe} options={{
+        title: null,
+        headerTransparent: true,
+        headerBackTitleStyle: {
+          color: 'white',
+          },
+          headerTintColor: "white"
+      }}/>
     </Stack.Navigator>
   )
 
