@@ -6,6 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { ProfileContext, ProfileContextProvider } from '../contexts/ProfileContext';
 import io from "socket.io-client";
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const getAsync = async () => {
   const profileStorage = await AsyncStorage.getItem('state');
@@ -37,7 +38,7 @@ export default function CameraApp (props){
     //, { screen: 'RecipeResults' }
     socket.on("message", msg => {
       console.log(msg);
-      msg==="this is the 3rd message" ?  props.navigation.navigate("Loading") : console.log("Im not navigating camera");
+      msg==="this is the 3rd message" ?  props.navigation.replace("Loading") : console.log("Im not navigating camera");
 
     });
   },[]);
@@ -76,7 +77,7 @@ export default function CameraApp (props){
                 let photo = await this.camera.takePictureAsync(options);
                 //'http://192.168.88.103:3001/'
 
-                axios.post('http://192.168.1.70:3001/', {data: {photo: photo.base64, state:props.route.params.state}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                axios.post('http://192.168.1.70:3001/', {data: {photo: photo.base64, state:props.route.params.state, profileState: profileSettings}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
 
                 
 
