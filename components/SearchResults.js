@@ -3,6 +3,7 @@ import React, { useEffect, useState,useCallback } from 'react';
 import SearchIngredients from './SearchIngredients'
 import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View, ImageBackground, SafeAreaView } from 'react-native';
+import { StackActions, NavigationActions } from 'react-navigation';
 import { NavBar, Icon, theme } from 'galio-framework';
 import Nav from './Nav';
 import axios from 'axios';
@@ -13,6 +14,8 @@ export default function SearchResults(props){
 
   const[recipes, setRecipes] = useState(1)
   const[ingredients, setIngredients] = useState('')
+
+  
 
   useFocusEffect(
     useCallback(() => {
