@@ -18,8 +18,6 @@ export const toggleFavourites = async (recipe, recipeId, bool) => {
           return await AsyncStorage.setItem('favourites', stringFavourites)
           
         }
-
-      console.log(favourites, "im past the if")
       favourites[recipeId] = recipe;
       const stringFavourites = JSON.stringify(favourites);
       await AsyncStorage.setItem('favourites', stringFavourites)

@@ -10,6 +10,7 @@ export default function SearchIngredients(props){
   const {recipes, setRecipes} = props
   const [ingredients, setIngredients] = useState(props.ingredients)
 
+
   return (
     <View style={styles.container}>
       <FlatList horizontal
@@ -35,7 +36,7 @@ export default function SearchIngredients(props){
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
-        axios.post('http://192.168.1.70:3001/recipes', {data:{ingredients}}).then((res)=>{
+        axios.post('http://192.168.1.72:3001/recipes', {data:{ingredients}}).then((res)=>{
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
           console.log(err, "err")

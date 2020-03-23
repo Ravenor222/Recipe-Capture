@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
-import Nav from './Nav';
+import React, {useState, useCallback} from 'react';
 import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
-import { ProfileContext } from '../contexts/ProfileContext';
-import Header from './Header';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
-import {toggleMakeLaterList, isSaved} from './helpers/toggleMakeLaterList';
-import {toggleFavourites, isFavourited} from './helpers/toggleFavourites';
+import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
+import {toggleFavourites} from './helpers/toggleFavourites';
+import {getSavedAsync} from './MakeLater';
+import {getFavouritesAsync} from './Favourites';
 import { Block, theme, Text, Button } from 'galio-framework';
+import { useFocusEffect } from '@react-navigation/native';
+
 
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
@@ -78,12 +79,34 @@ const styles = StyleSheet.create({
 export default function Recipe({route, navigation}){
   
   const {recipe} = route.params
+  const [savedState, setSavedRecipes] = useState("")
+  const savedRecipes = Object.keys(savedState);
+
+
+  useFocusEffect(
+    useCallback(() => {
+     getSavedAsync().then((savedState) => {setSavedRecipes(state=>({...savedState}))}) 
+    },[])
+  )
+
+  useFocusEffect(
+    useCallback(() => {
+     getSavedAsync().then((savedState) => console.log("SAVED RECIPES FROM FAVE", Object.keys(savedState))) 
+    },[])
+  )
+
+  useFocusEffect(
+    useCallback(() => {
+      getFavouritesAsync().then((faveRecipes) => console.log("FAVE RECIPES FROM SAVED", Object.keys(faveRecipes))) 
+    },[])
+  )
+ 
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
 
   const [faveState, setFaveState] = useState({
-    favourited: isFavourited(recipe.id) ? true : false,
-    text: "Favourite",
-    color: "lightsalmon"
+    favourited: true,
+    text: "Favourited",
+    color: "grey"
   })
       
   const toggleFave = () => {
@@ -105,9 +128,9 @@ export default function Recipe({route, navigation}){
   }
       
   const [makeLaterState, setMakeLaterState] = useState({
-    saved: isSaved(recipe.id) ? true : false,
-    text: "Save for later", 
-    color: "lightsalmon"
+    saved: savedRecipes.includes(recipe.id) ? true : false,
+    text: savedRecipes.includes(recipe.id) ? "Saved" : "Save for later", 
+    color: savedRecipes.includes(recipe.id) ? "grey" : "lightsalmon"
   });
       
   const toggleMakeLater = () => {
@@ -141,7 +164,7 @@ export default function Recipe({route, navigation}){
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
       <Button style={{width:'25%', marginHorizontal:8, backgroundColor: makeLaterState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-        toggleMakeLaterList(recipe, recipe.id, makeLaterState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLaterState()}]));
+        toggleMakeLaterList(recipe, recipe.id, makeLaterState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLater()}]));
       }}><Text style={{fontWeight:'bold', color:'white'}}>{makeLaterState.text}</Text></Button>
         
       <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {

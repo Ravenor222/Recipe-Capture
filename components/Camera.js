@@ -9,7 +9,6 @@ import { StackActions, NavigationActions } from 'react-navigation';
 const getAsync = async () => {
   const profileStorage = await AsyncStorage.getItem('state');
   const JSONstorage = JSON.parse(profileStorage);
-  console.log(JSONstorage, "JSONstorage");
   return JSONstorage
 }
 
@@ -31,7 +30,7 @@ export default function CameraApp (props){
     });
     //, { screen: 'RecipeResults' }
     socket.on("message", msg => {
-      console.log(msg);
+      (msg);
       msg==="this is the 3rd message" ?  props.navigation.replace("Loading") : console.log("Im not navigating camera");
 
     });

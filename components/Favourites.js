@@ -7,13 +7,13 @@ import { useFocusEffect } from '@react-navigation/native';
 import ClearFaves from './ClearFaves';
 import background from './photos/food3.jpg'
 
-const getFavouritesAsync = async () => {
+export const getFavouritesAsync = async () => {
   const item = await AsyncStorage.getItem('favourites')
   const obj = JSON.parse(item);
   return obj;
 }
 
-const pushFavouritesRecipes = (state) => {
+export const pushFavouritesRecipes = (state) => {
   const keys = Object.keys(state)
   let results = [];
   for ( let item of keys.filter((x)=> x!== "recipeId")) {

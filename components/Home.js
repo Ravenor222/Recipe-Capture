@@ -5,7 +5,7 @@ import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
 import { TouchableOpacity, ImageBackground, StyleSheet, Image, View } from 'react-native';
 import { NavBar, Icon } from 'galio-framework';
-import background from './photos/food3.jpg'
+import background from './photos/food1.jpg'
 import logo from './photos/logo2.png';
 
 

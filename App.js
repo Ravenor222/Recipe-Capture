@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeNav from './components/HomeNav';
-import Home from './components/Home'
 import Profile from './components/Profile';
 import FavouritesNav from './components/FavouritesNav';
 import MakeLaterNav from './components/MakeLaterNav';
@@ -24,7 +23,7 @@ export default function App() {
         <Drawer.Screen name="Profile" component={Profile} />
         <Drawer.Screen name="Favourites" component={FavouritesNav} />
         <Drawer.Screen name="Saved for Later" component={MakeLaterNav} />
-        <Drawer.Screen name="Loading" component={LoadingScreen} />
+        <Drawer.Screen name="Search Results" component={SearchResultsNav} />
 
       </Drawer.Navigator>
     </NavigationContainer>

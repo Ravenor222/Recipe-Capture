@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
-import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image,  Alert } from 'react-native';
+
+import React, {useState, useCallback} from 'react';
+import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
-import {toggleMakeLaterList, isSaved} from './helpers/toggleMakeLaterList';
-import {toggleFavourites, isFavourited} from './helpers/toggleFavourites';
-import { Block, theme, Text, Button } from 'galio-framework';
+import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
+import {toggleFavourites} from './helpers/toggleFavourites';
+import { useFocusEffect } from '@react-navigation/native';
+import {getFavouritesAsync} from './Favourites';
+import {getSavedAsync} from './MakeLater';
+import { Block, theme, Text, Button} from 'galio-framework';
+
 
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
@@ -28,6 +33,7 @@ const formatIngredients = function(missed, used) {
 
   return results;
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -73,14 +79,32 @@ const styles = StyleSheet.create({
 
 
 export default function Recipe({route, navigation}){
+  const {recipe} = route.params
+  const [faveRecipes, setFaveRecipes] = useState("")
+  const [savedRecipes, setSavedRecipes] = useState("")
+  const favourites = Object.keys(faveRecipes);  
+  const saved = Object.keys(savedRecipes);
 
-  const {recipe} = route.params;
-  const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients);
+  //Get current favourited recipes
+  useFocusEffect(
+    useCallback(() => {
+      getFavouritesAsync().then((faveRecipes) => {setFaveRecipes(state=>({faveRecipes}))}) 
+    },[])
+  )
+
+  //Get current saved recipes
+  useFocusEffect(
+    useCallback(() => {
+     getSavedAsync().then((savedRecipes) => {setSavedRecipes(state=>({...savedRecipes}))}) 
+    },[])
+  )
+
+  const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
 
   const [faveState, setFaveState] = useState({
-    favourited: isFavourited(recipe.id) ? true : false,
-    text: "Favourite",
-    color: "lightsalmon"
+    favourited: favourites.includes(recipe.id) ? true: false,
+    text: favourites.includes(recipe.id) ? "Favourited" : "Favourite",
+    color: favourites.includes(recipe.id) ? "grey" : "lightsalmon"
   })
       
   const toggleFave = () => {
@@ -101,10 +125,11 @@ export default function Recipe({route, navigation}){
       }
   }
     
+      
   const [makeLaterState, setMakeLaterState] = useState({
-    saved: isSaved(recipe.id) ? true : false,
-    text: "Save for later", 
-    color: "lightsalmon"
+    saved: saved.includes(recipe.id) ? true : false,
+    text: saved.includes(recipe) ? "Saved" : "Save for later", 
+    color: saved.includes(recipe) ? "grey" : "lightsalmon"
   });
       
   const toggleMakeLater = () => {
@@ -165,4 +190,3 @@ export default function Recipe({route, navigation}){
     </Block>
   )
 }
-

@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
-import {toggleMakeLaterList, isSaved} from './helpers/toggleMakeLaterList';
-import {toggleFavourites, isFavourited} from './helpers/toggleFavourites';
+import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
+import {toggleFavourites} from './helpers/toggleFavourites';
+import {getFavouritesAsync} from './Favourites';
+import {getSavedAsync} from './MakeLater';
 import { Block, theme, Text, Button} from 'galio-framework';
+import { useFocusEffect } from '@react-navigation/native';
+
 
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
@@ -72,15 +76,35 @@ const styles = StyleSheet.create({
   });
 
 
-export default function Recipe({route}){
-
-  const {recipe} = route.params
+  export default function Recipe({route, navigation}){
+  const {recipe} = route.params;
+  const [faveRecipes, setFaveRecipes] = useState("");
+  const favourites = Object.keys(faveRecipes);  
+ 
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
 
+  useFocusEffect(
+    useCallback(() => {
+      getFavouritesAsync().then((faveRecipes) => {setFaveRecipes(state=>({faveRecipes}))}) 
+    },[])
+  )
+
+  useFocusEffect(
+    useCallback(() => {
+     getSavedAsync().then((savedState) => console.log("SAVED RECIPES FROM SAVD", Object.keys(savedState))) 
+    },[])
+  )
+
+  useFocusEffect(
+    useCallback(() => {
+      getFavouritesAsync().then((faveRecipes) => console.log("FAVE RECIPES FROM SAVED", Object.keys(faveRecipes))) 
+    },[])
+  )
+
   const [faveState, setFaveState] = useState({
-    favourited: isFavourited(recipe.id) ? true : false,
-    text: "Favourite",
-    color: "lightsalmon"
+    favourited: favourites.includes(recipe.id) ? true : false,
+    text: favourites.includes(recipe) ? "Favourited" : "Favourite",
+    color: favourites.includes(recipe) ? "grey" : "lightsalmon"
   })
       
   const toggleFave = () => {
@@ -102,9 +126,9 @@ export default function Recipe({route}){
   }
         
   const [makeLaterState, setMakeLaterState] = useState({
-    saved: isSaved(recipe.id) ? true : false,
-    text: "Save for later", 
-    color: "lightsalmon"
+    saved: true,
+    text: "Saved", 
+    color: "grey"
   });
       
   const toggleMakeLater = () => {

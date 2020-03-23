@@ -6,13 +6,13 @@ import { useFocusEffect } from '@react-navigation/native';
 
 const { width } = Dimensions.get('screen');
 
-const getSavedAsync = async () => {
+export const getSavedAsync = async () => {
   const item = await AsyncStorage.getItem('saved')
   const obj = JSON.parse(item);
   return obj;
 }
 
-const pushSavedRecipes = (state) => {
+export const pushSavedRecipes = (state) => {
   const keys = Object.keys(state)
   let results = [];
 
