@@ -17,7 +17,7 @@ const searchPage = (arr) => {
 
 export default function SearchIngredients(props){
   const {recipes, setRecipes} = props
-  const [ingredients, setIngredients] = useState(['apple', 'banana'])
+  const [ingredients, setIngredients] = useState(props.ingredients)
   
 //useEffect based on the value of result, when result changes, useEffect a get request to the server
 
@@ -48,7 +48,7 @@ export default function SearchIngredients(props){
       onPress={async ()=>{
         // let result = ingredients.length !== 0 ? await getRecipes("4b42fc1d242b48f4bf390ebe7c9192da", ingredients) : false;
         // searchPage(result);
-        axios.post('http://192.168.1.70:3001/recipes', {data:{ingredients}}).then((res)=>{
+        axios.post('http://192.168.1.79:3001/recipes', {data:{ingredients}}).then((res)=>{
           setRecipes(res.data.slice(1,));
           // console.log(res.data.slice(1,)), "search ingreds";
         }).catch((err)=> {
