@@ -1,4 +1,3 @@
-import React from 'react';
 import {AsyncStorage }from 'react-native';
 
 
@@ -36,20 +35,6 @@ export const toggleFavourites = async (recipe, recipeId, bool) => {
     catch(err) {
       console.log(err);
     }
-  }
-}
-
-export const isFavourited = async(recipeId) => {
-  try {
-    const item = await AsyncStorage.getItem('favourites')
-    let favourites = JSON.parse(item);
-    if (favourites[recipeId]) {
-      return true
-    }
-    return false
-  }
-  catch(err) {
-    console.log(err);
   }
 };
 
