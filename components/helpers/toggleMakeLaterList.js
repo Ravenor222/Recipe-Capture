@@ -1,4 +1,3 @@
-import React from 'react'
 import { AsyncStorage } from 'react-native'
 
 export const toggleMakeLaterList = async (recipe, recipeId, bool) => {
@@ -38,18 +37,4 @@ export const toggleMakeLaterList = async (recipe, recipeId, bool) => {
     }
   }
 }; 
-
-export const isSaved = async(recipeId) => {
-  try {
-    const item = await AsyncStorage.getItem('saved')
-    let saved = JSON.parse(item);
-    if (saved[recipeId]) {
-      return true
-    }
-    return false
-  }
-  catch(err) {
-    console.log(err);
-  }
-};
 
