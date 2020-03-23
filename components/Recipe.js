@@ -5,9 +5,6 @@ import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
 import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
 import {toggleFavourites} from './helpers/toggleFavourites';
-import { useFocusEffect } from '@react-navigation/native';
-import {getFavouritesAsync} from './Favourites';
-import {getSavedAsync} from './MakeLater';
 import { Block, theme, Text, Button} from 'galio-framework';
 
 
@@ -81,84 +78,44 @@ const styles = StyleSheet.create({
 export default function Recipe({route, navigation}){
   const {recipe} = route.params
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
-  // const [faveRecipes, setFaveRecipes] = useState("")
-  // const [savedRecipes, setSavedRecipes] = useState("")
-  // const favouritesObj = Object.keys(faveRecipes);  
-  // const favourites = []
-  // for (let num of favouritesObj) {
-  //   favourites.push(Number(num))
-  // } 
-  // const savedObj = Object.keys(savedRecipes);
-  // const saved = []
-  // for (let num of savedObj) {
-  //   saved.push(Number(num))
-  // } 
-
-  
-  // //Get current favourited recipes
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     getFavouritesAsync().then((faveRecipes) => {setFaveRecipes(state=>(faveRecipes))}) 
-  //   }, [])
-  // )
-  
-  // //Get current saved recipes
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     getSavedAsync().then((savedRecipes) => {setSavedRecipes(state=>(savedRecipes))}) 
-  //   }, [saved, favourites])
-  // )
-
-  const [faveState, setFaveState] = useState({
-    favourited: false,
-    text: "Favourite",
-    color: "lightsalmon"
+  const [state, setState] = useState({
+    favourited: false, 
+    makeLater: false, 
+    faveColor: "lightsalmon", 
+    makeLaterColor: "lightsalmon",
+    faveText: "Favourite", 
+    makeLaterText: "Save for later"
   })
-      
+
   const toggleFave = () => {
-    const {favourited} = faveState
+    const {favourited} = state
       
     if (favourited) {
-      setFaveState(prevState => ({
-        favourited: false,
-        text: "Favourite",
-        color: "lightsalmon"
-        }))
+      setState(prevState => ({
+        ...prevState, favourited: false, faveColor: "lightsalmon", faveText: "Favourite"
+      }))
       } else {
-        setFaveState(prevState => ({
-          favourited: true, 
-          text: "Favourited",
-          color: "grey"
-        }))
-      }
+        setState(prevState => ({
+          ...prevState, favourited: true, faveColor: "grey", faveText: "Favourited"
+        })
+      )
+    }
   }
-  
 
-
-  const [makeLaterState, setMakeLaterState] = useState({
-    saved: false,
-    text: "Save for later", 
-    color: "lightsalmon"
-  });
-      
   const toggleMakeLater = () => {
-    const {saved} = makeLaterState
-      
-    if (saved) {
-      setMakeLaterState(prevState => ({
-        saved: false,
-        text: "Save for later",
-        color: "lightsalmon"
+    const {makeLater} = state
+
+    if (makeLater) {
+      setState(prevState => ({
+        ...prevState, makeLater: false, makeLaterColor: "lightsalmon", makeLaterText: "Save for later"
       }))
     } else {
-      setMakeLaterState(prevState => ({
-        saved: true, 
-        text: "Saved",
-        color: "grey"
+      setState(prevState => ({
+        ...prevState, makeLater: true, makeLaterColor: "grey", makeLaterText: "Saved"
       }))
     }
-  };
-  
+  }
+
 
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
@@ -171,13 +128,13 @@ export default function Recipe({route, navigation}){
       <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
-      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: makeLaterState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-        toggleMakeLaterList(recipe, recipe.id, makeLaterState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated" [{text: "Close", onPress: () => toggleMakeLater()}]));
-      }}><Text style={{fontWeight:'bold', color:'white'}}>{makeLaterState.text}</Text></Button>
+      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: state.makeLaterColor, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
+        toggleMakeLaterList(recipe, recipe.id, state.makeLater ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLater()}]));
+      }}><Text style={{fontWeight:'bold', color:'white'}}>{state.makeLaterText}</Text></Button>
         
-      <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
-        toggleFavourites(recipe, recipe.id, faveState.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleFave()}]));
-      }}><Text style={{fontWeight:'bold', color:'white'}}>{faveState.text}</Text></Button>
+      <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: state.faveColor, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
+        toggleFavourites(recipe, recipe.id, state.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleFave()}]));
+      }}><Text style={{fontWeight:'bold', color:'white'}}>{state.faveText}</Text></Button>
 
       </Block>
     </View>
