@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, Alert } from 'react-native'
 import { Button } from 'galio-framework';
 import { StorageContext } from '../contexts/storageContext';
 
@@ -18,11 +18,10 @@ const ProfileButton = (props) => {
     return(
         <Button 
         shadowless size="small" 
-        iconSize={50} color="error" 
         style={props.style}
         onPress={async () => {
             await storeData();
-            
+            Alert.alert("Done!", "Your preferences have been updated", [{text: "Close"}])
         }}
         >
         Save Settings

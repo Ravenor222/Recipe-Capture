@@ -17,14 +17,13 @@ export default function App() {
 
   return (
     
-    <NavigationContainer>
+    <NavigationContainer style={{backgroundColor:'red'}}>
       <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeNav} />
+        <Drawer.Screen name="Home" component={HomeNav}/>
         <Drawer.Screen name="Profile" component={Profile} />
         <Drawer.Screen name="Favourites" component={FavouritesNav} />
         <Drawer.Screen name="Saved for Later" component={MakeLaterNav} />
         <Drawer.Screen name="Search Results" component={SearchResultsNav} />
-
       </Drawer.Navigator>
     </NavigationContainer>
   );

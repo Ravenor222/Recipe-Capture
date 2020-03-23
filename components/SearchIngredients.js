@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
   }, 
   searchButton :{
     marginTop: 10,
-    alignSelf:'center'
+    alignSelf:'center',
   }
 })

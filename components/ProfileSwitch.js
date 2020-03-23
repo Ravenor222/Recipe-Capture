@@ -11,12 +11,13 @@ const ProfileSwitch = () => {
 
         <Block style={{backgroundColor:'transparent', flexDirection:'row', justifyContent:'space-around',}}>
             <Text style={{marginLeft:'10%', alignSelf:'center', color:'white', fontSize:20,textShadowOffset:{width:-1, height:1}, textShadowColor:'rgba(0, 0, 0, 1)',textShadowRadius: 10}}>
-                Include pantry?
+                Include pantry items?
             </Text>
 
             <Switch 
-            style={{marginVertical:30 ,alignSelf:'center', marginRight:'18%', trackColor:{false:"grey",true:"red"}}} 
+            style={{marginVertical:30 ,alignSelf:'center', marginRight:'10%'}} 
             onChange={(value)=>{setState(state => ({...state, pantry:value}));}}
+            trackColor={{false:'grey', true:'lightsalmon'}}
             />
 
         </Block>

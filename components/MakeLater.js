@@ -1,10 +1,10 @@
 import React, {useState, useCallback} from 'react';
 import ClearSaved from './ClearSaved';
-import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, AsyncStorage } from 'react-native';
-import { Card, Block, NavBar, Icon, theme, Button} from 'galio-framework';
+import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, AsyncStorage, ImageBackground, View } from 'react-native';
+import { Card, Block, NavBar, Icon, theme, Text } from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
-
-const { width } = Dimensions.get('screen');
+import background from './photos/food3.jpg'
+const { width, height } = Dimensions.get('screen');
 
 export const getSavedAsync = async () => {
   const item = await AsyncStorage.getItem('saved')
@@ -49,8 +49,15 @@ export default function MakeLater(props) {
               />
             </TouchableOpacity>
           )}
-          titleStyle={{ color:'white', fontSize:25 }}/>
-          <Button onPress={ClearSaved}/>
+          titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold'  }}/>
+          {/* <Button onPress={ClearSaved}/> */}
+          {recipes.length !== 0 
+          ? null 
+          : <ImageBackground source={background} style={styles.backgroundImage}>           
+            <View style={styles.emptyList}>
+              <Text h5 style={styles.heading}>Your List Is Empty!</Text>
+              <Text h6 style={styles.text}>Select Recipes To Make Later</Text>
+            </View></ImageBackground>}
         <ScrollView contentContainerStyle={styles.cards}>
           <Block flex space="between">
             {recipes && recipes.map((recipe, id) => (
@@ -76,45 +83,53 @@ export default function MakeLater(props) {
     );
   }
 
-const styles = StyleSheet.create({
-  cards: {
-    width,
-    backgroundColor: theme.COLORS.WHITE,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  cardBackground:{
-    backgroundColor: theme.COLORS.WHITE,
-  },
-  card: {
-    width: width - theme.SIZES.BASE * 2,
-    marginVertical: theme.SIZES.BASE * 0.875,
-    elevation: theme.SIZES.BASE / 2,
-  },
-  full: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    left: 0,
-  },
-  noRadius: {
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-  },
-  rounded: {
-    borderRadius: theme.SIZES.BASE * 0.1875,
-  },
-  gradient: {
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 90,
-    position: 'absolute',
-    overflow: 'hidden',
-    borderBottomRightRadius: theme.SIZES.BASE * 0.5,
-    borderBottomLeftRadius: theme.SIZES.BASE * 0.5,
-  },
-  nav: {
-    backgroundColor: "lightsalmon"
-  }
-});
+  const styles = StyleSheet.create({
+    cards: {
+      width,
+      backgroundColor: theme.COLORS.WHITE,
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    cardBackground:{
+      backgroundColor: theme.COLORS.WHITE,
+    },
+    card: {
+      width: width - theme.SIZES.BASE * 2,
+      marginVertical: theme.SIZES.BASE * 0.875,
+      elevation: theme.SIZES.BASE / 2,
+    },
+    noRadius: {
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+    nav: {
+      backgroundColor: "lightsalmon",
+    },
+    backgroundImage: {
+      width:'100%',
+      height:'100%'
+    },
+    emptyList : {
+      alignSelf: 'center',
+      backgroundColor:'rgba(255, 255, 255, 0.90)',
+      padding:20,
+      borderColor: "lightsalmon",
+      borderWidth: 8,
+      width: width * .80,
+      height: height * .65,
+      borderRadius: 20,
+      justifyContent:'center',
+      //display: display,
+      marginTop: height * .11
+    },
+    heading: {
+      textAlign: "center",
+      color: '#606060',
+      lineHeight:40
+    },
+    text : {
+      textAlign: "center",
+      color: 'grey',
+      fontSize: 15
+    }
+  });

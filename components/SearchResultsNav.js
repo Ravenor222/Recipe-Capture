@@ -33,7 +33,9 @@ export default function SearchResultsNav ({navigation}){
       }}/>
       <Stack.Screen name="searchRecipe" component={searchRecipe} options={{
         title: null,
-        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'lightsalmon'
+        },
         headerBackTitleStyle: {
           color: 'white',
           },
