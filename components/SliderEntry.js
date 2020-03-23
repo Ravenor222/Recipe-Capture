@@ -50,7 +50,7 @@ export default function SliderEntry (props){
         <TouchableOpacity
           activeOpacity={1}
           style={styles.slideInnerContainer}
-          onPress={() => {props.navigation.navigate('searchRecipe', {recipe});}}>
+          onPress={() => {props.navigation.navigate('Recipe', {recipe});}}>
             <View style={styles.shadow} />
             <View style={[styles.imageContainer]}>
                 { getImage() }

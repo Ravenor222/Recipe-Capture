@@ -1,5 +1,5 @@
 import MyCarousel from './SearchResultCards'
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useLayoutEffect } from 'react';
 import SearchIngredients from './SearchIngredients'
 import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View, SafeAreaView, ImageBackground, Dimensions } from 'react-native';
@@ -8,15 +8,44 @@ import axios from 'axios';
 import background from './photos/food1.jpg'
 import { StackActions, NavigationActions } from 'react-navigation';
 const { width, height } = Dimensions.get('screen');
+import { getFavouritesAsync } from './Favourites';
+import { getSavedAsync } from './MakeLater';
+
 
 export default function SearchResults(props){
 
-  const[recipes, setRecipes] = useState(1)
-  const[ingredients, setIngredients] = useState(props.ingredients)
+  //Get current favourited recipes
+  useFocusEffect(
+    useCallback(() => {
+      getFavouritesAsync().then((faveRecipes) => {setFaveRecipes(state=>(faveRecipes))}) 
+    }, [])
+  )
+  
+  //Get current saved recipes
+  useFocusEffect(
+    useCallback(() => {
+      getSavedAsync().then((savedRecipes) => {setSavedRecipes(state=>(savedRecipes))}) 
+    }, [])
+  )
+
+  const[recipes, setRecipes] = useState([]);
+  const[ingredients, setIngredients] = useState(props.ingredients);
+
+  const filteredRecipes = (original, faves, saves) => {
+    if (faves === null & saves === null) {
+      return original
+    } else if (faves !== null && saves === null){
+      return original.filter( recipe => !faves[recipe.id] )
+    } else if (faves === null && saves !== null) {
+      return original.filter(recipe => !saves[recipe.id] )
+    } else {
+      return original.filter(recipe => !faves[recipe.id] && !saves[recipe.id])
+    }
+  }
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.72:3001/')
+      axios.get('http://192.168.1.79:3001/')
       .then(res => {
         setIngredients(res.data[0])
         setRecipes(res.data.slice(1,));
@@ -24,7 +53,7 @@ export default function SearchResults(props){
       .catch(err => console.log(err, "error"));
     },[])
   )
-
+  
   return(
     <SafeAreaView>
       {console.log(ingredients)}
@@ -77,7 +106,6 @@ const styles = StyleSheet.create({
     height: height * .65,
     borderRadius: 20,
     justifyContent:'center',
-    //display: display,
     marginTop: height * .11
   },
   heading: {
