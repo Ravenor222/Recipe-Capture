@@ -1,24 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 const IS_IOS = Platform.OS === 'ios';
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
-
-function wp (percentage) {
-    const value = (percentage * viewportWidth) / 100;
-    return Math.round(value);
-}
-
 const slideHeight = viewportHeight * 0.58;
 const slideWidth = wp(76);
 const itemHorizontalMargin = wp(2);
 const itemWidth = slideWidth + itemHorizontalMargin * 2;
 const entryBorderRadius = 8;
 
+function wp (percentage) {
+  const value = (percentage * viewportWidth) / 100;
+  return Math.round(value);
+}
+
+
 export default function SliderEntry (props){
   
-
     const getImage = () => {
       const { data: { illustration }} = props 
       return (
@@ -29,7 +28,6 @@ export default function SliderEntry (props){
       );
     }
     const { data: recipe } = props;
-
 
     const uppercaseTitle = recipe.title ? (
         <Text

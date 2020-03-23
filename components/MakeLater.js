@@ -1,19 +1,11 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import Nav from './Nav';
+import React, {useState, useCallback} from 'react';
 import ClearSaved from './ClearSaved';
-import {
-  ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity, AsyncStorage
-} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-// Galio components
-import {
-  Card, Block, NavBar, Icon, theme, Button
-} from 'galio-framework';
-const { width } = Dimensions.get('screen');
+import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, AsyncStorage } from 'react-native';
+import { Card, Block, NavBar, Icon, theme, Button} from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
 
+const { width } = Dimensions.get('screen');
 
- 
 const getSavedAsync = async () => {
   const item = await AsyncStorage.getItem('saved')
   const obj = JSON.parse(item);
@@ -30,11 +22,11 @@ const pushSavedRecipes = (state) => {
   return results;
 } 
 
+
 export default function MakeLater(props) {
+  
   const [state, setState] = useState("")
   const recipes = pushSavedRecipes(state)
-
-
 
   useFocusEffect(
     useCallback(() => {

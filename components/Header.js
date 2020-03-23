@@ -1,15 +1,8 @@
-import React, {useContext, useState, useEffect} from 'react';
-import Nav from './Nav';
-import { View, TouchableOpacity, ShadowPropTypesIOS, StyleSheet, Alert} from 'react-native';
-import { ProfileContext } from '../contexts/ProfileContext';
+import React from 'react';
+import { View, StyleSheet, Alert} from 'react-native';
 import toggleMakeLaterList from './helpers/toggleMakeLaterList'
 import toggleFavourites from './helpers/toggleFavourites'
-
-import {
-  Card, Block, NavBar, Icon, theme, Text, Button
-} from 'galio-framework';
-import { setLightEstimationEnabled } from 'expo/build/AR';
-
+import { Block, Text, Button } from 'galio-framework';
 
 const styles = StyleSheet.create({
   header: {
@@ -34,11 +27,8 @@ const styles = StyleSheet.create({
 })
 
 
-
-
 export default function Header(props) {
 
-  
   return (
     <View style={styles.header}>
       <Text style={styles.title}>{props.recipe.title}</Text>

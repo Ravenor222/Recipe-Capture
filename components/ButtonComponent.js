@@ -8,7 +8,8 @@ const ButtonComponent = (props) => {
 
     return(
         <Button 
-        shadowless size="small" 
+        shadowless 
+        size="small" 
         color='info'
         iconSize={50}
         style={props.style} 

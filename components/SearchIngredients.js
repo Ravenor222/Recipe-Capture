@@ -2,24 +2,13 @@ import React, { useState } from 'react';
 import { Button } from 'react-native-elements';
 import { FlatList, View, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import getRecipes from './helpers/spoonacular_helper';
 const { width: viewportWidth } = Dimensions.get('window');
 import axios from 'axios'
 
-const searchPage = (arr) => {
-  let results = [];
-  for(const item of arr){
-    let obj = {title: item.title, time: item.readyInMinutes, missing: item.missedIngredientCount};
-    results.push(obj);
-  }
-  return results;
-}
 
 export default function SearchIngredients(props){
   const {recipes, setRecipes} = props
-  const [ingredients, setIngredients] = useState(['apple', 'banana'])
-  
-//useEffect based on the value of result, when result changes, useEffect a get request to the server
+  const [ingredients, setIngredients] = useState(props.ingredients)
 
   return (
     <View style={styles.container}>
@@ -46,11 +35,8 @@ export default function SearchIngredients(props){
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
-        // let result = ingredients.length !== 0 ? await getRecipes("4b42fc1d242b48f4bf390ebe7c9192da", ingredients) : false;
-        // searchPage(result);
         axios.post('http://192.168.1.70:3001/recipes', {data:{ingredients}}).then((res)=>{
           setRecipes(res.data.slice(1,));
-          // console.log(res.data.slice(1,)), "search ingreds";
         }).catch((err)=> {
           console.log(err, "err")
         });
@@ -72,12 +58,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     position:'absolute',
-    top:400
+    top:485
   },
   button:{
     alignSelf: "center",
     color:'white',
-    width: 114,
+    width: 125,
     margin:2,
 
   }, 

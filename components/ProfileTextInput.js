@@ -1,7 +1,5 @@
 import React, { useContext } from 'react'
-import { Text, View } from 'react-native'
-import {Input, Block } from 'galio-framework'
-// import { Input} from 'react-native-elements'
+import {Input} from 'galio-framework'
 import { StorageContext } from '../contexts/storageContext';
 
 const ProfileInput = () => {
@@ -13,7 +11,6 @@ const ProfileInput = () => {
 
     return(
         <Input
-        // onChange={value => console.log(value.nativeEvent.text)}
         onChangeText={stateSetter}
         style={{alignSelf:'center', width:'80%', label:'white'}}
         placeholder="Allergies, Comma-seperated"
@@ -23,13 +20,7 @@ const ProfileInput = () => {
         iconSize={14}
         iconColor="red"
         />
-        // <Input
-        // onChangeText={stateSetter}
-        // placeholder='INPUT WITH ICON'
-        // leftIcon={{ type: 'font-awesome', name: 'chevron-left' }}
-        // />
     )
-
-
 }
-export default ProfileInput
+
+export default ProfileInput;

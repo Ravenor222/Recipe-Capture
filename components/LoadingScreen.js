@@ -1,12 +1,11 @@
-import React, {useLayoutEffect, useCallback} from 'react';
-import { Text, View, TouchableOpacity, ActivityIndicator, StyleSheet, Alert } from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { Text, View, Image } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 import io from "socket.io-client";
 import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function LoadingScreen(props) {
-
 
   // const resetAction = StackActions.reset({
   //   index: 0,
@@ -18,7 +17,7 @@ export default function LoadingScreen(props) {
 
     
   useLayoutEffect(() => {
-    socket = io("http://192.168.1.70:3001");
+    socket = io("http://192.168.1.72:3001");
     socket.on("chat message", msg => {
       });
 
@@ -29,8 +28,8 @@ export default function LoadingScreen(props) {
 
   return (
       <View >
-        <Text >This is a loading Screen!</Text>
-        <Text >Enjoy it while you can!</Text>
+        <Image source={{uri: 'https://gfycat.com/insecurewideeskimodog'}} />
+        <Text>Cooking up the perfect recipes!</Text>
       </View>
   )
 }

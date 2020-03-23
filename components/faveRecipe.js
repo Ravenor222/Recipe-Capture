@@ -1,18 +1,13 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import Nav from './Nav';
-import {  Dimensions, ScrollView, View, TouchableOpacity, ShadowPropTypesIOS, FlatList, StyleSheet, Image, SafeAreaView, Alert } from 'react-native';
+import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
 import { ProfileContext } from '../contexts/ProfileContext';
 import Header from './Header';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
 import {toggleMakeLaterList, isSaved} from './helpers/toggleMakeLaterList';
 import {toggleFavourites, isFavourited} from './helpers/toggleFavourites';
-
-import {
-  Card, Block, NavBar, Icon, theme, Text, Button
-} from 'galio-framework';
-
-//test: pls delete
+import { Block, theme, Text, Button } from 'galio-framework';
 
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
@@ -36,8 +31,6 @@ const formatIngredients = function(missed, used) {
 
   return results;
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -83,11 +76,10 @@ const styles = StyleSheet.create({
 
 
 export default function Recipe({route, navigation}){
+  
   const {recipe} = route.params
- 
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
 
- 
   const [faveState, setFaveState] = useState({
     favourited: isFavourited(recipe.id) ? true : false,
     text: "Favourite",
@@ -111,7 +103,6 @@ export default function Recipe({route, navigation}){
         }))
       }
   }
-    
       
   const [makeLaterState, setMakeLaterState] = useState({
     saved: isSaved(recipe.id) ? true : false,
@@ -176,6 +167,5 @@ export default function Recipe({route, navigation}){
       </ScrollView>
     </Block>
   )
-
 }
 

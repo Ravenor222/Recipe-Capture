@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { ProfileContext } from '../contexts/ProfileContext';
 import { Dropdown } from 'react-native-material-dropdown';
-import { StyleSheet} from 'react-native';
 
 const DropdownTimeComponent = ({list,style ,label}) => {
     const [state, setState] = useContext(ProfileContext);

@@ -1,13 +1,11 @@
 import MyCarousel from './SearchResultCards'
-import React, { useEffect, useState,useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import SearchIngredients from './SearchIngredients'
 import { useFocusEffect } from '@react-navigation/native';
-import { StyleSheet, TouchableOpacity, View, ImageBackground, SafeAreaView } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { StyleSheet, TouchableOpacity, View, SafeAreaView } from 'react-native';
 import { NavBar, Icon, theme } from 'galio-framework';
-import Nav from './Nav';
 import axios from 'axios';
-
+import { StackActions, NavigationActions } from 'react-navigation';
 
 
 export default function SearchResults(props){
@@ -15,18 +13,11 @@ export default function SearchResults(props){
   const[recipes, setRecipes] = useState(1)
   const[ingredients, setIngredients] = useState('')
 
-  
-
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.70:3001/')
-
+      axios.get('http://192.168.1.72:3001/')
       .then(res => {
-        console.log(res.data.slice(1,), "search results"),
-        // console.log(res.data, "data"),
-        // console.log(res.data[0][0]),
         setIngredients(res.data[0])
-        //returns everything but first elem
         setRecipes(res.data.slice(1,));
       })
       .catch(err => console.log(err, "error"));
@@ -47,16 +38,14 @@ export default function SearchResults(props){
               />
             </TouchableOpacity>
           )}
-          titleStyle={{ color:'white', fontSize:25 }}
-      />
+          titleStyle={{ color:'white', fontSize:25 }}/>
       <View>
         {console.log(recipes)}
         <MyCarousel recipes={recipes} navigation={props.navigation}/>
         <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={recipes}/>
       </View>
     </SafeAreaView>
-  )
-
+  );
 }
 const styles = StyleSheet.create({
   nav : {

@@ -3,15 +3,10 @@ import { ProfileContextProvider } from '../contexts/ProfileContext';
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
-
-import {
-  ScrollView, Dimensions, Platform, TouchableOpacity, ImageBackground, StyleSheet, Image
-} from 'react-native';
-
-import {
-  NavBar, Icon, theme
-} from 'galio-framework';
-
+import { TouchableOpacity, ImageBackground, StyleSheet, Image, View } from 'react-native';
+import { NavBar, Icon } from 'galio-framework';
+import background from './photos/food3.jpg'
+import logo from './photos/logo2.png';
 
 
 export default function Home ({navigation}){
@@ -20,20 +15,23 @@ export default function Home ({navigation}){
     backgroundImage: {
       width:'100%',
       height:'100%',
-      flex: 1,
       flexDirection: 'column',
-      justifyContent: 'space-around'
     },
     button: {
       alignSelf: "center",
-      backgroundColor: 'lightsalmon'
+      backgroundColor: 'lightsalmon',
+      width:'55%',
+      borderRadius:10,
+      marginVertical:30,
     },
     dropdown:{
       backgroundColor: "white",
       width: '80%',
       alignSelf: "center",
-      paddingLeft: 5,
-      paddingRight: 5
+      paddingLeft: 7,
+      paddingRight: 7,
+      borderWidth: 1.5,
+      borderColor: '#606060'
     }
   });
 
@@ -69,9 +67,8 @@ export default function Home ({navigation}){
 
   return (
 
-    <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>
+    <ImageBackground source={background} style={styles.backgroundImage}>
       <NavBar
-          // titleStyle={{backgroundColor: "#FE2472"}}
           title={null}
           transparent={true}
           left={(
@@ -79,34 +76,31 @@ export default function Home ({navigation}){
               <Icon 
                 name="menu"
                 family="feather"
-                size={theme.SIZES.BASE}
-                color={theme.COLORS.ICON}
+                size={30}
+                color='#606060'
               />
             </TouchableOpacity>
           )}
-          style={Platform.OS === 'android' ? { marginTop: theme.SIZES.BASE } : null}
+          style={{marginTop:10}}
         />
 
-      <ProfileContextProvider> 
-   
-
-        <DropdownTimeComponent 
-         list={time} 
-         style={styles.dropdown}
-         value={time[0]}
-         label="Ready in..." />
-        <DropdownCuisineComponent 
-         list={cuisine} 
-         style={styles.dropdown}
-         label="Select Cuisine" />
-        <ButtonComponent 
-         style={styles.button} 
-         navigation={navigation}/>
-      </ProfileContextProvider>
+      <Image source={logo} style={{width:280, height:280, alignSelf:'center'}} />
+      <View style={{flex:1, justifyContent:'space-evenly'}}>
+        <ProfileContextProvider> 
+          <DropdownTimeComponent 
+          list={time} 
+          style={styles.dropdown}
+          value={time[0]}
+          label="Ready in..." />
+          <DropdownCuisineComponent 
+          list={cuisine} 
+          style={styles.dropdown}
+          label="Select Cuisine" />
+          <ButtonComponent 
+          style={styles.button} 
+          navigation={navigation}/>
+        </ProfileContextProvider>
+      </View>
     </ImageBackground>
-  
-
   )
-
-
 }
