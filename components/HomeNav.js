@@ -11,11 +11,11 @@ import searchRecipe from './searchRecipe';
 export default function HomeNav ({navigation}){
 
   const Stack = createStackNavigator();
-  
+  // set homescreen back to Home component
   return (
 
     <Stack.Navigator>
-      <Stack.Screen name="Homescreen" component={Home} options={{
+      <Stack.Screen name="Homescreen" component={LoadingScreen} options={{
         title: null,
         headerShown: false }} />
       <Stack.Screen name="Camera" component={CameraApp} options={{
