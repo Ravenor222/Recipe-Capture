@@ -14,13 +14,13 @@ import { useFocusEffect } from '@react-navigation/native';
 
 
  
-const getSavedAsync = async () => {
+export const getSavedAsync = async () => {
   const item = await AsyncStorage.getItem('saved')
   const obj = JSON.parse(item);
   return obj;
 }
 
-const pushSavedRecipes = (state) => {
+export const pushSavedRecipes = (state) => {
   const keys = Object.keys(state)
   let results = [];
 
