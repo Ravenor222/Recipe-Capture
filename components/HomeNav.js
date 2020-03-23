@@ -9,9 +9,9 @@ import searchRecipe from './searchRecipe';
 
 
 export default function HomeNav ({navigation}){
+
   const Stack = createStackNavigator();
   
-
   return (
 
     <Stack.Navigator>
@@ -43,6 +43,4 @@ export default function HomeNav ({navigation}){
       }}/>
     </Stack.Navigator>
   )
-
-
 }

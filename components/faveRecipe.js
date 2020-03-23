@@ -1,21 +1,14 @@
-import React, {useContext, useState, useCallback} from 'react';
-import Nav from './Nav';
-import {  Dimensions, ScrollView, View, TouchableOpacity, ShadowPropTypesIOS, FlatList, StyleSheet, Image, SafeAreaView, Alert } from 'react-native';
-import { ProfileContext } from '../contexts/ProfileContext';
-import Header from './Header';
+import React, {useState, useCallback} from 'react';
+import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
 import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
 import {toggleFavourites} from './helpers/toggleFavourites';
 import {getSavedAsync} from './MakeLater';
 import {getFavouritesAsync} from './Favourites';
+import { Block, theme, Text, Button } from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
 
-import {
-  Card, Block, NavBar, Icon, theme, Text, Button
-} from 'galio-framework';
-
-//test: pls delete
 
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
@@ -39,8 +32,6 @@ const formatIngredients = function(missed, used) {
 
   return results;
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -86,6 +77,7 @@ const styles = StyleSheet.create({
 
 
 export default function Recipe({route, navigation}){
+  
   const {recipe} = route.params
   const [savedState, setSavedRecipes] = useState("")
   const savedRecipes = Object.keys(savedState);
@@ -109,11 +101,8 @@ export default function Recipe({route, navigation}){
     },[])
   )
  
- 
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
 
-
- 
   const [faveState, setFaveState] = useState({
     favourited: true,
     text: "Favourited",
@@ -137,7 +126,6 @@ export default function Recipe({route, navigation}){
         }))
       }
   }
-    
       
   const [makeLaterState, setMakeLaterState] = useState({
     saved: savedRecipes.includes(recipe.id) ? true : false,
@@ -202,6 +190,5 @@ export default function Recipe({route, navigation}){
       </ScrollView>
     </Block>
   )
-
 }
 

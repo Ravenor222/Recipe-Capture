@@ -1,8 +1,7 @@
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Dimensions, StyleSheet } from 'react-native';
 import SliderEntry from './SliderEntry'
-
 
 function wp (percentage) {
   const value = (percentage * viewportWidth) / 100;
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
       borderRadius: 8
   },
   paginationContainer: {
-      paddingVertical: 25
+      paddingVertical: 18
   },
   paginationDot: {
       width: 8,

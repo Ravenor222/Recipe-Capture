@@ -1,15 +1,7 @@
 import React, {useCallback, useContext} from 'react';
-
-import {
-  SafeAreaView,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import { SafeAreaView, TouchableOpacity, FlatList, StyleSheet, Text} from 'react-native';
 import Constants from 'expo-constants';
 import { StorageContext } from '../contexts/storageContext';
-
 
 const DATA = [
   {
@@ -62,11 +54,7 @@ const DATA = [
   },
   
 ];
-
-const obj = {
-
-}
-
+const obj = {}
 
 function Item({ id, title, selected, onSelect }) {
   return (
@@ -74,7 +62,7 @@ function Item({ id, title, selected, onSelect }) {
       onPress={() => onSelect(id)}
       style={[
         styles.item,
-        { backgroundColor: selected ? '#ff7c67' : '#ffa07a' },
+        { backgroundColor: selected ? '#808080' : '#bebebe'},
       ]}
     >
       <Text style={styles.title}>{title}</Text>
@@ -88,9 +76,7 @@ export default function App(props) {
   const [state, setState] = useContext(StorageContext);
 
   const onSelect = useCallback(
-
-    id => {
-      
+    id => { 
       const newSelected = new Map(selected);
       newSelected.set(id, !selected.get(id));
       setSelected(newSelected);
@@ -101,7 +87,6 @@ export default function App(props) {
       const filtered = Object.entries(obj).filter((x) => x[1]);
       const results = (filtered.map(x=> (x[0])));
       setState(state => ({...state, intolerances:results}));
-     
     },
     [selected],
   );
@@ -120,6 +105,7 @@ export default function App(props) {
             title={item.title}
             selected={!!selected.get(item.id)}
             onSelect={onSelect}
+            style={{color: selected ? 'white' : 'black'}}
           />
         )}
         keyExtractor={item => item.id}
@@ -135,7 +121,6 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   item: {
-    backgroundColor: '#f9c2ff',
     padding: 5,
     marginVertical: 4,
     marginHorizontal: 5,
@@ -143,8 +128,6 @@ const styles = StyleSheet.create({
     paddingVertical:10,
     width:'30%',
     textAlign:'center',
-
-    
   },
   title: {
     fontSize: 12,

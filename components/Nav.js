@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ScrollView, StyleSheet, Dimensions, Platform, TouchableOpacity
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 // Galio components
 import {
   Card, Block, NavBar, Icon, theme

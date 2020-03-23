@@ -1,4 +1,3 @@
-import React from 'react'
 import { AsyncStorage } from 'react-native'
 
 const ClearSaved = async () => {
@@ -7,8 +6,6 @@ const ClearSaved = async () => {
   } catch (error) {
      console.log(error);
   }
-  
 }  
-
 
 export default ClearSaved

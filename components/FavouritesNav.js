@@ -4,7 +4,6 @@ import Favourites from './Favourites';
 import faveRecipe from './faveRecipe';
 
 
-
 export default function FavouritesNav ({navigation}){
   const Stack = createStackNavigator();
   return (
@@ -23,6 +22,4 @@ export default function FavouritesNav ({navigation}){
       }}/>
     </Stack.Navigator>
   )
-
-
 }

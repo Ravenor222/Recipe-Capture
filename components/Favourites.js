@@ -5,7 +5,7 @@ import { Card, Block, NavBar, Icon, theme, Text } from 'galio-framework';
 const { width, height } = Dimensions.get('screen');
 import { useFocusEffect } from '@react-navigation/native';
 import ClearFaves from './ClearFaves';
-
+import background from './photos/food3.jpg'
 
 export const getFavouritesAsync = async () => {
   const item = await AsyncStorage.getItem('favourites')
@@ -30,7 +30,7 @@ const recipes = pushFavouritesRecipes(state);
 const [display, setDisplay] = useState('none')
 
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   cards: {
     width,
     backgroundColor: theme.COLORS.WHITE,
@@ -107,7 +107,7 @@ const [display, setDisplay] = useState('none')
           {/* <Button onPress={ClearFaves}/> */}
           {recipes.length !== 0 
           ? null 
-          : <ImageBackground source={require("./photos/food1.jpg")} style={styles.backgroundImage}>           
+          : <ImageBackground source={background} style={styles.backgroundImage}>           
             <View style={styles.emptyList}>
               <Text h5 style={styles.heading}>Your Favourites Is Empty!</Text>
               <Text h6 style={styles.text}>Pick Your Favourites To See Them Here</Text>

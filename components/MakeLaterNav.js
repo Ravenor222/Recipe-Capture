@@ -8,7 +8,6 @@ import savedRecipe from './savedRecipe';
 export default function MakeLaterNav ({navigation}){
   const Stack = createStackNavigator();
   return (
-
     <Stack.Navigator>
       <Stack.Screen name="Make Later" component={MakeLater} options={{
         title: null,
@@ -23,6 +22,4 @@ export default function MakeLaterNav ({navigation}){
       }}/>
     </Stack.Navigator>
   )
-
-
 }

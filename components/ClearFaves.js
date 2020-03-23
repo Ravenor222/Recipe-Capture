@@ -1,4 +1,3 @@
-import React from 'react'
 import { AsyncStorage } from 'react-native'
 
 const ClearFaves = async () => {
@@ -9,6 +8,5 @@ const ClearFaves = async () => {
   }
   
 }  
-
 
 export default ClearFaves

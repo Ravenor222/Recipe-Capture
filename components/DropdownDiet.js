@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { StorageContext } from '../contexts/storageContext';
 import { Dropdown } from 'react-native-material-dropdown';
-import { StyleSheet } from 'react-native'
 
 let diet = [{
     value: 'Gluten Free'
@@ -21,10 +20,9 @@ let diet = [{
     value: 'Paleo'
   }]
 
-
 const DropdownDietComponent = (props) => {
-const [state, setState] = useContext(StorageContext);
 
+const [state, setState] = useContext(StorageContext);
 
     return(
       <Dropdown 
@@ -35,5 +33,6 @@ const [state, setState] = useContext(StorageContext);
       />
     )
 }
+
 export default DropdownDietComponent
 
