@@ -5,7 +5,7 @@ import { StackActions, NavigationActions } from 'react-navigation';
 import Home from './Home'
 import SearchResults from './SearchResults';
 import LoadingScreen from './LoadingScreen'
-import searchRecipe from './searchRecipe';
+import Recipe from './Recipe';
 
 
 export default function HomeNav ({navigation}){
@@ -33,7 +33,7 @@ export default function HomeNav ({navigation}){
         title:null,
         headerShown:false,
       }} />
-      <Stack.Screen name="searchRecipe" component={searchRecipe} options={{
+      <Stack.Screen name="Recipe" component={Recipe} options={{
         title: null,
         headerTransparent: true,
         headerBackTitleStyle: {
