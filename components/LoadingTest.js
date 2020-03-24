@@ -12,7 +12,7 @@ export default class LoadingScreen extends React.Component{
 
   componentDidMount() {
     Animated.timing(this.state.loadingProgress, {
-      toValue:110,
+      toValue:120,
       duration:1000,
       useNativeDriver:true,
       delay:1000,
@@ -51,8 +51,8 @@ export default class LoadingScreen extends React.Component{
             maskElement={
               <View style={styles.centered}>
                  <Animated.Image 
-                  source={require("./photos/logo1.png")}
-                  style={[{width:1000}, imageScale]}
+                  source={require("./photos/logo2.png")}
+                  style={[{width:1100}, imageScale]}
                   resizeMode="contain"
                   /> 
               </View>}
