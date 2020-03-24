@@ -14,7 +14,9 @@ export default function FavouritesNav ({navigation}){
         headerShown: false }} />
       <Stack.Screen name="faveRecipe" component={faveRecipe} options={{
         title: null,
-        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'lightsalmon'
+        },
         headerBackTitleStyle: {
           color: 'white',
           },

@@ -2,10 +2,10 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, AsyncStorage, ImageBackground, View } from 'react-native';
 import { Card, Block, NavBar, Icon, theme, Text } from 'galio-framework';
-const { width, height } = Dimensions.get('screen');
 import { useFocusEffect } from '@react-navigation/native';
 import ClearFaves from './ClearFaves';
 import background from './photos/food3.jpg'
+const { width, height } = Dimensions.get('screen');
 
 export const getFavouritesAsync = async () => {
   const item = await AsyncStorage.getItem('favourites')
@@ -33,7 +33,6 @@ const [display, setDisplay] = useState('none')
 const styles = StyleSheet.create({
   cards: {
     width,
-    backgroundColor: theme.COLORS.WHITE,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
     height: height * .65,
     borderRadius: 20,
     justifyContent:'center',
-    //display: display,
     marginTop: height * .11
   },
   heading: {
@@ -90,7 +88,7 @@ const styles = StyleSheet.create({
   )
 
     return (
-      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+      <Block safe flex style={{ backgroundColor:'#F0F0F0' }}>
       <NavBar style = {styles.nav}
           title="Favourites"
           left={(
@@ -103,7 +101,7 @@ const styles = StyleSheet.create({
                 />
             </TouchableOpacity>
           )}
-          titleStyle={{ color:'white', fontSize:25 }}/>
+          titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold'  }}/>
           {/* <Button onPress={ClearFaves}/> */}
           {recipes.length !== 0 
           ? null 

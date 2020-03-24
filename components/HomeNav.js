@@ -26,13 +26,13 @@ export default function HomeNav ({navigation}){
           },
           headerTintColor: "white"
       }}/>
+      <Stack.Screen name="Loading" component={LoadingScreen} options={{
+          title:null,
+          headerShown:false,
+      }} />
       <Stack.Screen name="RecipeResult" component={SearchResults} options={{
         title: null,
         headerShown: false, }} />
-      <Stack.Screen name="Loading" component={LoadingScreen} options={{
-        title:null,
-        headerShown:false,
-      }} />
       <Stack.Screen name="Recipe" component={Recipe} options={{
         title: null,
         headerTransparent: true,

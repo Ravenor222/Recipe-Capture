@@ -37,12 +37,11 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
     },
-    content: {
-      padding: 40,
-    },
     summary: {
       padding: 30,
-      textAlign: "justify"
+      textAlign: "justify",
+      marginVertical:20,
+      paddingBottom:0
     },
     image: {
       ...StyleSheet.absoluteFillObject,
@@ -144,7 +143,7 @@ const styles = StyleSheet.create({
           data={ingredients}
           renderItem={({ item }) => <IngredientList name={item} />}
         />
-      <View>
+      <View style={{paddingBottom:15}}>
       <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
         <FlatList
           data={recipe.instructions[0].steps}

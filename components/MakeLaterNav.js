@@ -14,7 +14,9 @@ export default function MakeLaterNav ({navigation}){
         headerShown: false }} />
       <Stack.Screen name="savedRecipe" component={savedRecipe} options={{
         title: null,
-        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'lightsalmon'
+        },
         headerBackTitleStyle: {
           color: 'white',
           },

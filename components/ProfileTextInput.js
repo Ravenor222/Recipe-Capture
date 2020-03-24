@@ -12,13 +12,10 @@ const ProfileInput = () => {
     return(
         <Input
         onChangeText={stateSetter}
-        style={{alignSelf:'center', width:'80%', label:'white'}}
+        style={{alignSelf:'center', height: 55, width:'80%', label:'white', padding:10, marginVertical:5, borderWidth:1.5, borderColor:'#606060'}}
         placeholder="Allergies, Comma-seperated"
-        right
-        icon="heart"
         family="antdesign"
-        iconSize={14}
-        iconColor="red"
+        color='black'
         />
     )
 }
