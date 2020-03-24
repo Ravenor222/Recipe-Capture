@@ -5,7 +5,6 @@ import IngredientList from './IngredientList';
 import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
 import {toggleFavourites} from './helpers/toggleFavourites';
 import {getFavouritesAsync} from './Favourites';
-import {getSavedAsync} from './MakeLater';
 import { Block, theme, Text, Button} from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
       borderTopRightRadius: entryBorderRadius
     },
     header: {
-      height: 100,
+      height: 115,
       paddingTop: 28,
       paddingBottom: 28,
       backgroundColor: 'white'
