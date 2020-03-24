@@ -15,12 +15,11 @@ export const getSavedAsync = async () => {
 export const pushSavedRecipes = (state) => {
   const keys = Object.keys(state)
   let results = [];
-
-  for ( let item of keys) {
+  for ( let item of keys.filter((x)=> x!== "recipeId")) {
     results.push(state[item]);
   }
   return results;
-} 
+}
 
 
 export default function MakeLater(props) {
@@ -50,7 +49,6 @@ export default function MakeLater(props) {
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold'  }}/>
-          {/* <Button onPress={ClearSaved}/> */}
           {recipes.length !== 0 
           ? null 
           : <ImageBackground source={background} style={styles.backgroundImage}>           
