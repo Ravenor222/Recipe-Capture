@@ -14,7 +14,7 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
 
-
+  console.disableYellowBox = true;
   return (
     
     <NavigationContainer style={{backgroundColor:'red'}}>

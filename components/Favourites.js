@@ -33,7 +33,6 @@ const [display, setDisplay] = useState('none')
 const styles = StyleSheet.create({
   cards: {
     width,
-    backgroundColor: theme.COLORS.WHITE,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
     height: height * .65,
     borderRadius: 20,
     justifyContent:'center',
-    //display: display,
     marginTop: height * .11
   },
   heading: {
@@ -90,7 +88,7 @@ const styles = StyleSheet.create({
   )
 
     return (
-      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+      <Block safe flex style={{ backgroundColor:'#F0F0F0' }}>
       <NavBar style = {styles.nav}
           title="Favourites"
           left={(

@@ -1,5 +1,5 @@
 
-import React, {useState, useCallback, useLayoutEffect} from 'react';
+import React, {useState} from 'react';
 import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
@@ -115,64 +115,39 @@ export default function Recipe({route, navigation}){
     }
   }
 
-
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
      <ScrollView style={{height:300}}>
       <Image source={{uri: recipe.illustration}}
        style={{width: 414, height: 300}} />
-      <View style={styles.container}>
-<<<<<<< HEAD:components/searchRecipe.js
-      {/* <Header recipe={recipe} toggleFave={toggleFave} faveState={faveState} saveState={saveState} toggleSave={toggleSave} /> */}
-        <View style={styles.header}>
-          <Text style={styles.title}>{recipe.title}</Text>
-          <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
-          <Block style={{flexDirection:'row', justifyContent: 'center'}}>
-          <Button style={{width:'25%', marginHorizontal:8, backgroundColor: makeLaterState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-            toggleMakeLaterList(recipe, recipe.id, makeLaterState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated" [{text: "Done", onPress: () => toggleMakeLater()}]));
-          }}><Text style={{fontWeight:'bold', color:'white'}}>{makeLaterState.text}</Text></Button>
-          <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
-            toggleFavourites(recipe, recipe.id, faveState.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Done", onPress: () => toggleFave()}]));
-          }}><Text style={{fontWeight:'bold', color:'white'}}>{faveState.text}</Text></Button>
-          </Block>
-        </View>
-        <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
-        <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
-=======
-      <View style={styles.header}>
-      <Text style={styles.title}>{recipe.title}</Text>
-      <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
-      <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
-
-      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: state.makeLaterColor, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-        toggleMakeLaterList(recipe, recipe.id, state.makeLater ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLater()}]));
-      }}><Text style={{fontWeight:'bold', color:'white'}}>{state.makeLaterText}</Text></Button>
-        
-      <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: state.faveColor, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
-        toggleFavourites(recipe, recipe.id, state.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleFave()}]));
-      }}><Text style={{fontWeight:'bold', color:'white'}}>{state.faveText}</Text></Button>
-
-      </Block>
-    </View>
-      <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
-      <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
-      <FlatList
-          data={ingredients}
-          renderItem={({ item }) => <IngredientList name={item} />}
-        />
-      <View>
-      <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
->>>>>>> 1fa2b7a8350d31b7c17935d44a2176c8d6c0c3ea:components/Recipe.js
-        <FlatList
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Text style={styles.title}>{recipe.title}</Text>
+            <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
+            <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
+              <Button style={{width:'25%', marginHorizontal:8, backgroundColor: state.makeLaterColor, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
+          toggleMakeLaterList(recipe, recipe.id, state.makeLater ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLater()}]));}}>
+              <Text style={{fontWeight:'bold', color:'white'}}>{state.makeLaterText}</Text></Button>
+              <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: state.faveColor, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
+          toggleFavourites(recipe, recipe.id, state.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleFave()}]));}}>
+              <Text style={{fontWeight:'bold', color:'white'}}>{state.faveText}</Text></Button>
+            </Block>
+          </View>
+          <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
+          <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
+          <FlatList
             data={ingredients}
             renderItem={({ item }) => <IngredientList name={item} />}
           />
+        <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
+        <FlatList
+            data={ingredients}
+            renderItem={({ item }) => <IngredientList name={item} />}/>
         <View style={{paddingBottom:15}}>
         <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
           <FlatList
             data={recipe.instructions[0].steps}
-            renderItem={({ item }) => <RecipeCard title={item.number} step={item.step} />}
-          />
+            renderItem={({ item }) => <RecipeCard title={item.number} step={item.step} />}/>
         </View>
       </View>
       </ScrollView>

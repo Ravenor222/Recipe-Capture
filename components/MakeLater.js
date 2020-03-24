@@ -36,7 +36,7 @@ export default function MakeLater(props) {
   )
 
     return (
-      <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
+      <Block safe flex style={{ backgroundColor: '#F0F0F0' }}>
         <NavBar style = {styles.nav}
           title="Saved Recipes"
           left={(
@@ -86,7 +86,6 @@ export default function MakeLater(props) {
   const styles = StyleSheet.create({
     cards: {
       width,
-      backgroundColor: theme.COLORS.WHITE,
       alignItems: 'center',
       justifyContent: 'flex-start',
     },

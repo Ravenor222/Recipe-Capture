@@ -6,7 +6,6 @@ import { StyleSheet, TouchableOpacity, View, SafeAreaView, ImageBackground, Dime
 import { NavBar, Icon, theme, Text } from 'galio-framework';
 import axios from 'axios';
 import background from './photos/food1.jpg'
-import { StackActions, NavigationActions } from 'react-navigation';
 const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from './Favourites';
 import { getSavedAsync } from './MakeLater';
@@ -45,7 +44,7 @@ export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.79:3001/')
+      axios.get('http://192.168.1.72:3001/')
       .then(res => {
         setIngredients(res.data[0])
         setRecipes(res.data.slice(1,));
@@ -56,7 +55,6 @@ export default function SearchResults(props){
   
   return(
     <SafeAreaView>
-      {console.log(ingredients)}
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(
@@ -70,7 +68,7 @@ export default function SearchResults(props){
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
-      <View>
+      <View style={{backgroundColor:'#F0F0F0'}}>
       {recipes.length !== 0 
           ? <><MyCarousel recipes={recipes} navigation={props.navigation}/>
             <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={recipes}/></>
@@ -86,10 +84,6 @@ export default function SearchResults(props){
 const styles = StyleSheet.create({
   nav : {
     backgroundColor: 'lightsalmon'
-  },
-  container :{
-    flex: 1,
-    justifyContent:'space-between',
   },
   backgroundImage: {
     width:'100%',
