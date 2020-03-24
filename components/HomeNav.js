@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StackActions, NavigationActions } from 'react-navigation';
 import Home from './Home'
 import SearchResults from './SearchResults';
-import LoadingScreen from './LoadingScreen'
+import LoadingScreen from './LoadingTest'
 import searchRecipe from './searchRecipe';
 
 

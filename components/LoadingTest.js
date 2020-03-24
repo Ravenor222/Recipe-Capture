@@ -12,12 +12,13 @@ export default class LoadingScreen extends React.Component{
 
   componentDidMount() {
     Animated.timing(this.state.loadingProgress, {
-      toValue:100,
+      toValue:110,
       duration:1000,
       useNativeDriver:true,
-      delay:400,
+      delay:1000,
     }).start(()=>{
-      this.setState({ animationDone: true })
+      this.setState({ animationDone: true });
+      // console.log(this.state, "this.state");
     });
   }
     
@@ -35,18 +36,14 @@ export default class LoadingScreen extends React.Component{
           }
         ]
       }
-    
-    
-     const styles = StyleSheet.create({
-       centered: {
-         flex:1,
-         alignItems:'center',
-         justifyContent:'center'
-       }
-     })
-    
+      const opacity = {
+        opacity: this.state.loadingProgress.interpolate({
+          inputRange: [0, 25, 50],
+          outputRange: [0, 0, 1],
+          extrapolate: 'clamp'
+        })
+      }
       return (
-    
         <View style={{flex:1}}> 
         {colorLayer}
             <MaskedViewIOS
@@ -62,7 +59,7 @@ export default class LoadingScreen extends React.Component{
           >
     
             {logoLayer}
-                <Animated.View style={styles.centered} >
+                <Animated.View style={[opacity, styles.centered]} >
                 <Text>Cooking up the perfect recipes!</Text>
                 </Animated.View> 
             {/* Shows behind the mask, you can put anything here, such as an image */}
@@ -78,7 +75,13 @@ export default class LoadingScreen extends React.Component{
 
 
     }
-
+     const styles = StyleSheet.create({
+       centered: {
+         flex:1,
+         alignItems:'center',
+         justifyContent:'center'
+       }
+     })
 {/* <Text
 style={{
   fontSize: 60,
