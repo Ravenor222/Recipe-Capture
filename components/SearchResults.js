@@ -13,6 +13,17 @@ import { getSavedAsync } from './MakeLater';
 
 export default function SearchResults(props){
 
+  useFocusEffect(
+    useCallback(() => {
+      axios.get('http://192.168.1.79:3001/')
+      .then(res => {
+        setIngredients(res.data[0])
+        setRecipes(res.data.slice(1,));
+      })
+      .catch(err => console.log(err, "error"));
+    },[])
+  )
+
   //Get current favourited recipes
   useFocusEffect(
     useCallback(() => {
@@ -27,8 +38,11 @@ export default function SearchResults(props){
     }, [])
   )
 
-  const[recipes, setRecipes] = useState([]);
-  const[ingredients, setIngredients] = useState(props.ingredients);
+  const [recipes, setRecipes] = useState([]);
+  const [ingredients, setIngredients] = useState(props.ingredients);
+  const [faveRecipes, setFaveRecipes] = useState("");
+  const [savedRecipes, setSavedRecipes] = useState("");
+
 
   const filteredRecipes = (original, faves, saves) => {
     if (faves === null & saves === null) {
@@ -42,17 +56,6 @@ export default function SearchResults(props){
     }
   }
 
-  useFocusEffect(
-    useCallback(() => {
-      axios.get('http://192.168.1.72:3001/')
-      .then(res => {
-        setIngredients(res.data[0])
-        setRecipes(res.data.slice(1,));
-      })
-      .catch(err => console.log(err, "error"));
-    },[])
-  )
-  
   return(
     <SafeAreaView>
       <NavBar safe style = {styles.nav}
@@ -70,8 +73,8 @@ export default function SearchResults(props){
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
       <View style={{backgroundColor:'#F0F0F0'}}>
       {recipes.length !== 0 
-          ? <><MyCarousel recipes={recipes} navigation={props.navigation}/>
-            <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={recipes}/></>
+          ? <><MyCarousel recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)} navigation={props.navigation}/>
+            <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)}/></>
           : <ImageBackground source={background} style={styles.backgroundImage}>           
             <View style={styles.emptyList}>
               <Text h5 style={styles.heading}>No Recipes Found!</Text>
