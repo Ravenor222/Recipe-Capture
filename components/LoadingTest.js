@@ -51,7 +51,7 @@ export default class LoadingScreen extends React.Component{
             maskElement={
               <View style={styles.centered}>
                  <Animated.Image 
-                  source={require("./photos/logo2.png")}
+                  source={require("./photos/camera.png")}
                   style={[{width:1100}, imageScale]}
                   resizeMode="contain"
                   /> 
