@@ -11,18 +11,22 @@ export default class LoadingScreen extends React.Component{
   }
 
   componentDidMount() {
-    Animated.timing(this.state.loadingProgress, {
-      toValue:120,
-      duration:1000,
-      useNativeDriver:true,
-      delay:1000,
-    }).start(()=>{
-      this.setState({ animationDone: true });
-      // console.log(this.state, "this.state");
+    socket = io("http://192.168.1.10:3001");
+    socket.on("message", msg => {
+      Animated.timing(this.state.loadingProgress, {
+        toValue:120,
+        duration:1000,
+        useNativeDriver:true,
+        delay:0,
+      }).start(()=>{
+        this.setState({ animationDone: true });
+        this.props.navigation.replace("RecipeResult");
+      });
+      //Idea : Animated Timing within here
+      // msg==="this is the 4th message" ? this.props.navigation.replace("RecipeResult") : console.log("im not navigating from Loading Screen")
     });
   }
     
-
     render() {
       const colorLayer = <View style={[StyleSheet.absoluteFill, {backgroundColor:"#ffa07a"}]}/> 
       const logoLayer = <View style={[StyleSheet.absoluteFill, {backgroundColor:"#FFF"}]}/> 
@@ -60,11 +64,10 @@ export default class LoadingScreen extends React.Component{
     
             {logoLayer}
                 <Animated.View style={[opacity, styles.centered]} >
-                <Text>Cooking up the perfect recipes!</Text>
+                <Text style={{fontSize:24}}>Cooking up the perfect recipes!</Text>
                 </Animated.View> 
             {/* Shows behind the mask, you can put anything here, such as an image */}
             {/* <View style={{ flex: 1, height: '100%', backgroundColor:"black" }} /> */}
-            
           </MaskedViewIOS>
           </View>
     
@@ -72,7 +75,6 @@ export default class LoadingScreen extends React.Component{
       )
     
     }
-
 
     }
      const styles = StyleSheet.create({
@@ -82,25 +84,3 @@ export default class LoadingScreen extends React.Component{
          justifyContent:'center'
        }
      })
-{/* <Text
-style={{
-  fontSize: 60,
-  color: 'black',
-  fontWeight: 'bold'
-}}
->
-Basic Mask
-</Text> */}
-
-//  <Animated.Image 
-// source={require("./photos/logo2.png")}
-// style={[{width:300}]}
-// resizeMode="contain"
-// /> 
-{/* <Animated.View style={{alignSelf:'center'}} >
-<Text>Cooking up the perfect recipes!</Text>
-</Animated.View>  */}
-
-{/* <View style={{ flex: 1, height: '100%', backgroundColor: '#F5DD90' }} />
-        <View style={{ flex: 1, height: '100%', backgroundColor: '#F76C5E' }} />
-        <View style={{ flex: 1, height: '100%', backgroundColor: '#e1e1e1' }} /> */}

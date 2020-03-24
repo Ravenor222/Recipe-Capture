@@ -15,7 +15,7 @@ export default function HomeNav ({navigation}){
   return (
 
     <Stack.Navigator>
-      <Stack.Screen name="Homescreen" component={LoadingScreen} options={{
+      <Stack.Screen name="Homescreen" component={Home} options={{
         title: null,
         headerShown: false }} />
       <Stack.Screen name="Camera" component={CameraApp} options={{
@@ -26,13 +26,13 @@ export default function HomeNav ({navigation}){
           },
           headerTintColor: "white"
       }}/>
-      <Stack.Screen name="RecipeResult" component={SearchResults} options={{
-        title: null,
-        headerShown: false, }} />
       <Stack.Screen name="Loading" component={LoadingScreen} options={{
         title:null,
         headerShown:false,
       }} />
+      <Stack.Screen name="RecipeResult" component={SearchResults} options={{
+        title: null,
+        headerShown: false, }} />
       <Stack.Screen name="searchRecipe" component={searchRecipe} options={{
         title: null,
         headerTransparent: true,
