@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
       borderTopRightRadius: entryBorderRadius
     },
     header: {
-      height: 115,
+      height: 120,
       paddingTop: 28,
       paddingBottom: 28,
       backgroundColor: 'white'
