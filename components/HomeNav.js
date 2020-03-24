@@ -11,7 +11,7 @@ import Recipe from './Recipe';
 export default function HomeNav ({navigation}){
 
   const Stack = createStackNavigator();
-  
+  // set homescreen back to Home component
   return (
 
     <Stack.Navigator>
@@ -27,12 +27,13 @@ export default function HomeNav ({navigation}){
           headerTintColor: "white"
       }}/>
       <Stack.Screen name="Loading" component={LoadingScreen} options={{
-          title:null,
-          headerShown:false,
+        title:null,
+        headerShown:false,
       }} />
       <Stack.Screen name="RecipeResult" component={SearchResults} options={{
         title: null,
         headerShown: false, }} />
+
       <Stack.Screen name="Recipe" component={Recipe} options={{
         title: null,
         headerTransparent: true,

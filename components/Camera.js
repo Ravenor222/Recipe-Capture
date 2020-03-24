@@ -24,11 +24,9 @@ export default function CameraApp (props){
   .catch(x=>console.error(x));
 
   useLayoutEffect(() => {
-    socket = io("http://192.168.1.79:3001");
-    socket.on("chat message", msg => {
-      setChatMessages({ chatMessages: [...chatMessages, msg]  })
-    });
-    //, { screen: 'RecipeResults' }
+
+    socket = io("http://192.168.1.10:3001");
+
     socket.on("message", msg => {
       (msg);
       msg==="this is the 3rd message" ?  props.navigation.replace("Loading") : console.log("Im not navigating camera");
@@ -65,9 +63,12 @@ export default function CameraApp (props){
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
                 //'http://192.168.88.103:3001/'
-                axios.post('http://192.168.1.79:3001/', {data: {photo: photo.base64, state:props.route.params.state, profileState: profileSettings}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+
+                axios.post('http://192.168.1.10:3001/', {data: {photo: photo.base64, state:props.route.params.state, profileState: profileSettings}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+
                 .then(res => console.log('success'))
-                .catch(err => console.log("error"))
+                .catch(err => console.log("error"));
+                
               } 
             }}>
             <ActivityIndicator size="large" color="#FFFFFF" animating={spinner} style={styles.spinner}/>
