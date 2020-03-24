@@ -4,8 +4,8 @@ import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
 import { TouchableOpacity, ImageBackground, StyleSheet, Image, View } from 'react-native';
-import { NavBar, Icon } from 'galio-framework';
-import background from './photos/food1.jpg'
+import { NavBar, Icon, Block } from 'galio-framework';
+import background from './photos/food3.jpg'
 import logo from './photos/logo2.png';
 
 
@@ -31,7 +31,8 @@ export default function Home ({navigation}){
       paddingLeft: 7,
       paddingRight: 7,
       borderWidth: 1.5,
-      borderColor: '#606060'
+      borderColor: '#606060',
+      borderRadius: 10
     }
   });
 
@@ -66,41 +67,42 @@ export default function Home ({navigation}){
   }]
 
   return (
+    <Block safe>
+      <ImageBackground source={background} style={styles.backgroundImage}>
+        <NavBar
+            title={null}
+            transparent={true}
+            left={(
+              <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Icon 
+                  name="menu"
+                  family="feather"
+                  size={30}
+                  color='#606060'
+                />
+              </TouchableOpacity>
+            )}
+            style={{marginTop:10}}
+          />
 
-    <ImageBackground source={background} style={styles.backgroundImage}>
-      <NavBar
-          title={null}
-          transparent={true}
-          left={(
-            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-              <Icon 
-                name="menu"
-                family="feather"
-                size={30}
-                color='#606060'
-              />
-            </TouchableOpacity>
-          )}
-          style={{marginTop:10}}
-        />
-
-      <Image source={logo} style={{width:280, height:280, alignSelf:'center'}} />
-      <View style={{flex:1, justifyContent:'space-evenly'}}>
-        <ProfileContextProvider> 
-          <DropdownTimeComponent 
-          list={time} 
-          style={styles.dropdown}
-          value={time[0]}
-          label="Ready in..." />
-          <DropdownCuisineComponent 
-          list={cuisine} 
-          style={styles.dropdown}
-          label="Select Cuisine" />
-          <ButtonComponent 
-          style={styles.button} 
-          navigation={navigation}/>
-        </ProfileContextProvider>
-      </View>
-    </ImageBackground>
+        <Image source={logo} style={{width:280, height:280, alignSelf:'center'}} />
+        <View style={{flex:1, justifyContent:'space-evenly'}}>
+          <ProfileContextProvider> 
+            <DropdownTimeComponent 
+            list={time} 
+            style={styles.dropdown}
+            value={time[0]}
+            label="Ready in..." />
+            <DropdownCuisineComponent 
+            list={cuisine} 
+            style={styles.dropdown}
+            label="Select Cuisine" />
+            <ButtonComponent 
+            style={styles.button} 
+            navigation={navigation}/>
+          </ProfileContextProvider>
+        </View>
+      </ImageBackground>
+    </Block>
   )
 }

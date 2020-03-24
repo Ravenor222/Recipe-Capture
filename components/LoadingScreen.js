@@ -21,6 +21,7 @@ export default class LoadingScreen extends React.Component{
       }).start(()=>{
         this.setState({ animationDone: true });
         this.props.navigation.replace("RecipeResult");
+
       });
       
     });

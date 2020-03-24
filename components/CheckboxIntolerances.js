@@ -65,7 +65,7 @@ function Item({ id, title, selected, onSelect }) {
         { backgroundColor: selected ? '#808080' : '#bebebe'},
       ]}
     >
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title, {color: selected ? 'white' : 'black', alignSelf:'center'}}>{title}</Text>
     </TouchableOpacity>
   );
 }
@@ -95,7 +95,7 @@ export default function App(props) {
     <SafeAreaView style={styles.container}>
       <FlatList
         horizontal={false}
-        style={{alignSelf:'center', flexGrow:0, marginVertical:30}}
+        style={{alignSelf:'center', flexGrow:0, marginVertical:5}}
 
         numColumns={3}
         data={DATA}
@@ -105,7 +105,7 @@ export default function App(props) {
             title={item.title}
             selected={!!selected.get(item.id)}
             onSelect={onSelect}
-            style={{color: selected ? 'white' : 'black'}}
+            titleStyle={{color: selected ? 'white' : 'black', textAlign: 'center'}}
           />
         )}
         keyExtractor={item => item.id}
@@ -119,15 +119,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: Constants.statusBarHeight,
+    width: '80%',
+    alignSelf: 'center'
   },
   item: {
     padding: 5,
-    marginVertical: 4,
-    marginHorizontal: 5,
+    marginVertical: 7,
+    marginHorizontal:5,
     borderRadius:5,
-    paddingVertical:10,
+    paddingVertical:12,
     width:'30%',
-    textAlign:'center',
   },
   title: {
     fontSize: 12,

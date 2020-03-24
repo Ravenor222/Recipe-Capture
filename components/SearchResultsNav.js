@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import SearchResults from './SearchResults';
-import searchRecipe from './searchRecipe';
+import Recipe from './Recipe';
 import MyCarousel from './SearchResultCards';
 import SliderEntry from './SliderEntry';
 
@@ -31,9 +31,11 @@ export default function SearchResultsNav ({navigation}){
           },
           headerTintColor: "white"
       }}/>
-      <Stack.Screen name="searchRecipe" component={searchRecipe} options={{
+      <Stack.Screen name="Recipe" component={Recipe} options={{
         title: null,
-        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'lightsalmon'
+        },
         headerBackTitleStyle: {
           color: 'white',
           },

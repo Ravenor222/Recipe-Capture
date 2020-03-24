@@ -38,12 +38,11 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
     },
-    content: {
-      padding: 40,
-    },
     summary: {
       padding: 30,
-      textAlign: "justify"
+      textAlign: "justify",
+      marginVertical:20,
+      paddingBottom:0
     },
     image: {
       ...StyleSheet.absoluteFillObject,
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
       borderTopRightRadius: entryBorderRadius
     },
     header: {
-      height: 100,
+      height: 120,
       paddingTop: 28,
       paddingBottom: 28,
       backgroundColor: 'white'
@@ -76,29 +75,21 @@ const styles = StyleSheet.create({
   });
 
 
-export default function Recipe({route, navigation}){
+export default function faveRecipe({route, navigation}){
   
   const {recipe} = route.params
   const [savedState, setSavedRecipes] = useState("")
-  const savedRecipes = Object.keys(savedState);
+  const savedObj = Object.keys(savedState);
+  const saved = []
+  for (let num of savedObj) {
+    saved.push(Number(num))
+  } 
 
 
   useFocusEffect(
     useCallback(() => {
      getSavedAsync().then((savedState) => {setSavedRecipes(state=>({...savedState}))}) 
-    },[])
-  )
-
-  useFocusEffect(
-    useCallback(() => {
-     getSavedAsync().then((savedState) => console.log("SAVED RECIPES FROM FAVE", Object.keys(savedState))) 
-    },[])
-  )
-
-  useFocusEffect(
-    useCallback(() => {
-      getFavouritesAsync().then((faveRecipes) => console.log("FAVE RECIPES FROM SAVED", Object.keys(faveRecipes))) 
-    },[])
+    },[saved])
   )
  
   const ingredients = formatIngredients(recipe.missedIngredients, recipe.usedIngredients)
@@ -126,31 +117,6 @@ export default function Recipe({route, navigation}){
         }))
       }
   }
-      
-  const [makeLaterState, setMakeLaterState] = useState({
-    saved: savedRecipes.includes(recipe.id) ? true : false,
-    text: savedRecipes.includes(recipe.id) ? "Saved" : "Save for later", 
-    color: savedRecipes.includes(recipe.id) ? "grey" : "lightsalmon"
-  });
-      
-  const toggleMakeLater = () => {
-    const {saved} = makeLaterState;
-      
-    if (saved) {
-      setMakeLaterState(prevState => ({
-        saved: false,
-        text: "Save for later",
-        color: "lightsalmon"
-      }))
-    } else {
-      setMakeLaterState(prevState => ({
-        saved: true, 
-        text: "Saved",
-        color: "grey"
-      }))
-    }
-  };
-  
 
   return(
     <Block safe flex style={{ backgroundColor: theme.COLORS.WHITE }}>
@@ -163,9 +129,9 @@ export default function Recipe({route, navigation}){
       <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
-      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: makeLaterState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
-        toggleMakeLaterList(recipe, recipe.id, makeLaterState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLater()}]));
-      }}><Text style={{fontWeight:'bold', color:'white'}}>{makeLaterState.text}</Text></Button>
+      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: saved.includes(recipe.id) ? "grey" : "lightsalmon", shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
+        toggleMakeLaterList(recipe, recipe.id, saved.includes(recipe.id) ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => console.log("alert closed")}]));
+      }}><Text style={{fontWeight:'bold', color:'white'}}>{saved.includes(recipe.id) ? "Saved" : "Save for later"}</Text></Button>
         
       <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
         toggleFavourites(recipe, recipe.id, faveState.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleFave()}]));
@@ -179,7 +145,7 @@ export default function Recipe({route, navigation}){
           data={ingredients}
           renderItem={({ item }) => <IngredientList name={item} />}
         />
-      <View>
+      <View style={{paddingBottom:15}}>
       <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
         <FlatList
           data={recipe.instructions[0].steps}
