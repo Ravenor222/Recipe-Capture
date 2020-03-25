@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Text } from 'react-native'
 import { Switch, Block } from 'galio-framework'
-import { StorageContext } from '../contexts/storageContext';
+import { StorageContext } from '../../contexts/storageContext';
 
 
 const ProfileSwitch = () => {

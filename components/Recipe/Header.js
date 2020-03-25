@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Alert} from 'react-native';
-import toggleMakeLaterList from './helpers/toggleMakeLaterList'
-import toggleFavourites from './helpers/toggleFavourites'
+import toggleMakeLaterList from '../helpers/toggleMakeLaterList'
+import toggleFavourites from '../helpers/toggleFavourites'
 import { Block, Text, Button } from 'galio-framework';
 
 const styles = StyleSheet.create({

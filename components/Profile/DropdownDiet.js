@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StorageContext } from '../contexts/storageContext';
+import { StorageContext } from '../../contexts/storageContext';
 import { Dropdown } from 'react-native-material-dropdown';
 
 let diet = [{

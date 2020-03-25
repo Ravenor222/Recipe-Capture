@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {Input} from 'galio-framework'
-import { StorageContext } from '../contexts/storageContext';
+import { StorageContext } from '../../contexts/storageContext';
 
 const ProfileInput = () => {
     const [state, setState] = useContext(StorageContext);

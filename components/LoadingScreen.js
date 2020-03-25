@@ -1,6 +1,5 @@
-import React, { useLayoutEffect, useEffect, useState } from 'react';
-import { Text, View, Image, MaskedViewIOS, Animated, StyleSheet } from 'react-native';
-import { StackActions, NavigationActions } from 'react-navigation';
+import React from 'react';
+import { Text, View, MaskedViewIOS, Animated, StyleSheet } from 'react-native';
 import io from "socket.io-client";
 import MaskedView from '@react-native-community/masked-view';
 
@@ -11,7 +10,7 @@ export default class LoadingScreen extends React.Component{
   }
 
   componentDidMount() {
-    socket = io("http://192.168.1.10:3001");
+    socket = io("http://192.168.1.72:3001");
     socket.on("message", msg => {
       Animated.timing(this.state.loadingProgress, {
         toValue:120,

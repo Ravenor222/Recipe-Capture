@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import SearchResults from './SearchResults';
-import Recipe from './Recipe';
+import Recipe from '../Recipe/Recipe';
 import MyCarousel from './SearchResultCards';
 import SliderEntry from './SliderEntry';
 

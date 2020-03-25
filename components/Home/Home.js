@@ -1,12 +1,12 @@
 import React from 'react';
-import { ProfileContextProvider } from '../contexts/ProfileContext';
+import { ProfileContextProvider } from '../../contexts/ProfileContext';
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
 import { TouchableOpacity, ImageBackground, StyleSheet, Image, View } from 'react-native';
 import { NavBar, Icon, Block } from 'galio-framework';
-import background from './photos/food3.jpg'
-import logo from './photos/logo2.png';
+import background from '../photos/food3.jpg'
+import logo from '../photos/logo2.png';
 
 
 export default function Home ({navigation}){

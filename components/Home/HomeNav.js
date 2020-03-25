@@ -1,11 +1,11 @@
 import React from 'react';
-import CameraApp from './Camera';
+import CameraApp from '../Camera';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StackActions, NavigationActions } from 'react-navigation';
 import Home from './Home'
-import SearchResults from './SearchResults';
-import LoadingScreen from './LoadingScreen'
-import Recipe from './Recipe';
+import SearchResults from '../SearchResults/SearchResults';
+import LoadingScreen from '../LoadingScreen'
+import Recipe from '../Recipe/Recipe';
 
 
 export default function HomeNav ({navigation}){
@@ -36,12 +36,14 @@ export default function HomeNav ({navigation}){
 
       <Stack.Screen name="Recipe" component={Recipe} options={{
         title: null,
-        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'lightsalmon'
+        },
         headerBackTitleStyle: {
           color: 'white',
           },
           headerTintColor: "white"
-      }}/>
+      }}/>  
     </Stack.Navigator>
   )
 }

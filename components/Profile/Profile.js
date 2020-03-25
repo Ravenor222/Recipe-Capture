@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity,ImageBackground, StyleSheet, ScrollView } from 'react-native';
 import { theme, NavBar ,Icon, Block } from 'galio-framework'
-import ProfileButton from '../components/ProfileButton'
-import ProfileSwitch from '../components/ProfileSwitch'
-import ProfileInput from '../components/ProfileTextInput'
-import ProfileIntolerances from '../components/CheckboxIntolerances'
+import ProfileButton from './ProfileButton'
+import ProfileSwitch from './ProfileSwitch'
+import ProfileInput from './ProfileTextInput'
+import ProfileIntolerances from './CheckboxIntolerances'
 import DropdownDietComponent from './DropdownDiet';
-import { StorageContextProvider } from '../contexts/storageContext';
+import { StorageContextProvider } from '../../contexts/storageContext';
 
 let styles = StyleSheet.create({
   backgroundImage: {
@@ -39,7 +39,7 @@ export default function Profile(props){
 
   return(
     <Block safe>
-      <ImageBackground source={require("./photos/food3.jpg")} style={styles.backgroundImage}>
+      <ImageBackground source={require("../photos/food3.jpg")} style={styles.backgroundImage}>
         <NavBar style = {styles.nav}
             title="Profile"
             left={(

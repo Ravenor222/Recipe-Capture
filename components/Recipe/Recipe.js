@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
 import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
-import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
-import {toggleFavourites} from './helpers/toggleFavourites';
+import {toggleMakeLaterList} from '../helpers/toggleMakeLaterList';
+import {toggleFavourites} from '../helpers/toggleFavourites';
 import { Block, theme, Text, Button} from 'galio-framework';
 
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { AsyncStorage, Alert } from 'react-native'
 import { Button } from 'galio-framework';
-import { StorageContext } from '../contexts/storageContext';
+import { StorageContext } from '../../contexts/storageContext';
 
 const ProfileButton = (props) => {
     const [state, setState] = useContext(StorageContext);

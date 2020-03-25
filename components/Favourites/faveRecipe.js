@@ -1,11 +1,10 @@
 import React, {useState, useCallback} from 'react';
 import {  Dimensions, ScrollView, View, FlatList, StyleSheet, Image, Alert } from 'react-native';
-import  RecipeCard from './InstructionCard';
-import IngredientList from './IngredientList';
-import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
-import {toggleFavourites} from './helpers/toggleFavourites';
-import {getSavedAsync} from './MakeLater';
-import {getFavouritesAsync} from './Favourites';
+import  RecipeCard from '../Recipe/InstructionCard';
+import IngredientList from '../Recipe/IngredientList';
+import {toggleMakeLaterList} from '../helpers/toggleMakeLaterList';
+import {toggleFavourites} from '../helpers/toggleFavourites';
+import {getSavedAsync} from '../MakeLater/MakeLater';
 import { Block, theme, Text, Button } from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
 

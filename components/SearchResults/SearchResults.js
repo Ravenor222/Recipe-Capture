@@ -5,10 +5,10 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View, SafeAreaView, ImageBackground, Dimensions } from 'react-native';
 import { NavBar, Icon, theme, Text } from 'galio-framework';
 import axios from 'axios';
-import background from './photos/food1.jpg'
+import background from '../photos/food3.jpg'
 const { width, height } = Dimensions.get('screen');
-import { getFavouritesAsync } from './Favourites';
-import { getSavedAsync } from './MakeLater';
+import { getFavouritesAsync } from '../Favourites/Favourites';
+import { getSavedAsync } from '../MakeLater/MakeLater';
 
 
 export default function SearchResults(props){
@@ -16,7 +16,7 @@ export default function SearchResults(props){
   useFocusEffect(
     useCallback(() => {
 
-      axios.get('http://192.168.1.10:3001/')
+      axios.get('http://192.168.1.72:3001/')
 
       .then(res => {
         setIngredients(res.data[0])
