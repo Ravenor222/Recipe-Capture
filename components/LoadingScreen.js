@@ -10,7 +10,7 @@ export default class LoadingScreen extends React.Component{
   }
 
   componentDidMount() {
-    socket = io("http://192.168.1.79:3001");
+    let socket = io("http://192.168.1.72:3001");
     socket.on("message", msg => {
       Animated.timing(this.state.loadingProgress, {
         toValue:120,
@@ -25,7 +25,6 @@ export default class LoadingScreen extends React.Component{
       
     });
   }
-    
     render() {
       const colorLayer = <View style={[StyleSheet.absoluteFill, {backgroundColor:"#ffa07a"}]}/> 
       const logoLayer = <View style={[StyleSheet.absoluteFill, {backgroundColor:"#FFF"}]}/> 
@@ -63,19 +62,15 @@ export default class LoadingScreen extends React.Component{
     
             {logoLayer}
                 <Animated.View style={[opacity, styles.centered]} >
-                <Text style={{fontSize:24}}>Cooking up the perfect recipes!</Text>
+                <Text style={{fontSize:24}}>Cooking Up The Perfect Recipes!</Text>
                 </Animated.View> 
             {/* Shows behind the mask, you can put anything here, such as an image */}
             {/* <View style={{ flex: 1, height: '100%', backgroundColor:"black" }} /> */}
           </MaskedViewIOS>
           </View>
-    
-        
       )
-    
     }
-
-    }
+  }
      const styles = StyleSheet.create({
        centered: {
          flex:1,

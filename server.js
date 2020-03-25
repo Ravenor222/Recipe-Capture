@@ -43,6 +43,8 @@ io.on("connection", socket => {
      cuisine = req.body.data.state.cuisine;
     
     let results = await identifyImage(req.body.data.photo)
+
+    //results === undefined ? results = ['orange'] : results = results;
   
     let filtered = results.filter( x => x.value > 0.80 && x.name !== "vegetable" && x.name !== "relish" && x.name !== "sweet" && x.name !== "juice" && x.name !== "pasture" && x.name !== "herb" && x.name !== "condiment" && x.name !== "fruit" && x.name !== "citrus" && x.name !== "berry")
   
@@ -67,7 +69,6 @@ io.on("connection", socket => {
 
   
   app.post('/recipes', async (req, res) =>{
-    //just make spoonacular request with given tags
 
     let ingredients = req.body.data.ingredients
     let newRecipes = await getRecipes(process.env.SPOON_KEY,ingredients, time, cuisine );
@@ -83,15 +84,6 @@ io.on("connection", socket => {
     res.json(final)
   })
 
-
-
 });
-
-
-
-
-// app.listen(PORT, () => {
-//     console.log(`Example app listening on port ${PORT}!`);
-// });
 
 server.listen(PORT, () => console.log("server running on port:" + PORT));
