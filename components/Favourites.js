@@ -3,7 +3,6 @@ import React, {useEffect, useState, useCallback} from 'react';
 import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, AsyncStorage, ImageBackground, View } from 'react-native';
 import { Card, Block, NavBar, Icon, theme, Text } from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
-import ClearFaves from './ClearFaves';
 import background from './photos/food3.jpg'
 const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from './helpers/getFavouritesAsync';

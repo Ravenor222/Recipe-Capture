@@ -4,12 +4,12 @@ import  RecipeCard from './InstructionCard';
 import IngredientList from './IngredientList';
 import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
 import {toggleFavourites} from './helpers/toggleFavourites';
-import {getSavedAsync} from './MakeLater';
+import {getSavedAsync} from './helpers/getSavedAsync';
 import {getFavouritesAsync} from './Favourites';
 import { Block, theme, Text, Button } from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
-import { formatSummary } from './helpers/formatSummary';
-import { formatIngredients } from './helpers/formatIngredients';
+import formatSummary from './helpers/formatSummary';
+import formatIngredients from './helpers/formatIngredients';
 
 
 const IS_IOS = Platform.OS === 'ios';
