@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const { width: viewportWidth } = Dimensions.get('window');
 import axios from 'axios'
 
-
 export default function SearchIngredients(props){
   const {recipes, setRecipes} = props
   const [ingredients, setIngredients] = useState(props.ingredients)
