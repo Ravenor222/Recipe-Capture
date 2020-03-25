@@ -28,6 +28,6 @@ const ProfileButton = (props) => {
       </Button>
 
     )
-}
+};
 
-export default ProfileButton
+export default ProfileButton;

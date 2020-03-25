@@ -2,6 +2,7 @@ import React, {useCallback, useContext} from 'react';
 import { SafeAreaView, TouchableOpacity, FlatList, StyleSheet, Text} from 'react-native';
 import Constants from 'expo-constants';
 import { StorageContext } from '../contexts/storageContext';
+import { onSelect } from './helpers/onSelect';
 
 const DATA = [
   {
