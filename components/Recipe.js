@@ -6,7 +6,7 @@ import IngredientList from './IngredientList';
 import {toggleMakeLaterList} from './helpers/toggleMakeLaterList';
 import {toggleFavourites} from './helpers/toggleFavourites';
 import { Block, theme, Text, Button} from 'galio-framework';
-import { formatSummary } from './helpers/formatSumary';
+import { formatSummary } from './helpers/formatSummary';
 import { formatIngredients } from './helpers/formatIngredients';
 
 

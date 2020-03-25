@@ -1,4 +1,4 @@
-const formatIngredients = function(missed, used) {
+export default function formatIngredients(missed, used) {
   const results = [];
   for (let ing of missed) {
     results.push(ing["original"])
