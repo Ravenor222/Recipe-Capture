@@ -11,6 +11,7 @@ import { formatSummary } from '../helpers/formatSummary';
 import { formatIngredients } from '../helpers/formatIngredients';
 
 
+
 const IS_IOS = Platform.OS === 'ios';
 const entryBorderRadius = 8;
 const {width}  = Dimensions.get('screen');
