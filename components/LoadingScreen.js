@@ -10,7 +10,7 @@ export default class LoadingScreen extends React.Component{
   }
 
   componentDidMount() {
-    socket = io("http://192.168.1.72:3001");
+    socket = io("http://192.168.1.79:3001");
     socket.on("message", msg => {
       Animated.timing(this.state.loadingProgress, {
         toValue:120,

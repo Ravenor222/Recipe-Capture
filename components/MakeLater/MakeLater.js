@@ -8,20 +8,6 @@ const { width, height } = Dimensions.get('screen');
 import { getSavedAsync } from '../helpers/getSavedAsync';
 import { pushSavedRecipes } from '../helpers/pushSavedRecipes';
 
-// export const getSavedAsync = async () => {
-//   const item = await AsyncStorage.getItem('saved')
-//   const obj = JSON.parse(item);
-//   return obj;
-// }
-
-// export const pushSavedRecipes = (state) => {
-//   const keys = Object.keys(state)
-//   let results = [];
-//   for ( let item of keys.filter((x)=> x!== "recipeId")) {
-//     results.push(state[item]);
-//   }
-//   return results;
-// }
 
 
 export default function MakeLater(props) {

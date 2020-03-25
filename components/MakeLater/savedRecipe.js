@@ -4,11 +4,12 @@ import  RecipeCard from '../Recipe/InstructionCard';
 import IngredientList from '../Recipe/IngredientList';
 import {toggleMakeLaterList} from '../helpers/toggleMakeLaterList';
 import {toggleFavourites} from '../helpers/toggleFavourites';
-import {getFavouritesAsync} from '../Favourites/Favourites';
+import {getFavouritesAsync} from '../helpers/getFavouritesAsync';
 import { Block, theme, Text, Button} from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
-import { formatSummary } from '../helpers/formatSummary';
-import { formatIngredients } from '../helpers/formatIngredients';
+import  formatSummary  from '../helpers/formatSummary';
+import  formatIngredients  from '../helpers/formatIngredients';
+
 
 
 
@@ -17,23 +18,6 @@ const entryBorderRadius = 8;
 const {width}  = Dimensions.get('screen');
 const imageHeight = Math.round(Dimensions.width * 9 / 16);
 const imageWidth = Dimensions.width;
-
-// const formatSummary = function(string) {
-//   return string.replace(/<\/?[^>]+(>|$)/g, "")
-// }
-
-// const formatIngredients = function(missed, used) {
-//   const results = [];
-//   for (let ing of missed) {
-//     results.push(ing["original"])
-//   };
-
-//   for (let ing of used) {
-//     results.push(ing["original"])
-//   }
-
-//   return results;
-// }
 
 const styles = StyleSheet.create({
     container: {
