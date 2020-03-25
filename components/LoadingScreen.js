@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, MaskedViewIOS, Animated, StyleSheet } from 'react-native';
 import io from "socket.io-client";
 import MaskedView from '@react-native-community/masked-view';
+import axios from 'axios'
 
 export default class LoadingScreen extends React.Component{
   state={
@@ -9,8 +10,18 @@ export default class LoadingScreen extends React.Component{
     animationDone: false,
   }
 
+
   componentDidMount() {
-    socket = io("http://192.168.1.79:3001");
+    socket = io("http://192.168.1.10:3001");
+    // console.log(this.props.route.params);
+    const params = this.props.route.params
+    // console.log(params.photo);
+    // console.log(params.state);
+    // console.log(params.profileState);
+    axios.post('http://192.168.1.10:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                .then(res => console.log('success'))
+                .catch(err => console.log("error"));
+
     socket.on("message", msg => {
       Animated.timing(this.state.loadingProgress, {
         toValue:120,
