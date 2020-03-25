@@ -6,6 +6,8 @@ import IngredientList from './IngredientList';
 import {toggleMakeLaterList} from '../helpers/toggleMakeLaterList';
 import {toggleFavourites} from '../helpers/toggleFavourites';
 import { Block, theme, Text, Button} from 'galio-framework';
+import { formatSummary } from '../helpers/formatSummary';
+import { formatIngredients } from '../helpers/formatIngredients';
 
 
 const IS_IOS = Platform.OS === 'ios';
@@ -14,22 +16,22 @@ const {width}  = Dimensions.get('screen');
 const imageHeight = Math.round(Dimensions.width * 9 / 16);
 const imageWidth = Dimensions.width;
 
-const formatSummary = function(string) {
-  return string.replace(/<\/?[^>]+(>|$)/g, "")
-}
+// const formatSummary = function(string) {
+//   return string.replace(/<\/?[^>]+(>|$)/g, "")
+// }
 
-const formatIngredients = function(missed, used) {
-  const results = [];
-  for (let ing of missed) {
-    results.push(ing["original"])
-  };
+// const formatIngredients = function(missed, used) {
+//   const results = [];
+//   for (let ing of missed) {
+//     results.push(ing["original"])
+//   };
 
-  for (let ing of used) {
-    results.push(ing["original"])
-  }
+//   for (let ing of used) {
+//     results.push(ing["original"])
+//   }
 
-  return results;
-}
+//   return results;
+// }
 
 
 const styles = StyleSheet.create({

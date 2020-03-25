@@ -24,4 +24,4 @@ export default function FavouritesNav ({navigation}){
       }}/>
     </Stack.Navigator>
   )
-}
+};

@@ -24,4 +24,4 @@ const ProfileSwitch = () => {
     )
 };
 
-export default ProfileSwitch
+export default ProfileSwitch;

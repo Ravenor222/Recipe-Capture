@@ -7,8 +7,8 @@ import { NavBar, Icon, theme, Text } from 'galio-framework';
 import axios from 'axios';
 import background from '../photos/food3.jpg'
 const { width, height } = Dimensions.get('screen');
-import { getFavouritesAsync } from '../Favourites/Favourites';
-import { getSavedAsync } from '../MakeLater/MakeLater';
+import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
+import { getSavedAsync } from '../helpers/getSavedAsync';
 
 
 export default function SearchResults(props){
@@ -17,7 +17,6 @@ export default function SearchResults(props){
     useCallback(() => {
 
       axios.get('http://192.168.1.72:3001/')
-
       .then(res => {
         setIngredients(res.data[0])
         setRecipes(res.data.slice(1,));
