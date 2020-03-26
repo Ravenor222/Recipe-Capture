@@ -8,7 +8,7 @@ const io = require("socket.io").listen(server);
  
 
 const identifyImage = require('./components/helpers/clarifai_helper');
-const getRecipes = require('./components/helpers/spoonacular_helper')
+const getRecipes = require('./components/helpers/spoonacular_helper');
 
 app.use(bodyParser.urlencoded({extended: true, parameterLimit: 100000, limit: '50mb'}));
 app.use(bodyParser.json({limit: '50mb'}))
