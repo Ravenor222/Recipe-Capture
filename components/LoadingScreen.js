@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, MaskedViewIOS, Animated, StyleSheet } from 'react-native';
+import { Text, View, MaskedViewIOS, Animated, StyleSheet, Alert } from 'react-native';
 import io from "socket.io-client";
 import MaskedView from '@react-native-community/masked-view';
+import axios from 'axios'
 
 export default class LoadingScreen extends React.Component{
   state={
@@ -9,9 +10,30 @@ export default class LoadingScreen extends React.Component{
     animationDone: false,
   }
 
+
   componentDidMount() {
+<<<<<<< HEAD
+    socket = io("http://192.168.1.10:3001");
+    const params = this.props.route.params
+    axios.post('http://192.168.1.10:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+                .then(res => console.log('success'))
+                .catch(err => {
+                  Alert.alert(
+                    'Post Error',
+                    'Connection to the server was not established',
+                    [
+                      {text: 'OK', onPress: () => console.log('OK Pressed')},
+                    ],
+                    { cancelable: false }
+                  )
+                });
+
+=======
     let socket = io("http://192.168.1.72:3001");
+>>>>>>> master
     socket.on("message", msg => {
+      console.log(msg, "msg")
+      if(msg==="this is the 4th message") {
       Animated.timing(this.state.loadingProgress, {
         toValue:120,
         duration:1000,
@@ -19,10 +41,10 @@ export default class LoadingScreen extends React.Component{
         delay:100,
       }).start(()=>{
         this.setState({ animationDone: true });
-        this.props.navigation.replace("RecipeResult");
+        this.props.navigation.replace("SearchResults");
 
       });
-      
+    }
     });
   }
     render() {

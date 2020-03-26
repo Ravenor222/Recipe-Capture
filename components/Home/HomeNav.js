@@ -3,7 +3,7 @@ import CameraApp from '../Camera';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StackActions, NavigationActions } from 'react-navigation';
 import Home from './Home'
-import SearchResults from '../SearchResults/SearchResults';
+import SearchResults from '../SearchResults/SearchResults.js';
 import LoadingScreen from '../LoadingScreen'
 import Recipe from '../Recipe/Recipe';
 
@@ -26,13 +26,12 @@ export default function HomeNav ({navigation}){
           },
           headerTintColor: "white"
       }}/>
-      <Stack.Screen name="Loading" component={LoadingScreen} options={{
+      <Stack.Screen name='LoadingScreen' component={LoadingScreen} options={{
         title:null,
-        headerShown:false,
-      }} />
-      <Stack.Screen name="RecipeResult" component={SearchResults} options={{
+        headerShown:false}} />
+      <Stack.Screen name='SearchResults' component={SearchResults} options={{
         title: null,
-        headerShown: false, }} />
+        headerShown: false }} />
 
       <Stack.Screen name="Recipe" component={Recipe} options={{
         title: null,

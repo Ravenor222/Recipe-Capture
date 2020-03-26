@@ -36,6 +36,7 @@ export default function SearchIngredients(props){
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
+
         axios.post('http://192.168.72:3001/recipes', {data:{ingredients}}).then((res)=>{
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
