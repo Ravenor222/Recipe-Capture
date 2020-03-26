@@ -19,7 +19,7 @@ export default class LoadingScreen extends React.Component{
                 .catch(err => {
                   Alert.alert(
                     'Post Error',
-                    'My Alert Msg',
+                    'Connection to the server was not established',
                     [
                       {text: 'OK', onPress: () => console.log('OK Pressed')},
                     ],

@@ -34,7 +34,6 @@ io.on("connection", socket => {
 
   app.post('/', async (req,res) => {
     console.log("Made a post request within io connection")
-    io.emit('message', "this is the 3rd message"); 
 
     const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
     
