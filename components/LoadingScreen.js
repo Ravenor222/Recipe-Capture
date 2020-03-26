@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, MaskedViewIOS, Animated, StyleSheet } from 'react-native';
+import { Text, View, MaskedViewIOS, Animated, StyleSheet, Alert } from 'react-native';
 import io from "socket.io-client";
 import MaskedView from '@react-native-community/masked-view';
 import axios from 'axios'
@@ -14,7 +14,6 @@ export default class LoadingScreen extends React.Component{
   componentDidMount() {
     socket = io("http://192.168.1.10:3001");
     const params = this.props.route.params
-    // console.log(params.photo);
     axios.post('http://192.168.1.10:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
                 .catch(err => {
