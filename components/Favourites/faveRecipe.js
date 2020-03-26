@@ -125,19 +125,19 @@ export default function faveRecipe({route, navigation}){
       </Block>
     </View>
       <Text style={styles.summary}>{formatSummary(recipe.summary)}</Text>
-      <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Ingredients:</Text>
-      <FlatList
-          data={ingredients}
-          renderItem={({ item }) => <IngredientList name={item} />}
-        />
-      <View style={{paddingBottom:15}}>
-      <Text style={{padding: 20, fontSize: 25, fontWeight: "bold"}}>Directions:</Text>
+      <View style={{paddingBottom:15, padding:10}}>
+        <Text style={{padding: 20, fontSize: 25, fontWeight: "bold", color:'lightsalmon'}}>Ingredients</Text>
         <FlatList
-          data={recipe.instructions[0].steps}
-          renderItem={({ item }) => <RecipeCard title={item.number} step={item.step} />}
-        />
+            data={ingredients}
+            renderItem={({ item }) => <IngredientList name={item} />}
+          />
+        <Text style={{padding: 20, fontSize: 25, fontWeight: "bold", color:'lightsalmon'}}>Directions</Text>
+          <FlatList
+            data={recipe.instructions[0].steps}
+            renderItem={({ item }) => <RecipeCard title={item.number} step={item.step} />}
+          />
+        </View>
       </View>
-    </View>
       </ScrollView>
     </Block>
   )

@@ -20,7 +20,6 @@ export default function CameraApp (props){
   .catch(x=>console.error(x));
 
   // useLayoutEffect(() => {
-
   //   socket = io("http://192.168.1.10:3001");
   //   socket.on("message", msg => {
   //     (msg);
@@ -61,6 +60,7 @@ export default function CameraApp (props){
                 // axios.post('http://192.168.1.10:3001/', {data: {photo: photo.base64, state:props.route.params.state, profileState: profileSettings}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 // .then(res => console.log('success'))
                 // .catch(err => console.log("error"));
+
                 
               } 
             }}>
