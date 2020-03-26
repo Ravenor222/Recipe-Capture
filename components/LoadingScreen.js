@@ -30,7 +30,7 @@ export default class LoadingScreen extends React.Component{
         delay:100,
       }).start(()=>{
         this.setState({ animationDone: true });
-        this.props.navigation.replace("RecipeResult");
+        this.props.navigation.replace("SearchResults");
 
       });
       

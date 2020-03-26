@@ -57,7 +57,7 @@ export default function CameraApp (props){
               }
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
-                props.navigation.replace("Loading", {photo:photo.base64, state:props.route.params.state, profileState: profileSettings})
+                props.navigation.replace("LoadingScreen", {photo:photo.base64, state:props.route.params.state, profileState: profileSettings})
                 // axios.post('http://192.168.1.10:3001/', {data: {photo: photo.base64, state:props.route.params.state, profileState: profileSettings}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 // .then(res => console.log('success'))
                 // .catch(err => console.log("error"));
