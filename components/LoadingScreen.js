@@ -28,6 +28,8 @@ export default class LoadingScreen extends React.Component{
                 });
 
     socket.on("message", msg => {
+      console.log(msg, "msg")
+      if(msg==="this is the 4th message") {
       Animated.timing(this.state.loadingProgress, {
         toValue:120,
         duration:1000,
@@ -38,7 +40,7 @@ export default class LoadingScreen extends React.Component{
         this.props.navigation.replace("SearchResults");
 
       });
-      
+    }
     });
   }
     
