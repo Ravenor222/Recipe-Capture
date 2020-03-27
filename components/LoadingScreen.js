@@ -81,7 +81,7 @@ export default class LoadingScreen extends React.Component{
             {logoLayer}
                 <Animated.View style={[opacity, styles.centered]} >
                   <ImageBackground source={background} style={styles.backgroundImage} resizeMode='repeat'>
-                    <Text style={{fontSize:24}}>Cooking Up The Perfect Recipes!</Text>
+                    <Text style={{fontSize:24, color:'salmon'}}>Cooking Up The Perfect Recipes!</Text>
                   </ImageBackground>
                 </Animated.View> 
             {/* Shows behind the mask, you can put anything here, such as an image */}
