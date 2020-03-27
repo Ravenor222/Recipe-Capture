@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet, Dimensions, TouchableOpacity, AsyncStorage, Ima
 import { Card, Block, NavBar, Icon, theme, Text } from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
 import background from '../photos/food3.jpg'
+import background1 from '../photos/carbon-fibre-v2.png'
 const { width, height } = Dimensions.get('screen');
 import { getSavedAsync } from '../helpers/getSavedAsync';
 import { pushSavedRecipes } from '../helpers/pushSavedRecipes';
@@ -37,6 +38,7 @@ export default function MakeLater(props) {
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold'  }}/>
+          <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
           {recipes.length !== 0 
           ? null 
           : <ImageBackground source={background} style={styles.backgroundImage}>           
@@ -65,6 +67,7 @@ export default function MakeLater(props) {
             ))}
           </Block>
         </ScrollView>
+        </ImageBackground>
       </Block>
     );
   }

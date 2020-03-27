@@ -6,6 +6,7 @@ import { StyleSheet, TouchableOpacity, View, SafeAreaView, ImageBackground, Dime
 import { NavBar, Icon, theme, Text } from 'galio-framework';
 import axios from 'axios';
 import background from '../photos/food3.jpg'
+import background1 from '../photos/carbon-fibre-v2.png'
 const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
 import { getSavedAsync } from '../helpers/getSavedAsync';
@@ -73,6 +74,7 @@ export default function SearchResults(props){
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
+      <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
       <View style={{backgroundColor:'#F0F0F0'}}>
       {recipes.length !== 0 
           ? <><MyCarousel recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)} navigation={props.navigation}/>
@@ -83,6 +85,7 @@ export default function SearchResults(props){
               <Text h6 style={styles.text}>Please Take Another Photo</Text>
             </View></ImageBackground>}
       </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
