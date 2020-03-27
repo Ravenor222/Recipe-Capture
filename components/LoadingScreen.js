@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, View, MaskedViewIOS, Animated, StyleSheet, Alert } from 'react-native';
+import { Text, View, MaskedViewIOS, Animated, StyleSheet, Alert, ImageBackground } from 'react-native';
 import io from "socket.io-client";
 import MaskedView from '@react-native-community/masked-view';
 import axios from 'axios'
+import background from './photos/carbon-fibre-v2.png'
 
 export default class LoadingScreen extends React.Component{
   state={
@@ -12,10 +13,9 @@ export default class LoadingScreen extends React.Component{
 
 
   componentDidMount() {
-<<<<<<< HEAD
-    socket = io("http://192.168.1.10:3001");
+    let socket = io("http://192.168.1.72:3001");
     const params = this.props.route.params
-    axios.post('http://192.168.1.10:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+    axios.post('http://192.168.1.72:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
                 .catch(err => {
                   Alert.alert(
@@ -27,10 +27,6 @@ export default class LoadingScreen extends React.Component{
                     { cancelable: false }
                   )
                 });
-
-=======
-    let socket = io("http://192.168.1.72:3001");
->>>>>>> master
     socket.on("message", msg => {
       console.log(msg, "msg")
       if(msg==="this is the 4th message") {
@@ -84,7 +80,9 @@ export default class LoadingScreen extends React.Component{
     
             {logoLayer}
                 <Animated.View style={[opacity, styles.centered]} >
-                <Text style={{fontSize:24}}>Cooking Up The Perfect Recipes!</Text>
+                  <ImageBackground source={background} style={styles.backgroundImage} resizeMode='repeat'>
+                    <Text style={{fontSize:24}}>Cooking Up The Perfect Recipes!</Text>
+                  </ImageBackground>
                 </Animated.View> 
             {/* Shows behind the mask, you can put anything here, such as an image */}
             {/* <View style={{ flex: 1, height: '100%', backgroundColor:"black" }} /> */}
@@ -98,5 +96,13 @@ export default class LoadingScreen extends React.Component{
          flex:1,
          alignItems:'center',
          justifyContent:'center'
-       }
+       },
+       backgroundImage: {
+        width:'100%',
+        height:'100%',
+        zIndex: -1,
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center'
+      }
      })

@@ -3,8 +3,6 @@ import { StorageContext } from '../../contexts/storageContext';
 import { Dropdown } from 'react-native-material-dropdown';
 
 let diet = [{
-    value: 'Gluten Free'
-  }, {
     value: 'Ketogenic'
   }, {
     value: 'Vegetarian'

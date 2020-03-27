@@ -4,25 +4,10 @@ import { Card, Block, NavBar, Icon, theme, Text } from 'galio-framework';
 import { useFocusEffect } from '@react-navigation/native';
 import ClearFaves from './ClearFaves';
 import background from '../photos/food3.jpg'
+import background1 from '../photos/carbon-fibre-v2.png'
 const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
 import { pushFavouritesRecipes } from '../helpers/pushFavouritesRecipes';
-
-// export const getFavouritesAsync = async () => {
-//   const item = await AsyncStorage.getItem('favourites')
-//   const obj = JSON.parse(item);
-//   return obj;
-// }
-
-// export const pushFavouritesRecipes = (state) => {
-//   const keys = Object.keys(state)
-//   let results = [];
-//   for ( let item of keys.filter((x)=> x!== "recipeId")) {
-//     results.push(state[item]);
-//   }
-//   return results;
-// }
-
 
 export default function Favourites (props){
 
@@ -104,6 +89,7 @@ const styles = StyleSheet.create({
           )}
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold'  }}/>
           {/* <Button onPress={ClearFaves}/> */}
+          <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
           {recipes.length !== 0 
           ? null 
           : <ImageBackground source={background} style={styles.backgroundImage}>           
@@ -132,6 +118,7 @@ const styles = StyleSheet.create({
             ))}
           </Block>
         </ScrollView>
+        </ImageBackground>
       </Block>
     );
   }
