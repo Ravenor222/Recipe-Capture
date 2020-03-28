@@ -4,7 +4,6 @@ import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import io from "socket.io-client";
-//import { StackActions, NavigationActions } from 'react-navigation';
 import { getProfileStorageAsync } from './helpers/getProfileStorageAsync';
 
 
@@ -13,7 +12,6 @@ export default function CameraApp (props){
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [spinner, setSpinner] = useState(false);
   const [display, setDisplay] = useState('flex');
-  //const [chatMessages, setChatMessages] = useState([]);
 
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  

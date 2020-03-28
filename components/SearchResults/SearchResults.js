@@ -19,6 +19,7 @@ export default function SearchResults(props){
 
 
       axios.get('http://192.168.1.70:3001/')
+
       .then(res => {
         setIngredients(res.data[0])
         setRecipes(res.data.slice(1,));
@@ -87,6 +88,7 @@ export default function SearchResults(props){
             </View> 
             <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} />
             </ImageBackground>}
+
       </View>
       </ImageBackground>
     </SafeAreaView>

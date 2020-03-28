@@ -83,7 +83,9 @@ io.on("connection", socket => {
   app.post('/recipes', async (req, res) =>{
 
     let ingredients = req.body.data.ingredients
-    let newRecipes = await getRecipes(process.env.SPOON_KEY,ingredients, time, cuisine );
+    const { intolerances, pantry, allergies, diet } = req.body.data.profileState['_55'];
+    console.log(intolerances, 'server')
+    let newRecipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet);
 
     let recipesArray = [];
     recipesArray.push(ingredients)

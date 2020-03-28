@@ -4,12 +4,15 @@ import { FlatList, View, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const { width: viewportWidth } = Dimensions.get('window');
 import axios from 'axios'
-
+import { getProfileStorageAsync } from '../helpers/getProfileStorageAsync';
 
 export default function SearchIngredients(props){
   const {recipes, setRecipes} = props
   const [ingredients, setIngredients] = useState(props.ingredients)
-
+  
+  const profileSettings = getProfileStorageAsync()
+  .then(x => x)  
+  .catch(x=>console.error(x));
 
 
   return (
@@ -39,7 +42,9 @@ export default function SearchIngredients(props){
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
 
+
         axios.post('http://192.168.1.70:3001/recipes', {data:{ingredients}}).then((res)=>{
+
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
           console.log(err, "err")
