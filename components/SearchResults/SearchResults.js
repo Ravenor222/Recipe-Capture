@@ -16,8 +16,6 @@ export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-
-
       axios.get('http://192.168.1.72:3001/')
       .then(res => {
         setIngredients(res.data[0])
@@ -83,6 +81,7 @@ export default function SearchResults(props){
             <View style={styles.emptyList}>
               <Text h5 style={styles.heading}>No Recipes Found!</Text>
               <Text h6 style={styles.text}>Please Take Another Photo</Text>
+              {console.log(ingredients)}
             </View></ImageBackground>}
       </View>
       </ImageBackground>
