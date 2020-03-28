@@ -17,14 +17,6 @@ export default function CameraApp (props){
   .then(x => x)  
   .catch(x=>console.error(x));
 
-  // useLayoutEffect(() => {
-  //   socket = io("http://192.168.1.10:3001");
-  //   socket.on("message", msg => {
-  //     (msg);
-  //     msg==="this is the 3rd message" ?  props.navigation.replace("Loading") : console.log("Im not navigating camera");
-
-  //   });
-  // },[]);
 
   useEffect(() => {
     (async () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-native-elements';
 import { FlatList, View, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -14,8 +14,10 @@ export default function SearchIngredients(props){
   .then(x => x)  
   .catch(x=>console.error(x));
 
+
   return (
     <View style={styles.container}>
+      {console.log("Search ingredients: ", ingredients)}
       <FlatList horizontal
         showsHorizontalScrollIndicator={false}
         data={ingredients}
@@ -39,7 +41,10 @@ export default function SearchIngredients(props){
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
-        axios.post('http://192.168.1.72:3001/recipes', {data:{ingredients, profileState:profileSettings}}).then((res)=>{
+
+
+        axios.post('http://192.168.1.70:3001/recipes', {data:{ingredients}}).then((res)=>{
+
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
           console.log(err, "err")
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     position:'absolute',
-    top:485
+    top:580
   },
   button:{
     alignSelf: "center",

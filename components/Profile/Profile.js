@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity,ImageBackground, StyleSheet, ScrollView } from 'react-native';
-import { theme, NavBar ,Icon, Block } from 'galio-framework'
+import { theme, NavBar ,Icon, Block, Text } from 'galio-framework'
 import ProfileButton from './ProfileButton'
 import ProfileSwitch from './ProfileSwitch'
 import ProfileInput from './ProfileTextInput'
@@ -63,6 +63,10 @@ export default function Profile(props){
               <ProfileIntolerances state={[selected, setSelected]}/>
             </View>
         <ProfileSwitch /> 
+        <Text style={{marginLeft: '3%', marginRight: '3%', marginBottom: '10%', textAlign: 'center', alignSelf:'center', color:'white', fontSize:12,textShadowOffset:{width:-1, height:1}, textShadowColor:'rgba(0, 0, 0, 1)',textShadowRadius: 10}}>
+        Turn the switch on to include common pantry items (ie. water, sugar, salt, etc) in your recipe search
+
+        </Text>
         <ProfileButton state={[selected, setSelected]} style={{alignSelf:'center', width:'55%', backgroundColor:'lightsalmon',borderRadius:10}}/>
       </View>
       </ScrollView>         

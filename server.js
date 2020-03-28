@@ -42,17 +42,30 @@ io.on("connection", socket => {
      cuisine = req.body.data.state.cuisine;
     
     let results = await identifyImage(req.body.data.photo)
+    let filtered
 
-    //results === undefined ? results = ['orange'] : results = results;
-  
-    let filtered = results.filter( x => x.value > 0.80 && x.name !== "vegetable" && x.name !== "relish" && x.name !== "sweet" && x.name !== "juice" && x.name !== "pasture" && x.name !== "herb" && x.name !== "condiment" && x.name !== "fruit" && x.name !== "citrus" && x.name !== "berry")
+
+
+    if (results === undefined) {
+      filtered = [{ id: 'test',
+      name: 'banana'},
+      { id: 'test',
+      name: 'eggs' },
+      { id: 'test',
+      name: 'milk' },
+      { id: 'test',
+      name: 'butter' }]
+    } else {
+      filtered = results.filter( x => x.value > 0.80 && x.name !== "vegetable" && x.name !== "relish" && x.name !== "sweet" && x.name !== "juice" && x.name !== "pasture" && x.name !== "chocolate" && x.name !== "condiment" && x.name !== "fruit" && x.name !== "citrus" && x.name !== "berry"  && x.name !== "dairy product"  && x.name !== "coffee")
+    }
+    
   
   
     let ingredients = [];
     for (let item of filtered) {
       ingredients.push(item.name)
     }
-    
+    console.log("server: ", ingredients)
     let recipes = await getRecipes(process.env.SPOON_KEY, ingredients, time, cuisine, intolerances, pantry, allergies, diet);
   
     let recipesArray = [];

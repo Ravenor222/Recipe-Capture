@@ -16,7 +16,10 @@ export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-      axios.get('http://192.168.1.72:3001/')
+
+
+      axios.get('http://192.168.1.70:3001/')
+
       .then(res => {
         setIngredients(res.data[0])
         setRecipes(res.data.slice(1,));
@@ -40,7 +43,7 @@ export default function SearchResults(props){
   )
 
   const [recipes, setRecipes] = useState([]);
-  const [ingredients, setIngredients] = useState(props.ingredients);
+  const [ingredients, setIngredients] = useState("");
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
 
@@ -59,6 +62,7 @@ export default function SearchResults(props){
 
   return(
     <SafeAreaView>
+      {console.log("results: ", ingredients)}
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(
@@ -81,8 +85,10 @@ export default function SearchResults(props){
             <View style={styles.emptyList}>
               <Text h5 style={styles.heading}>No Recipes Found!</Text>
               <Text h6 style={styles.text}>Please Take Another Photo</Text>
-              {console.log(ingredients)}
-            </View></ImageBackground>}
+            </View> 
+            <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} />
+            </ImageBackground>}
+
       </View>
       </ImageBackground>
     </SafeAreaView>
@@ -104,10 +110,10 @@ const styles = StyleSheet.create({
     borderColor: "lightsalmon",
     borderWidth: 8,
     width: width * .80,
-    height: height * .65,
+    height: height * .58,
     borderRadius: 20,
     justifyContent:'center',
-    marginTop: height * .11
+    marginTop: height * .05
   },
   heading: {
     textAlign: "center",
