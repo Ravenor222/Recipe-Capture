@@ -13,8 +13,6 @@ export default function SearchIngredients(props){
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  
   .catch(x=>console.error(x));
-  console.log(profileSettings)
-
 
   return (
     <View style={styles.container}>
