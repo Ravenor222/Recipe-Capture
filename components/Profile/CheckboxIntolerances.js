@@ -94,6 +94,9 @@ export default function App(props) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={{ alignSelf:'center', color:'white', fontSize:20,textShadowOffset:{width:-1, height:1}, textShadowColor:'rgba(0, 0, 0, 1)',textShadowRadius: 10}}>
+                Select dietary intolerances
+      </Text>
       <FlatList
         horizontal={false}
         style={{alignSelf:'center', flexGrow:0, marginVertical:5}}

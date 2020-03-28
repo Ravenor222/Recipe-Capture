@@ -3,6 +3,8 @@ import { StorageContext } from '../../contexts/storageContext';
 import { Dropdown } from 'react-native-material-dropdown';
 
 let diet = [{
+  value: 'Any'
+},{
     value: 'Ketogenic'
   }, {
     value: 'Vegetarian'
@@ -24,7 +26,7 @@ const [state, setState] = useContext(StorageContext);
 
     return(
       <Dropdown 
-      label={"Diet"}
+      label={state.diet ? state.diet : "Diet"}
       data={diet} 
       onChangeText={(value)=>{setState(state => ({...state, diet:value}));}}
       containerStyle={props.style}

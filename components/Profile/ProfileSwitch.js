@@ -19,7 +19,6 @@ const ProfileSwitch = () => {
             onChange={(value)=>{setState(state => ({...state, pantry:value}));}}
             trackColor={{false:'grey', true:'lightsalmon'}}
             />
-
         </Block>
     )
 };
