@@ -5,14 +5,24 @@
 
 - By combining the power of Clarifai and Spoonacular, we deliver a unique experience to the user as well as the ability to find recipes for anything they've got in the house.
 
- ## Tech
+![](assets/finalRecipeGif.gif)
+
+
+
+ ## Stack
  - React-Native with Expo
  - TypeScript/ Javascript
  - Jest
  - Spoonacular API
  - Clarifai Api
 
-![](assets/recipeGif.gif)
+## Libraries
+ - Galio Component Library
+ - Now UI
+ - React Navigation
+ - Socket.IO
+ - Material UI
+ - Axios
 
 
  ## Authors
