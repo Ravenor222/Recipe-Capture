@@ -12,7 +12,7 @@
  - Spoonacular API
  - Clarifai Api
 
-![](assets/recipeGif.gif) ![](assets/recipeGif2.gif) 
+![](assets/recipeGif.gif)
 
 
  ## Authors
