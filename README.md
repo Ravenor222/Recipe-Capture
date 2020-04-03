@@ -24,6 +24,12 @@
  - Material UI
  - Axios
 
+## Getting Started
+ - Download the Expo command line interface & Expo mobile application
+ - Npm install all packages
+ - "npm run run" to start the server
+ - Expo start to begin development environment
+ - Once the tunnel is connected, use the QR code to connect to the project.
 
  ## Authors
  
