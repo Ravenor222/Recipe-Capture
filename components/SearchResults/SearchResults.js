@@ -18,7 +18,7 @@ export default function SearchResults(props){
     useCallback(() => {
 
 
-      axios.get('http://192.168.1.70:3001/')
+      axios.get('http://192.168.1.10:3001/')
 
       .then(res => {
         setIngredients(res.data[0])

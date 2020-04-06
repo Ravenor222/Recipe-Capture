@@ -43,7 +43,7 @@ export default function SearchIngredients(props){
       onPress={async ()=>{
 
 
-        axios.post('http://192.168.1.70:3001/recipes', {data:{ingredients}}).then((res)=>{
+        axios.post('http://192.168.1.10:3001/recipes', {data:{ingredients}}).then((res)=>{
 
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     position:'absolute',
-    top:580
+    top:430
   },
   button:{
     alignSelf: "center",

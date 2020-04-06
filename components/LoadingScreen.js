@@ -13,9 +13,9 @@ export default class LoadingScreen extends React.Component{
 
 
   componentDidMount() {
-    let socket = io("http://192.168.1.70:3001");
+    let socket = io("http://192.168.1.10:3001");
     const params = this.props.route.params
-    axios.post('http://192.168.1.70:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+    axios.post('http://192.168.1.10:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
                 .catch(err => {
                   Alert.alert(
