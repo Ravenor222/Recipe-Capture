@@ -43,7 +43,7 @@ export default function SearchIngredients(props){
       onPress={async ()=>{
 
 
-        axios.post('http://192.168.1.10:3001/recipes', {data:{ingredients}}).then((res)=>{
+        axios.post('http://192.168.1.10:3001/', {data:{ingredients}}).then((res)=>{
 
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
