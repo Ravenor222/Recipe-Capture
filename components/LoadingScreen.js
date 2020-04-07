@@ -13,20 +13,11 @@ export default class LoadingScreen extends React.Component{
 
 
   componentDidMount() {
-    let socket = io("http://192.168.1.10:3001/");
+    let socket = io("https://lit-river-70719.herokuapp.com/");
     const params = this.props.route.params
-    axios.post('http://192.168.1.10:3001/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+    axios.post('https://lit-river-70719.herokuapp.com/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
-                .catch(err => {
-                  Alert.alert(
-                    'Post Error',
-                    'Connection to the server was not established',
-                    [
-                      {text: 'OK', onPress: () => console.log('OK Pressed')},
-                    ],
-                    { cancelable: false }
-                  )
-                });
+                .catch(err => {console.log(err, 'err')});
     socket.on("message", msg => {
       console.log(msg, "msg")
       if(msg==="this is the 4th message") {
