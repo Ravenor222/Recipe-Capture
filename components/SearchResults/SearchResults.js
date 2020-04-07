@@ -101,8 +101,10 @@ export default function SearchResults(props){
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
       <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
 
-      <Modal isVisible={modalState}>
-
+      <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
+        <View style={{ flex: 1, justifyContent:'center'}}>
+          <Text style={{textAlign:'center'}}>This is the modal content for now!</Text>
+        </View>
       </Modal>
 
       <View style={{backgroundColor:'#F0F0F0'}}>
