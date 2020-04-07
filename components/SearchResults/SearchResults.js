@@ -11,6 +11,12 @@ const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
 import { getSavedAsync } from '../helpers/getSavedAsync';
 
+const doLog = () => {
+  console.log("Ohayu")
+}
+
+
+
 
 export default function SearchResults(props){
 
@@ -67,6 +73,16 @@ export default function SearchResults(props){
           title="Recipes"
           left={(
             <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+              <Icon 
+                name="menu"
+                family="feather"
+                size={25}
+                color={theme.COLORS.WHITE}
+              />
+            </TouchableOpacity>
+          )}
+          right={(
+            <TouchableOpacity onPress={doLog}>
               <Icon 
                 name="menu"
                 family="feather"

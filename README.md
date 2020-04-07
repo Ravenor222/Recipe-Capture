@@ -12,6 +12,7 @@
  ## Stack
  - React-Native with Expo
  - TypeScript/ Javascript
+ - Express
  - Jest
  - Spoonacular API
  - Clarifai Api
@@ -31,16 +32,20 @@
  - Expo start to begin development environment
  - Once the tunnel is connected, use the QR code to connect to the project.
 
+ ## Heroku API
+ - uses Clarifai to extract tags from an image, and sends them to Spoonacular for recipes.
+    - https://lit-river-70719.herokuapp.com/
+
  ## Authors
  
-    - Olivia Power = {
-        github: https://github.com/opower/,
-        linkedIn: https://www.linkedin.com/in/olivia-power-736b97174/,
-        }
-
     - Nicholas Danvers = {
         github: https://github.com/Ravenor222,
         linkedIn https://www.linkedin.com/in/hopefuldeveloper/,
+        }
+
+    - Olivia Power = {
+        github: https://github.com/opower/,
+        linkedIn: https://www.linkedin.com/in/olivia-power-736b97174/,
         }
 
     - Elissa Matsushita = {
