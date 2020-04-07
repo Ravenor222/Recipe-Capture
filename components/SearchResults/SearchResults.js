@@ -17,8 +17,8 @@ const doLog = () => {
 }
 
 const openModal = () =>{
-  setState({
-  isModalVisible:true
+  setModalState({
+  isModalVisible:!isModalVisible
   })
   }
 
@@ -58,9 +58,7 @@ export default function SearchResults(props){
   const [ingredients, setIngredients] = useState("");
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
-  const [modalState, setModalState] = useState({
-    isModalVisible:false
-  })
+  const [modalState, setModalState] = useState(false)
   const params = props.route.params
 
   const filteredRecipes = (original, faves, saves) => {
@@ -91,7 +89,7 @@ export default function SearchResults(props){
             </TouchableOpacity>
           )}
           right={(
-            <TouchableOpacity onPress={openModal}>
+            <TouchableOpacity onPress={()=>{setModalState(!modalState)}}>
               <Icon 
                 name="library-add"
                 family="MaterialIcons"
@@ -103,7 +101,7 @@ export default function SearchResults(props){
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
       <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
 
-      <Modal isVisible={true}>
+      <Modal isVisible={modalState}>
 
       </Modal>
 
