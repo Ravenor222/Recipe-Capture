@@ -10,11 +10,17 @@ import background1 from '../photos/carbon-fibre-v2.png'
 const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
 import { getSavedAsync } from '../helpers/getSavedAsync';
+import Modal from 'react-native-modal'
 
 const doLog = () => {
   console.log("Ohayu")
 }
 
+const openModal = () =>{
+  setState({
+  isModalVisible:true
+  })
+  }
 
 
 
@@ -52,6 +58,9 @@ export default function SearchResults(props){
   const [ingredients, setIngredients] = useState("");
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
+  const [modalState, setModalState] = useState({
+    isModalVisible:false
+  })
   const params = props.route.params
 
   const filteredRecipes = (original, faves, saves) => {
@@ -82,10 +91,10 @@ export default function SearchResults(props){
             </TouchableOpacity>
           )}
           right={(
-            <TouchableOpacity onPress={doLog}>
+            <TouchableOpacity onPress={openModal}>
               <Icon 
-                name="menu"
-                family="feather"
+                name="library-add"
+                family="MaterialIcons"
                 size={25}
                 color={theme.COLORS.WHITE}
               />
@@ -93,6 +102,11 @@ export default function SearchResults(props){
           )}
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
       <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
+
+      <Modal isVisible={true}>
+
+      </Modal>
+
       <View style={{backgroundColor:'#F0F0F0'}}>
       {recipes.length !== 0 
           ? <><MyCarousel recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)} navigation={props.navigation}/>
