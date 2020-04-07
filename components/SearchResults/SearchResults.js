@@ -18,7 +18,7 @@ export default function SearchResults(props){
     useCallback(() => {
 
 
-      axios.get('http://192.168.1.70:3001/')
+      axios.get('https://lit-river-70719.herokuapp.com/')
 
       .then(res => {
         setIngredients(res.data[0])
@@ -46,7 +46,7 @@ export default function SearchResults(props){
   const [ingredients, setIngredients] = useState("");
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
-
+  const params = props.route.params
 
   const filteredRecipes = (original, faves, saves) => {
     if (faves === null & saves === null) {
@@ -80,7 +80,7 @@ export default function SearchResults(props){
       <View style={{backgroundColor:'#F0F0F0'}}>
       {recipes.length !== 0 
           ? <><MyCarousel recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)} navigation={props.navigation}/>
-            <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)}/></>
+            <SearchIngredients params={params} ingredients={ingredients} setRecipes={setRecipes} recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)}/></>
           : <ImageBackground source={background} style={styles.backgroundImage}>           
             <View style={styles.emptyList}>
               <Text h5 style={styles.heading}>No Recipes Found!</Text>

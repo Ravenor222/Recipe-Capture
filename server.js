@@ -21,11 +21,7 @@ var final = [];
 
 io.on("connection", socket => {
   console.log("a user connected :D");
-
-  socket.on("chat message", msg => {
-      io.emit("chat message", msg);
-  });
-
+  
   app.get('/', function (req, res) {
     console.log("Made a get request within io connection")
     res.json(final);

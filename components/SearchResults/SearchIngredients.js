@@ -14,7 +14,7 @@ export default function SearchIngredients(props){
   .then(x => x)  
   .catch(x=>console.error(x));
 
-
+  console.log(props.params, "searchIngredients ")
   return (
     <View style={styles.container}>
       {console.log("Search ingredients: ", ingredients)}
@@ -42,8 +42,8 @@ export default function SearchIngredients(props){
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={async ()=>{
 
-
-        axios.post('http://192.168.1.70:3001/recipes', {data:{ingredients}}).then((res)=>{
+        
+        axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings}}).then((res)=>{
 
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     position:'absolute',
-    top:580
+    top:430
   },
   button:{
     alignSelf: "center",
