@@ -11,10 +11,9 @@ const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
 import { getSavedAsync } from '../helpers/getSavedAsync';
 import Modal from 'react-native-modal'
-
-const doLog = () => {
-  console.log("Ohayu")
-}
+import DropdownNumberComponent from './DropdownNumber'
+import ModalButton from './modalButton'
+import ModalContextProvider from '../../contexts/modalContext'
 
 const openModal = () =>{
   setModalState({
@@ -102,9 +101,12 @@ export default function SearchResults(props){
       <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
 
       <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
-        <View style={{ flex: 1, justifyContent:'center'}}>
-          <Text style={{textAlign:'center'}}>This is the modal content for now!</Text>
+        <View style={{ flex: 1, justifyContent:'space-around'}}>
+          <Text style={styles.modalText}>How many recipes would you like to receive from your next search?</Text>
+          <DropdownNumberComponent />
+          <ModalButton />
         </View>
+  
       </Modal>
 
       <View style={{backgroundColor:'#F0F0F0'}}>
@@ -154,5 +156,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: 'grey',
     fontSize: 15
+  },
+  modalText : {
+    marginHorizontal: 15,
+    textAlign:'center', 
+    marginTop: 35,
+    fontSize:16
   }
 });
