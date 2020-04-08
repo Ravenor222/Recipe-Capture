@@ -5,19 +5,20 @@ import {ModalContext} from '../../contexts/modalContext'
 
 const ModalButton = (props) => {
     const [numberState, setNumberState] = useContext(ModalContext);
+    const stringNumberState = JSON.stringify(numberState)
 
-  const storeData = async () => {
-     try {
-       await AsyncStorage.setItem('state', stringState );
-     } catch (error) {
-        console.log(error);
-     }
-   };
+    const storeData = async () => {
+       try {
+         await AsyncStorage.setItem('number', stringNumberState );
+       } catch (error) {
+          console.log(error);
+       }
+     };
 
     return(
         <Button 
         shadowless size="small" 
-        onPress={()=>{console.log(numberState)}}
+        onPress={storeData}
         >
         Save Settings
       </Button>

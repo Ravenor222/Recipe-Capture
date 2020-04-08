@@ -1,3 +1,6 @@
+// THIS FUNCTION IS BEING USED IN THE HEROKU HOSTED API AND IS NO LONGER RELEVANT TO THIS REPOSITORY
+
+
 const identifyImage = async (imageData) => {
   const Clarifai = require('clarifai');
   const app = new Clarifai.App({
