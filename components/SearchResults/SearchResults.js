@@ -91,6 +91,7 @@ export default function SearchResults(props){
       <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
 
       <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
+        <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
             <Text style={styles.modalText}>How many recipes would you like to receive from your next search?</Text>
@@ -98,6 +99,7 @@ export default function SearchResults(props){
             <ModalButton modalState={modalState} setModalState={setModalState}/>
           </ModalContextProvider>
         </View>
+        </ImageBackground>
   
       </Modal>
 
@@ -153,6 +155,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     textAlign:'center', 
     marginTop: 35,
-    fontSize:16
+    fontSize:18,
+
+    
   }
 });
