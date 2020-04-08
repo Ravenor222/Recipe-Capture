@@ -10,12 +10,11 @@ export default class LoadingScreen extends React.Component{
     loadingProgress: new Animated.Value(0),
     animationDone: false,
   }
-
-
+  
   componentDidMount() {
     let socket = io("https://lit-river-70719.herokuapp.com/");
     const params = this.props.route.params
-    axios.post('https://lit-river-70719.herokuapp.com/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
+    axios.post('https://lit-river-70719.herokuapp.com/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState, numberState:params.numberState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
                 .catch(err => {console.log(err, 'err')});
     socket.on("message", msg => {

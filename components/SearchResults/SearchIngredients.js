@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const { width: viewportWidth } = Dimensions.get('window');
 import axios from 'axios'
 import { getProfileStorageAsync } from '../helpers/getProfileStorageAsync';
+import { getNumberStorageAsync } from '../helpers/getNumberStorageAsync';
 
 export default function SearchIngredients(props){
   const {recipes, setRecipes} = props
@@ -13,6 +14,9 @@ export default function SearchIngredients(props){
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  
   .catch(x=>console.error(x));
+  const numberSettings = getNumberStorageAsync()
+  .then(x=>x)
+  .catch(x=>console.log(x));
 
   console.log(props.params, "searchIngredients ")
   return (
@@ -43,7 +47,7 @@ export default function SearchIngredients(props){
       onPress={async ()=>{
 
         
-        axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings}}).then((res)=>{
+        axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings, numberSettings}}).then((res)=>{
 
           setRecipes(res.data.slice(1,));
         }).catch((err)=> {
