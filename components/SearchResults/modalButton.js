@@ -13,12 +13,14 @@ const ModalButton = (props) => {
        } catch (error) {
           console.log(error);
        }
+       props.setModalState(!props.modalState)
      };
 
     return(
         <Button 
         shadowless size="small" 
         onPress={storeData}
+        style={{alignSelf:'center', backgroundColor:'lightsalmon'}}
         >
         Save Settings
       </Button>
