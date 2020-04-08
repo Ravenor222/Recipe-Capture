@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AsyncStorage, Alert } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import { Button } from 'galio-framework';
 import {ModalContext} from '../../contexts/modalContext'
 

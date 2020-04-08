@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { StyleSheet } from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown';
 import { ModalContext } from '../../contexts/modalContext';
-import { getNumberStorageAsync } from '../helpers/getNumberStorageAsync'
 
 const list = [{
     value: '5'
@@ -29,11 +28,6 @@ let styles = StyleSheet.create({
 
 const DropdownNumberComponent = (props) => {
     const [numberState, setNumberState] = useContext(ModalContext);
-    const numberSettings = getNumberStorageAsync()
-    .then(x=>x)
-    .catch(x=>console.log(x));
-
-
 
     return(
       <Dropdown 

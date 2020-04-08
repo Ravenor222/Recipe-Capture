@@ -15,20 +15,10 @@ import DropdownNumberComponent from './DropdownNumber'
 import ModalButton from './modalButton'
 import {ModalContextProvider} from '../../contexts/modalContext'
 
-const openModal = () =>{
-  setModalState({
-  isModalVisible:!isModalVisible
-  })
-  }
-
-
-
 export default function SearchResults(props){
 
   useFocusEffect(
     useCallback(() => {
-
-
       axios.get('https://lit-river-70719.herokuapp.com/')
 
       .then(res => {
