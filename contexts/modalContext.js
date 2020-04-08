@@ -4,7 +4,10 @@ const ModalContext = createContext([{}, () => {}]);
 
 const  ModalContextProvider = (props) => {
 
-  const [numberState, setNumberState] = useState("5");
+  const [numberState, setNumberState] = useState({
+      value:"5"
+  });
+  
 
   return (
     <ModalContext.Provider 

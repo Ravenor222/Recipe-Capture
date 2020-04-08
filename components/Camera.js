@@ -5,6 +5,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import io from "socket.io-client";
 import { getProfileStorageAsync } from './helpers/getProfileStorageAsync';
+import { getNumberStorageAsync } from './helpers/getNumberStorageAsync';
+
 
 
 export default function CameraApp (props){
@@ -16,6 +18,9 @@ export default function CameraApp (props){
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  
   .catch(x=>console.error(x));
+  const numberSettings = getNumberStorageAsync()
+  .then(x=>x)
+  .catch(x=>console.log(x));
 
 
   useEffect(() => {
@@ -46,7 +51,7 @@ export default function CameraApp (props){
               }
               if(this.camera) {
                 let photo = await this.camera.takePictureAsync(options);
-                props.navigation.replace("LoadingScreen", {photo:photo.base64, state:props.route.params.state, profileState: profileSettings})
+                props.navigation.replace("LoadingScreen", {photo:photo.base64, state:props.route.params.state, profileState: profileSettings, numberState:numberSettings})
      
               } 
             }}>

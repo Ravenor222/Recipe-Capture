@@ -13,7 +13,7 @@ import { getSavedAsync } from '../helpers/getSavedAsync';
 import Modal from 'react-native-modal'
 import DropdownNumberComponent from './DropdownNumber'
 import ModalButton from './modalButton'
-import ModalContextProvider from '../../contexts/modalContext'
+import {ModalContextProvider} from '../../contexts/modalContext'
 
 const openModal = () =>{
   setModalState({
@@ -102,9 +102,11 @@ export default function SearchResults(props){
 
       <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
-          <Text style={styles.modalText}>How many recipes would you like to receive from your next search?</Text>
-          <DropdownNumberComponent />
-          <ModalButton />
+           <ModalContextProvider>
+            <Text style={styles.modalText}>How many recipes would you like to receive from your next search?</Text>
+            <DropdownNumberComponent />
+            <ModalButton />
+            </ModalContextProvider>
         </View>
   
       </Modal>

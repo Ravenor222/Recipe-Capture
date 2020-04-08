@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { AsyncStorage, Alert } from 'react-native'
 import { Button } from 'galio-framework';
-import ModalContext from '../../contexts/modalContext'
+import {ModalContext} from '../../contexts/modalContext'
 
 const ModalButton = (props) => {
-    // const [state, setState] = useContext(ModalContext);
+    const [numberState, setNumberState] = useContext(ModalContext);
 
   const storeData = async () => {
      try {
@@ -17,7 +17,7 @@ const ModalButton = (props) => {
     return(
         <Button 
         shadowless size="small" 
-        // onPress={()=>{console.log(state)}}
+        onPress={()=>{console.log(numberState)}}
         >
         Save Settings
       </Button>
