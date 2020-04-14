@@ -54,6 +54,11 @@ export default function SearchIngredients(props){
           console.log(err, "err")
         });
       }}>Search Again</Button>
+      <Button
+      style={styles.insertButton}
+      title="Add"
+      buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
+      >Add</Button>
     </View>
   );
 }
@@ -83,5 +88,10 @@ const styles = StyleSheet.create({
   searchButton :{
     marginTop: 10,
     alignSelf:'center',
+  },
+  insertButton: {
+    bottom:44,
+    alignSelf:'flex-end',
   }
+
 })
