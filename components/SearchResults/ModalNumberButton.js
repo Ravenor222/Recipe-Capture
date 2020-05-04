@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native'
 import { Button } from 'galio-framework';
 import {ModalContext} from '../../contexts/modalContext'
 
-const ModalButton = (props) => {
+const ModalNumberButton = (props) => {
     const [numberState, setNumberState] = useContext(ModalContext);
     const stringNumberState = JSON.stringify(numberState)
 
@@ -28,4 +28,4 @@ const ModalButton = (props) => {
     )
 };
 
-export default ModalButton;
+export default ModalNumberButton;

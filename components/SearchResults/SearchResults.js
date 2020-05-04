@@ -11,9 +11,19 @@ const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
 import { getSavedAsync } from '../helpers/getSavedAsync';
 import Modal from 'react-native-modal'
+import ModalButton from './ModalButton'
 import DropdownNumberComponent from './DropdownNumber'
-import ModalButton from './modalButton'
 import {ModalContextProvider} from '../../contexts/modalContext'
+
+const setNumberStorage = async (modal, setModal) => {
+  try {
+    await AsyncStorage.setItem('number', stringNumberState );
+  } catch (error) {
+     console.log(error);
+  }
+  setModal(!modal)
+};
+
 
 export default function SearchResults(props){
 
@@ -48,6 +58,9 @@ export default function SearchResults(props){
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
   const [modalState, setModalState] = useState(false)
+  const [addState, setAddState] = useState(false)
+  const [whichModal, setWhichModal] = useState('')
+
   const params = props.route.params
 
   const filteredRecipes = (original, faves, saves) => {
@@ -78,7 +91,10 @@ export default function SearchResults(props){
             </TouchableOpacity>
           )}
           right={(
-            <TouchableOpacity onPress={()=>{setModalState(!modalState)}}>
+            <TouchableOpacity onPress={()=>{
+              setModalState(!modalState);
+              setWhichModal('numModal')
+              }}>
               <Icon 
                 name="library-add"
                 family="MaterialIcons"
@@ -90,29 +106,51 @@ export default function SearchResults(props){
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
       <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
 
+
+
+{/* modal */}
+      {whichModal==='addModal' ? 
+      <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
+        <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
+        <View style={{ flex: 1, justifyContent:'space-around'}}>
+          {/* <ModalContextProvider> */}
+            <Text style={styles.modalText}>AddModal</Text>
+            {/* <DropdownNumberComponent />
+            <ModalButton modalState={modalState} setModalState={setModalState} />
+            <ModalNumberButton modalState={modalState} setModalState={setModalState}/>
+          </ModalContextProvider> */}
+        </View>
+        </ImageBackground>
+      </Modal> 
+      :
       <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
         <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
-            <Text style={styles.modalText}>How many recipes would you like to receive from your next search?</Text>
+            <Text style={styles.modalText}>numModal</Text>
             <DropdownNumberComponent />
-            <ModalButton modalState={modalState} setModalState={setModalState}/>
+            <ModalButton modalState={modalState} setModalState={setModalState} setNumberStorage={setNumberStorage}/>
+            {/* <ModalNumberButton modalState={modalState} setModalState={setModalState}/> */}
           </ModalContextProvider>
         </View>
         </ImageBackground>
-  
-      </Modal>
+      </Modal>}
+{/* modal */}
+
+
 
       <View style={{backgroundColor:'#F0F0F0'}}>
       {recipes.length !== 0 
           ? <><MyCarousel recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)} navigation={props.navigation}/>
-            <SearchIngredients params={params} ingredients={ingredients} setRecipes={setRecipes} recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)}/></>
+            <SearchIngredients whichModal={whichModal} setWhichModal={setWhichModal} setModalState={setModalState} modalState={modalState} params={params} ingredients={ingredients} setRecipes={setRecipes} recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)}/></>
           : <ImageBackground source={background} style={styles.backgroundImage}>           
             <View style={styles.emptyList}>
               <Text h5 style={styles.heading}>No Recipes Found!</Text>
               <Text h6 style={styles.text}>Please Take Another Photo</Text>
             </View> 
-            <SearchIngredients ingredients={ingredients} setRecipes={setRecipes} />
+            <SearchIngredients addState={addState} setAddState={setAddState} ingredients={ingredients} setRecipes={setRecipes} />
+
+
             </ImageBackground>}
 
       </View>

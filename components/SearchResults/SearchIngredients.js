@@ -8,8 +8,9 @@ import { getProfileStorageAsync } from '../helpers/getProfileStorageAsync';
 import { getNumberStorageAsync } from '../helpers/getNumberStorageAsync';
 
 export default function SearchIngredients(props){
-  const {recipes, setRecipes} = props
-  const [ingredients, setIngredients] = useState(props.ingredients)
+  const {recipes, setRecipes} = props;
+  const {modalState, setModalState, whichModal, setWhichModal } = props;
+  const [ingredients, setIngredients] = useState(props.ingredients);
   
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  
@@ -58,6 +59,15 @@ export default function SearchIngredients(props){
       style={styles.insertButton}
       title="Add"
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
+      onPress={()=>{
+        setModalState(!modalState);
+        console.log(props.whichModal)
+        setWhichModal('addModal')
+
+      }}
+      // setIngredients(prev => ([...prev, 'pizza']))
+      //onPress => Open a text element => On submit setIngredients
+
       >Add</Button>
     </View>
   );
