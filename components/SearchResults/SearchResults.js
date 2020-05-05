@@ -24,6 +24,9 @@ const setNumberStorage = async (modal, setModal) => {
   setModal(!modal)
 };
 
+const addNewIngredient = (modal, setModal) => {
+  setModal(!modal)
+}
 
 export default function SearchResults(props){
 
@@ -109,32 +112,20 @@ export default function SearchResults(props){
 
 
 {/* modal */}
-      {whichModal==='addModal' ? 
-      <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
-        <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
-        <View style={{ flex: 1, justifyContent:'space-around'}}>
-          {/* <ModalContextProvider> */}
-            <Text style={styles.modalText}>AddModal</Text>
-            {/* <DropdownNumberComponent />
-            <ModalButton modalState={modalState} setModalState={setModalState} />
-            <ModalNumberButton modalState={modalState} setModalState={setModalState}/>
-          </ModalContextProvider> */}
-        </View>
-        </ImageBackground>
-      </Modal> 
-      :
+    
+      
       <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
         <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
-            <Text style={styles.modalText}>numModal</Text>
-            <DropdownNumberComponent />
-            <ModalButton modalState={modalState} setModalState={setModalState} setNumberStorage={setNumberStorage}/>
+            <Text style={styles.modalText}>{whichModal==='addModal' ? 'addModal' : 'numModal'}</Text>
+            {whichModal==='addModal' ? <Text>nothing yet</Text>:<DropdownNumberComponent/>}
+            <ModalButton buttonLabel='Close' modalState={modalState} setModalState={setModalState} setNumberStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
             {/* <ModalNumberButton modalState={modalState} setModalState={setModalState}/> */}
           </ModalContextProvider>
         </View>
         </ImageBackground>
-      </Modal>}
+      </Modal>
 {/* modal */}
 
 
