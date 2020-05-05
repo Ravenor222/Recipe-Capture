@@ -101,11 +101,13 @@ export default function SearchResults(props){
               setWhichModal('numModal')
               }}>
               <Icon 
-                name="library-add"
+                name="playlist-add"
                 family="MaterialIcons"
                 size={25}
                 color={theme.COLORS.WHITE}
               />
+
+
             </TouchableOpacity>
           )}
           titleStyle={{ color:'white', fontSize:30, fontFamily: 'Baskerville-Bold' }}/>
@@ -118,16 +120,14 @@ export default function SearchResults(props){
     <IngredientsContextProvider>
       
       <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
-        <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
-            <Text style={styles.modalText}>{whichModal==='addModal' ? 'addModal' : 'numModal'}</Text>
+            <Text style={styles.modalText}>{whichModal==='addModal' ? 'Add more ingredients to your next search!' : 'Change the number of recipes to generate'}</Text>
             {whichModal==='addModal' ? <ModalTextInput ingredients={ingredients} /> : <DropdownNumberComponent/>}
             <ModalButton buttonLabel='Close' modalState={modalState} setModalState={setModalState} setNumberStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
             {/* <ModalNumberButton modalState={modalState} setModalState={setModalState}/> */}
           </ModalContextProvider>
         </View>
-        </ImageBackground>
       </Modal>
 {/* modal */}
 
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     textAlign:'center', 
     marginTop: 35,
-    fontSize:18,
+    fontSize:25,
 
     
   }

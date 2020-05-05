@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, TextInput, StyleSheet, Keyboard } from 'react-native';
+import { Button, Icon, theme, Text } from 'galio-framework';
 import { preventAutoHide } from 'expo/build/launch/SplashScreen';
 import { IngredientsContext } from '../../contexts/IngredientsContext'
 
@@ -10,17 +10,30 @@ const styles = StyleSheet.create({
       flexDirection:'row',
       width:'80%',
       marginHorizontal:'10%',
+      borderRadius:15,
       borderColor:'black',
-      borderWidth:1,
+      borderWidth:1.75,
+      height:50,
       // borderRadius:50
     
     },
     textInput:{
+      borderBottomLeftRadius:15,
+      borderTopLeftRadius:15,
       backgroundColor:'white',
-      width:'75%'
+      width:'75%',
+      padding:10,
     },
     button: {
+      height:46,
+      width:59,
+      borderBottomRightRadius:13,
+      borderBottomLeftRadius:0,
+      borderTopLeftRadius:0,
+      borderTopRightRadius:13,
       backgroundColor:'lightsalmon',
+      display:'flex',
+      flexDirection:"row",
       
       
     }
@@ -33,7 +46,15 @@ const ModalTextInput = (props) => {
 
 
   const addIngredients = () => { 
-    
+    if(text.length < 3 ) {
+      setIngredients(prev => ([...prev, text.toLowerCase()]));
+      Keyboard.dismiss();
+      setText('');
+      console.log('im actally running')
+    } else {
+      
+    }
+   
   };
   //1- onPress={addIngredients}
   //2- onPress={()=>{setState}}
@@ -43,18 +64,22 @@ const ModalTextInput = (props) => {
             <TextInput 
             style={styles.textInput}
             value={text}
-            placeholder='add ingredients to your next search!'
+            placeholder='add new ingredients!'
             onChangeText={text => setText(text)}
             />
             <Button
             style={styles.button}
-            onPress={()=>{
-            setIngredients(prev => ([...prev, text.toLowerCase()]))
-      
-      
-            }}
+            onPress={addIngredients}
+            shadowless={true}
             >
-              Submit
+              <Icon 
+                name="library-add"
+                family="MaterialIcons"
+                size={18}
+                color={theme.COLORS.WHITE}
+              />
+            <Text style={{color:'white'}}> Add</Text>
+              
             </Button>
             
         </View>

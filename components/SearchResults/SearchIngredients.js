@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Button } from 'react-native-elements';
-import { FlatList, View, StyleSheet, Dimensions } from 'react-native';
+import { theme } from 'galio-framework'
+import { FlatList, View, StyleSheet, Dimensions, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import IconMI from 'react-native-vector-icons/MaterialIcons';
 const { width: viewportWidth } = Dimensions.get('window');
 import axios from 'axios'
 import { getProfileStorageAsync } from '../helpers/getProfileStorageAsync';
@@ -59,7 +61,7 @@ export default function SearchIngredients(props){
       }}>Search Again</Button>
 
       
-      <Button
+    <Button
       style={styles.insertButton}
       title="Add"
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
@@ -68,10 +70,15 @@ export default function SearchIngredients(props){
         setWhichModal('addModal')
 
       }}
-      // setIngredients(prev => ([...prev, 'pizza']))
-      //onPress => Open a text element => On submit setIngredients
-
-      >Add</Button>
+      icon={<IconMI 
+        name="library-add"
+        size={18}
+        color='white'
+        
+      />}
+    
+    >
+   </Button>
     </View>
   );
 }
