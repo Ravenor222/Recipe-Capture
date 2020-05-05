@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
 const ModalTextInput = (props) => {
   // const [ingredients, setIngredients] = useState(props.ingredients);
-  const [ingredients, setIngredients] = useContext(IngredientsContext);
+  const [ingredients, setIngredients, text, setText] = useContext(IngredientsContext);
 
 
   const addIngredients = () => { 
@@ -40,11 +40,16 @@ const ModalTextInput = (props) => {
 
     return (
         <View style={styles.container}>
-            <TextInput style={styles.textInput}/>
+            <TextInput 
+            style={styles.textInput}
+            value={text}
+            placeholder='add ingredients to your next search!'
+            onChangeText={text => setText(text)}
+            />
             <Button
             style={styles.button}
             onPress={()=>{
-            setIngredients(prev => ([...prev, 'pizza']))
+            setIngredients(prev => ([...prev, text.toLowerCase()]))
       
       
             }}
