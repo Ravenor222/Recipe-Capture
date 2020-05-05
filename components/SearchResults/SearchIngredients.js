@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from 'react-native-elements';
 import { FlatList, View, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -6,12 +6,14 @@ const { width: viewportWidth } = Dimensions.get('window');
 import axios from 'axios'
 import { getProfileStorageAsync } from '../helpers/getProfileStorageAsync';
 import { getNumberStorageAsync } from '../helpers/getNumberStorageAsync';
+import { IngredientsContext } from '../../contexts/IngredientsContext'
 
 export default function SearchIngredients(props){
   const {recipes, setRecipes} = props;
   const {modalState, setModalState, whichModal, setWhichModal } = props;
-  const [ingredients, setIngredients] = useState(props.ingredients);
-  
+  // const [ingredients, setIngredients] = useState(props.ingredients);
+  const [ingredients, setIngredients] = useContext(IngredientsContext);
+
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  
   .catch(x=>console.error(x));
@@ -19,7 +21,7 @@ export default function SearchIngredients(props){
   .then(x=>x)
   .catch(x=>console.log(x));
 
-  console.log(props.params, "searchIngredients ")
+
   return (
     <View style={styles.container}>
       {console.log("Search ingredients: ", ingredients)}
@@ -55,13 +57,14 @@ export default function SearchIngredients(props){
           console.log(err, "err")
         });
       }}>Search Again</Button>
+
+      
       <Button
       style={styles.insertButton}
       title="Add"
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={()=>{
         setModalState(!modalState);
-        console.log(props.whichModal)
         setWhichModal('addModal')
 
       }}

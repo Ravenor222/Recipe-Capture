@@ -1,19 +1,22 @@
 import MyCarousel from './SearchResultCards'
-import React, { useState, useCallback, useLayoutEffect } from 'react';
-import SearchIngredients from './SearchIngredients'
+import React, { useState, useCallback, useContext } from 'react';
+import SearchIngredients from './SearchIngredients';
 import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View, SafeAreaView, ImageBackground, Dimensions } from 'react-native';
 import { NavBar, Icon, theme, Text } from 'galio-framework';
 import axios from 'axios';
-import background from '../photos/food3.jpg'
-import background1 from '../photos/carbon-fibre-v2.png'
+import background from '../photos/food3.jpg';
+import background1 from '../photos/carbon-fibre-v2.png';
 const { width, height } = Dimensions.get('screen');
 import { getFavouritesAsync } from '../helpers/getFavouritesAsync';
 import { getSavedAsync } from '../helpers/getSavedAsync';
-import Modal from 'react-native-modal'
-import ModalButton from './ModalButton'
-import DropdownNumberComponent from './DropdownNumber'
-import {ModalContextProvider} from '../../contexts/modalContext'
+import Modal from 'react-native-modal';
+import ModalButton from './ModalButton';
+import DropdownNumberComponent from './DropdownNumber';
+import {ModalContextProvider} from '../../contexts/modalContext';
+import ModalTextInput from './ModalTextInput';
+import { AsyncStorage } from 'react-native'
+import { IngredientsContextProvider } from '../../contexts/IngredientsContext'
 
 const setNumberStorage = async (modal, setModal) => {
   try {
@@ -80,7 +83,6 @@ export default function SearchResults(props){
 
   return(
     <SafeAreaView>
-      {console.log("results: ", ingredients)}
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(
@@ -113,13 +115,14 @@ export default function SearchResults(props){
 
 {/* modal */}
     
+    <IngredientsContextProvider>
       
       <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
         <ImageBackground source={background1} style={styles.backgroundImage} resizeMode='repeat'>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
             <Text style={styles.modalText}>{whichModal==='addModal' ? 'addModal' : 'numModal'}</Text>
-            {whichModal==='addModal' ? <Text>nothing yet</Text>:<DropdownNumberComponent/>}
+            {whichModal==='addModal' ? <ModalTextInput ingredients={ingredients} /> : <DropdownNumberComponent/>}
             <ModalButton buttonLabel='Close' modalState={modalState} setModalState={setModalState} setNumberStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
             {/* <ModalNumberButton modalState={modalState} setModalState={setModalState}/> */}
           </ModalContextProvider>
@@ -145,6 +148,9 @@ export default function SearchResults(props){
             </ImageBackground>}
 
       </View>
+
+      </IngredientsContextProvider>
+
       </ImageBackground>
     </SafeAreaView>
   );
