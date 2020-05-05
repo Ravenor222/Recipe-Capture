@@ -64,6 +64,7 @@ export default function SearchIngredients(props){
     <Button
       style={styles.insertButton}
       title="Add"
+      titleStyle={{fontSize:16}}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={()=>{
         setModalState(!modalState);

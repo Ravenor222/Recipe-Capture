@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { View, TextInput, StyleSheet, Keyboard } from 'react-native';
 import { Button, Icon, theme, Text } from 'galio-framework';
 import { preventAutoHide } from 'expo/build/launch/SplashScreen';
@@ -43,18 +43,20 @@ const styles = StyleSheet.create({
 const ModalTextInput = (props) => {
   // const [ingredients, setIngredients] = useState(props.ingredients);
   const [ingredients, setIngredients, text, setText] = useContext(IngredientsContext);
-
+  const {errorState, setErrorState} = props;
 
   const addIngredients = () => { 
-    if(text.length < 3 ) {
+    if(text.length > 1 ) {
       setIngredients(prev => ([...prev, text.toLowerCase()]));
       Keyboard.dismiss();
       setText('');
-      console.log('im actally running')
+      setErrorState(true);
     } else {
+      setErrorState(false);
       
     }
-   
+   return console.log(errorState);
+
   };
   //1- onPress={addIngredients}
   //2- onPress={()=>{setState}}

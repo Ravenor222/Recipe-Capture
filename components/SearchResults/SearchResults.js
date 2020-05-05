@@ -64,8 +64,8 @@ export default function SearchResults(props){
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
   const [modalState, setModalState] = useState(false)
-  const [addState, setAddState] = useState(false)
-  const [whichModal, setWhichModal] = useState('')
+  const [whichModal, setWhichModal] = useState('');
+  const [errorState, setErrorState] = useState(false);
 
   const params = props.route.params
 
@@ -119,11 +119,17 @@ export default function SearchResults(props){
     
     <IngredientsContextProvider>
       
-      <Modal isVisible={modalState} style={{maxHeight:400, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
+      <Modal isVisible={modalState} style={{maxHeight:300, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
-            <Text style={styles.modalText}>{whichModal==='addModal' ? 'Add more ingredients to your next search!' : 'Change the number of recipes to generate'}</Text>
-            {whichModal==='addModal' ? <ModalTextInput ingredients={ingredients} /> : <DropdownNumberComponent/>}
+            <Text style={styles.modalText}>{whichModal==='addModal' ? 'Add more ingredients to your next search!' : 'Change the number of recipes generated'}</Text>
+            {whichModal==='addModal' ?
+              <View>
+               <ModalTextInput ingredients={ingredients} errorState={errorState} setErrorState={setErrorState}/>
+               <Text style={errorState ? {color:'transparent'} : {color:'red',alignSelf:'center'}}>Field cannot be blank</Text>
+              </View>
+              :
+               <DropdownNumberComponent/>}
             <ModalButton buttonLabel='Close' modalState={modalState} setModalState={setModalState} setNumberStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
             {/* <ModalNumberButton modalState={modalState} setModalState={setModalState}/> */}
           </ModalContextProvider>
@@ -142,7 +148,7 @@ export default function SearchResults(props){
               <Text h5 style={styles.heading}>No Recipes Found!</Text>
               <Text h6 style={styles.text}>Please Take Another Photo</Text>
             </View> 
-            <SearchIngredients addState={addState} setAddState={setAddState} ingredients={ingredients} setRecipes={setRecipes} />
+            <SearchIngredients whichModal={whichModal} setWhichModal={setWhichModal} setModalState={setModalState} modalState={modalState} ingredients={ingredients} setRecipes={setRecipes} />
 
 
             </ImageBackground>}
@@ -191,7 +197,6 @@ const styles = StyleSheet.create({
     textAlign:'center', 
     marginTop: 35,
     fontSize:25,
-
-    
-  }
+  },
+  
 });
