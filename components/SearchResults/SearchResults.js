@@ -18,7 +18,7 @@ import ModalTextInput from './ModalTextInput';
 import { AsyncStorage } from 'react-native'
 import { IngredientsContextProvider } from '../../contexts/IngredientsContext'
 
-const setNumberStorage = async (modal, setModal) => {
+const setNumberStorage = async (modal, setModal, setError) => {
   try {
     await AsyncStorage.setItem('number', stringNumberState );
   } catch (error) {
@@ -27,8 +27,9 @@ const setNumberStorage = async (modal, setModal) => {
   setModal(!modal)
 };
 
-const addNewIngredient = (modal, setModal) => {
-  setModal(!modal)
+const addNewIngredient = (modal, setModal, setError) => {
+  setError(true);
+  setModal(!modal);
 }
 
 export default function SearchResults(props){
@@ -130,7 +131,7 @@ export default function SearchResults(props){
               </View>
               :
                <DropdownNumberComponent/>}
-            <ModalButton buttonLabel='Close' modalState={modalState} setModalState={setModalState} setNumberStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
+            <ModalButton buttonLabel='Close' setErrorState={setErrorState} modalState={modalState} setModalState={setModalState} setStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
             {/* <ModalNumberButton modalState={modalState} setModalState={setModalState}/> */}
           </ModalContextProvider>
         </View>

@@ -55,7 +55,6 @@ const ModalTextInput = (props) => {
       setErrorState(false);
       
     }
-   return console.log(errorState);
 
   };
   //1- onPress={addIngredients}

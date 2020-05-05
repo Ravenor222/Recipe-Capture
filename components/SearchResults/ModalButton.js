@@ -6,14 +6,14 @@ import { setNumberStorage } from '../helpers/setNumberStorage'
 
 const ModalButton = (props) => {
     const [numberState, setNumberState] = useContext(ModalContext);
-    const { modalState, setModalState, setNumberStorage, buttonLabel } = props
+    const { modalState, setModalState, setStorage, buttonLabel, setErrorState } = props
 
 
 
     return(
         <Button 
         shadowless size="small" 
-        onPress={()=>{setNumberStorage(modalState, setModalState)}}
+        onPress={()=>{setStorage(modalState, setModalState, setErrorState)}}
         style={{alignSelf:'center', backgroundColor:'lightsalmon'}}
         >
         {buttonLabel}
