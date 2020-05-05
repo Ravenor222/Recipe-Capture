@@ -107,11 +107,13 @@ const styles = StyleSheet.create({
 
   }, 
   searchButton :{
-    marginTop: 10,
+    // marginTop: 10,
     alignSelf:'center',
+    position:'absolute',
+    top:0,
   },
   insertButton: {
-    bottom:44,
+    top:0,
     alignSelf:'flex-end',
   }
 
