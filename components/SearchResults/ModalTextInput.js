@@ -50,9 +50,9 @@ const ModalTextInput = (props) => {
       setIngredients(prev => ([...prev, text.toLowerCase()]));
       Keyboard.dismiss();
       setText('');
-      setErrorState(true);
-    } else {
       setErrorState(false);
+    } else {
+      setErrorState(true);
       
     }
 

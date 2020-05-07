@@ -6,9 +6,10 @@ import {ModalContext} from '../../contexts/modalContext'
 const ModalNumberButton = (props) => {
     const [numberState, setNumberState] = useContext(ModalContext);
     const stringNumberState = JSON.stringify(numberState)
-
     const storeData = async () => {
        try {
+        console.log(numberState)
+
          await AsyncStorage.setItem('number', stringNumberState );
        } catch (error) {
           console.log(error);

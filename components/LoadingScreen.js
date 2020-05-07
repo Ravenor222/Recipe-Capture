@@ -16,9 +16,8 @@ export default class LoadingScreen extends React.Component{
     const params = this.props.route.params
     axios.post('https://lit-river-70719.herokuapp.com/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState, numberState:params.numberState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
-                .catch(err => {console.log(err, 'axios err')});
+                .catch(err => {console.log(err, 'axios err 1')});
     socket.on("message", msg => {
-      console.log(msg, "msg")
       if(msg==="this is the 4th message") {
       Animated.timing(this.state.loadingProgress, {
         toValue:120,

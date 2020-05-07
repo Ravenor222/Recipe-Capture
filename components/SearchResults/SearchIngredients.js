@@ -9,6 +9,7 @@ const { width: viewportWidth } = Dimensions.get('window');
 import axios from 'axios'
 import { getProfileStorageAsync } from '../helpers/getProfileStorageAsync';
 import { getNumberStorageAsync } from '../helpers/getNumberStorageAsync';
+
 import { IngredientsContext } from '../../contexts/IngredientsContext'
 
 export default function SearchIngredients(props){
@@ -26,7 +27,7 @@ export default function SearchIngredients(props){
       .catch(err => console.log(err, "error"));
     },[])
   )
-
+    const ex = () => {return console.log('hello')}
 
   const {recipes, setRecipes} = props;
   const {modalState, setModalState, whichModal, setWhichModal } = props;
@@ -35,10 +36,10 @@ export default function SearchIngredients(props){
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  
   .catch(x=>console.error(x));
+
   const numberSettings = getNumberStorageAsync()
   .then(x=>x)
   .catch(x=>console.log(x));
-
   
   return (
     <View style={styles.container}>
@@ -61,22 +62,26 @@ export default function SearchIngredients(props){
           buttonStyle={{backgroundColor:'darkgrey', borderRadius: 8}}/>}
           keyExtractor={item => item}
       />
+
+  <View style={styles.secondtier}>
       <Button 
       title ='Search Again' 
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
-      onPress={async ()=>{
-
-        
-        axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings, numberSettings}}).then((res)=>{
-
+      onPress={()=>{
+        axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings, numberSettings}})
+        .then((res)=>{
+          console.log('successful post')
           setRecipes(res.data.slice(1,));
-        }).catch((err)=> {
-          console.log(err, "err")
+        })
+        .catch((err)=> {
+          console.log(err, "axios err 2")
         });
-      }}>Search Again</Button>
+      }}
+      >
+      Search Again</Button>
 
-      
+     
     <Button
       style={styles.insertButton}
       title="Add"
@@ -96,6 +101,7 @@ export default function SearchIngredients(props){
     
     >
    </Button>
+      </View>
     </View>
   );
 }
@@ -121,16 +127,20 @@ const styles = StyleSheet.create({
     width: 125,
     margin:2,
 
+  },
+  secondtier:{
+    flexDirection:'row',
+    justifyContent:'flex-end'
   }, 
   searchButton :{
-    // marginTop: 10,
-    alignSelf:'center',
-    position:'absolute',
-    top:0,
+    marginHorizontal: 25,
+    // alignSelf:'center',
+    // position:'absolute',
+    // top:0,
   },
   insertButton: {
-    top:0,
-    alignSelf:'flex-end',
+    // top:0,
+    // alignSelf:'flex-end',
   }
 
 })

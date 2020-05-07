@@ -16,11 +16,12 @@ import DropdownNumberComponent from './DropdownNumber';
 import {ModalContextProvider} from '../../contexts/modalContext';
 import ModalTextInput from './ModalTextInput';
 import { AsyncStorage } from 'react-native'
-import { IngredientsContextProvider, IngredientsContext } from '../../contexts/IngredientsContext'
+import { IngredientsContextProvider } from '../../contexts/IngredientsContext'
 
 
 const setNumberStorage = async (modal, setModal, setError) => {
   try {
+    let stringNumberState = JSON.stringify(numberState)
     await AsyncStorage.setItem('number', stringNumberState );
   } catch (error) {
      console.log(error);
@@ -29,7 +30,7 @@ const setNumberStorage = async (modal, setModal, setError) => {
 };
 
 const addNewIngredient = (modal, setModal, setError) => {
-  setError(true);
+  setError(false);
   setModal(!modal);
 }
 
@@ -65,7 +66,7 @@ export default function SearchResults(props){
   )
 
   const [recipes, setRecipes] = useState([]);
-  const [ingredients, setIngredients] = useContext(IngredientsContext);
+  // const [ingredients, setIngredients] = useContext(IngredientsContext);
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
   const [modalState, setModalState] = useState(false)
@@ -130,8 +131,8 @@ export default function SearchResults(props){
             <Text style={styles.modalText}>{whichModal==='addModal' ? 'Add more ingredients to your next search!' : 'Change the number of recipes generated'}</Text>
             {whichModal==='addModal' ?
               <View>
-               <ModalTextInput ingredients={ingredients} errorState={errorState} setErrorState={setErrorState}/>
-               <Text style={errorState ? {color:'transparent'} : {color:'red',alignSelf:'center'}}>Field cannot be blank</Text>
+               <ModalTextInput errorState={errorState} setErrorState={setErrorState}/>
+               <Text style={errorState ? {color:'red',alignSelf:'center'} : {color:'transparent'}}>Field cannot be blank</Text>
               </View>
               :
                <DropdownNumberComponent/>}
@@ -147,13 +148,13 @@ export default function SearchResults(props){
       <View style={{backgroundColor:'#F0F0F0'}}>
       {recipes.length !== 0 
           ? <><MyCarousel recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)} navigation={props.navigation}/>
-            <SearchIngredients whichModal={whichModal} setWhichModal={setWhichModal} setModalState={setModalState} modalState={modalState} params={params} ingredients={ingredients} setRecipes={setRecipes} recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)}/></>
+            <SearchIngredients whichModal={whichModal} setWhichModal={setWhichModal} setModalState={setModalState} modalState={modalState} params={params} setRecipes={setRecipes} recipes={filteredRecipes(recipes, faveRecipes, savedRecipes)}/></>
           : <ImageBackground source={background} style={styles.backgroundImage}>           
             <View style={styles.emptyList}>
               <Text h5 style={styles.heading}>No Recipes Found!</Text>
               <Text h6 style={styles.text}>Please Take Another Photo</Text>
             </View> 
-            <SearchIngredients whichModal={whichModal} setWhichModal={setWhichModal} setModalState={setModalState} modalState={modalState} ingredients={ingredients} setRecipes={setRecipes} />
+            <SearchIngredients whichModal={whichModal} setWhichModal={setWhichModal} setModalState={setModalState} modalState={modalState} setRecipes={setRecipes} />
 
 
             </ImageBackground>}
