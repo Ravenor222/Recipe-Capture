@@ -19,13 +19,14 @@ import { AsyncStorage } from 'react-native'
 import { IngredientsContextProvider } from '../../contexts/IngredientsContext'
 
 
-const setNumberStorage = async (modal, setModal, setError) => {
+const setNumberStorage = async (modal, setModal, setError, numState) => {
   try {
-    let stringNumberState = JSON.stringify(numberState)
+    let stringNumberState = JSON.stringify(numState)
     await AsyncStorage.setItem('number', stringNumberState );
   } catch (error) {
      console.log(error);
   }
+  console.log(numState)
   setModal(!modal)
 };
 

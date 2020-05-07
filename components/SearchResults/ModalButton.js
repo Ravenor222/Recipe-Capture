@@ -12,7 +12,7 @@ const ModalButton = (props) => {
     return(
         <Button 
         shadowless size="small" 
-        onPress={()=>{setStorage(modalState, setModalState, setErrorState)}}
+        onPress={()=>{setStorage(modalState, setModalState, setErrorState, numberState)}}
         style={{alignSelf:'center', backgroundColor:'lightsalmon'}}
         >
         {buttonLabel}
