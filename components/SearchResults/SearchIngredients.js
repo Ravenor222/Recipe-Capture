@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState,useCallback ,useContext } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { Button } from 'react-native-elements';
 import { theme } from 'galio-framework'
 import { FlatList, View, StyleSheet, Dimensions, Text } from 'react-native';
@@ -11,11 +12,26 @@ import { getNumberStorageAsync } from '../helpers/getNumberStorageAsync';
 import { IngredientsContext } from '../../contexts/IngredientsContext'
 
 export default function SearchIngredients(props){
+
+  useFocusEffect(
+    useCallback(() => {
+      axios.get('https://lit-river-70719.herokuapp.com/')
+
+      .then(res => {
+        console.log(ingredients);
+        setIngredients(res.data[0])
+        setRecipes(res.data.slice(1,));
+        console.log(ingredients)
+      })
+      .catch(err => console.log(err, "error"));
+    },[])
+  )
+
+
   const {recipes, setRecipes} = props;
   const {modalState, setModalState, whichModal, setWhichModal } = props;
   // const [ingredients, setIngredients] = useState(props.ingredients);
   const [ingredients, setIngredients] = useContext(IngredientsContext);
-
   const profileSettings = getProfileStorageAsync()
   .then(x => x)  
   .catch(x=>console.error(x));
@@ -23,7 +39,7 @@ export default function SearchIngredients(props){
   .then(x=>x)
   .catch(x=>console.log(x));
 
-
+  
   return (
     <View style={styles.container}>
       {console.log("Search ingredients: ", ingredients)}
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
     margin: 15,
     padding: 15,
     minWidth: viewportWidth - 30,
-    minHeight: 135,
+    minHeight: 125,
     backgroundColor:'white',
     borderRadius:10,
     shadowColor: 'black',

@@ -1,13 +1,12 @@
 import React, { useState, useCallback, useContext } from 'react';
 import Modal from 'react-native-modal';
-import { StyleSheet, TouchableOpacity, View, SafeAreaView, ImageBackground, Dimensions } from 'react-native';
-import { NavBar, Icon, theme, Text } from 'galio-framework';
+import { StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Text } from 'galio-framework';
 import DropdownNumberComponent from './DropdownNumber';
 import {ModalContextProvider} from '../../contexts/modalContext';
 import ModalTextInput from './ModalTextInput';
-import { AsyncStorage } from 'react-native'
-import { IngredientsContext } from '../../contexts/IngredientsContext'
-
+import { IngredientsContext, IngredientsContextProvider } from '../../contexts/IngredientsContext'
+// THIS FILE IS UNUSED //
 
 const Modal = (props) => {
   const {modalState,whichModal, errorState } = props
@@ -15,7 +14,8 @@ const Modal = (props) => {
 
 
     return (
-        <Modal isVisible={modalState} style={{maxHeight:300, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
+    <IngredientsContextProvider>
+      <Modal isVisible={modalState} style={{maxHeight:300, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
             <Text style={styles.modalText}>{whichModal==='addModal' ? 'Add more ingredients to your next search!' : 'Change the number of recipes generated'}</Text>
@@ -31,10 +31,11 @@ const Modal = (props) => {
           </ModalContextProvider>
         </View>
       </Modal>
+    </IngredientsContextProvider>
     )
 };
 
-
+export default Modal
 
 const styles = StyleSheet.create({
     nav : {

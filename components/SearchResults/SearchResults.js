@@ -16,7 +16,8 @@ import DropdownNumberComponent from './DropdownNumber';
 import {ModalContextProvider} from '../../contexts/modalContext';
 import ModalTextInput from './ModalTextInput';
 import { AsyncStorage } from 'react-native'
-import { IngredientsContextProvider } from '../../contexts/IngredientsContext'
+import { IngredientsContextProvider, IngredientsContext } from '../../contexts/IngredientsContext'
+
 
 const setNumberStorage = async (modal, setModal, setError) => {
   try {
@@ -34,17 +35,20 @@ const addNewIngredient = (modal, setModal, setError) => {
 
 export default function SearchResults(props){
 
-  useFocusEffect(
-    useCallback(() => {
-      axios.get('https://lit-river-70719.herokuapp.com/')
 
-      .then(res => {
-        setIngredients(res.data[0])
-        setRecipes(res.data.slice(1,));
-      })
-      .catch(err => console.log(err, "error"));
-    },[])
-  )
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     axios.get('https://lit-river-70719.herokuapp.com/')
+
+  //     .then(res => {
+  //       console.log(ingredients);
+  //       setIngredients(res.data[0])
+  //       setRecipes(res.data.slice(1,));
+  //       console.log(ingredients)
+  //     })
+  //     .catch(err => console.log(err, "error"));
+  //   },[])
+  // )
 
   //Get current favourited recipes
   useFocusEffect(
@@ -61,7 +65,7 @@ export default function SearchResults(props){
   )
 
   const [recipes, setRecipes] = useState([]);
-  const [ingredients, setIngredients] = useState("");
+  const [ingredients, setIngredients] = useContext(IngredientsContext);
   const [faveRecipes, setFaveRecipes] = useState("");
   const [savedRecipes, setSavedRecipes] = useState("");
   const [modalState, setModalState] = useState(false)
