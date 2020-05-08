@@ -137,7 +137,7 @@ export default function SearchResults(props){
               </View>
               :
                <DropdownNumberComponent/>}
-            <ModalButton buttonLabel='Close' setErrorState={setErrorState} modalState={modalState} setModalState={setModalState} setStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
+            <ModalButton buttonLabel={whichModal==='addModal' ? 'Close' : 'Save Settings'} setErrorState={setErrorState} modalState={modalState} setModalState={setModalState} setStorage={whichModal==='addModal' ? addNewIngredient : setNumberStorage}/>
             {/* <ModalNumberButton modalState={modalState} setModalState={setModalState}/> */}
           </ModalContextProvider>
         </View>
