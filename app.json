@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Recipe Capture",
-    "icon": "./components/photos/logo1024.png",
+    "icon": "./components/photos/1024logo.png",
     "slug": "recipeCapture",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -10,7 +10,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "splash": {
       "image": "./assets/splash.png",
