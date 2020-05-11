@@ -24,10 +24,8 @@ export default function SearchIngredients(props){
       axios.get('https://lit-river-70719.herokuapp.com/')
 
       .then(res => {
-        console.log(ingredients);
         setIngredients(res.data[0])
         setRecipes(res.data.slice(1,));
-        console.log(ingredients)
       })
       .catch(err => console.log(err, "error"));
     },[])
@@ -53,7 +51,6 @@ export default function SearchIngredients(props){
 
   const searchAgain = () =>{
     setLoadingState(true);
-    console.log(loadingState);
     Animated.loop( Animated.timing(isAnimated, {
       toValue: 1, 
       duration: 1000, 
@@ -72,7 +69,6 @@ export default function SearchIngredients(props){
     axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings, numberSettings}})
     .then((res)=>{
       setLoadingState(false);
-      console.log(loadingState);
       setRecipes(res.data.slice(1,));
       // setLoadingState(false);
     })
@@ -84,7 +80,6 @@ export default function SearchIngredients(props){
 
   return (
     <View style={styles.container}>
-      {console.log("Search ingredients: ", ingredients)}
       <FlatList horizontal
         showsHorizontalScrollIndicator={false}
         data={ingredients}
@@ -118,7 +113,6 @@ export default function SearchIngredients(props){
       :
       <Animated.Image 
       style={{transform:[{rotate:spin}], alignSelf:'center', height:'100%'}}
-
       source={require("../photos/status.png")}
       resizeMode="contain"
       />

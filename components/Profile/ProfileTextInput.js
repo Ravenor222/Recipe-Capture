@@ -4,7 +4,6 @@ import { StorageContext } from '../../contexts/storageContext';
 
 const ProfileInput = () => {
     const [state, setState] = useContext(StorageContext);
-    console.log(state)
     const stateSetter =  (value) => {
         setState(state =>({...state, allergies:value}))
     }
