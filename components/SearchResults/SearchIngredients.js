@@ -54,12 +54,20 @@ export default function SearchIngredients(props){
   const searchAgain = () =>{
     setLoadingState(true);
     console.log(loadingState);
-    Animated.timing(isAnimated, {
-      toValue:1,
-      duration:1000,
-      easing: Easing.linear,
-      useNativeDriver: true
-    }).start()
+    Animated.loop( Animated.timing(isAnimated, {
+      toValue: 1, 
+      duration: 1000, 
+      easing: Easing.linear, 
+      useNativeDriver: true, 
+    }) ).start()
+    
+    
+    // Animated.timing(isAnimated, {
+    //   toValue:1,
+    //   duration:1000,
+    //   easing: Easing.linear,
+    //   useNativeDriver: true
+    // }).start()
   
     axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings, numberSettings}})
     .then((res)=>{
@@ -97,6 +105,7 @@ export default function SearchIngredients(props){
       />
 
   <View style={styles.secondtier}>
+      <View style={{backgroundColor:'transparent', fontSize:16}}><Text style={{opacity:0}}>search again</Text></View>
       {!loadingState ?
       <Button 
       title ='Search Again'
@@ -108,9 +117,8 @@ export default function SearchIngredients(props){
       </Button>
       :
       <Animated.Image 
-      style={{transform:[{rotate:spin}]}}
+      style={{transform:[{rotate:spin}], alignSelf:'center', height:'100%'}}
       source={require("../photos/status.png")}
-      // style={{width:125, height:140, backgroundColor:'transparent', backgroundSize:'cover'}}
       resizeMode="contain"
       />
       }
@@ -121,7 +129,7 @@ export default function SearchIngredients(props){
       style={styles.insertButton}
       title="Add"
       titleStyle={{fontSize:16}}
-      buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
+      buttonStyle={{backgroundColor:'lightsalmon', padding: 11, borderRadius: 8, marginHorizontal:8}}
       onPress={()=>{
         setModalState(!modalState);
         setWhichModal('addModal')
@@ -166,10 +174,12 @@ const styles = StyleSheet.create({
   },
   secondtier:{
     flexDirection:'row',
-    justifyContent:'flex-end'
+    justifyContent:'space-between',
+
   }, 
   searchButton :{
-    marginHorizontal: 25,
+    // marginHorizontal: 25,
+
     // alignSelf:'center',
     // position:'absolute',
     // top:0,
