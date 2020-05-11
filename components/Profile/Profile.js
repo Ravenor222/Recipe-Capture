@@ -7,6 +7,8 @@ import ProfileInput from './ProfileTextInput'
 import ProfileIntolerances from './CheckboxIntolerances'
 import DropdownDietComponent from './DropdownDiet';
 import { StorageContextProvider } from '../../contexts/storageContext';
+import { NavigationContainer, useNavigationState } from '@react-navigation/native';
+
 
 let styles = StyleSheet.create({
   backgroundImage: {
@@ -36,6 +38,7 @@ let styles = StyleSheet.create({
 
 export default function Profile(props){
   const [selected, setSelected] = useState(new Map());
+  // const navRoutes = useNavigationState(state => state);
 
   return(
     <Block safe>
@@ -43,7 +46,12 @@ export default function Profile(props){
         <NavBar style = {styles.nav}
             title="Profile"
             left={(
-              <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+              <TouchableOpacity onPress={() => {
+                props.navigation.openDrawer();
+                // console.log("----------------");
+                // console.log(navRoutes.history[navRoutes.history.length-1]);
+                // console.log("----------------");
+              }}>
                 <Icon 
                   name="menu"
                   family="feather"

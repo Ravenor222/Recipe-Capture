@@ -17,6 +17,7 @@ import {ModalContextProvider} from '../../contexts/modalContext';
 import ModalTextInput from './ModalTextInput';
 import { AsyncStorage } from 'react-native'
 import { IngredientsContextProvider } from '../../contexts/IngredientsContext'
+import { StackActions } from '@react-navigation/native';
 
 
 const setNumberStorage = async (modal, setModal, setError, numState) => {
@@ -93,10 +94,11 @@ export default function SearchResults(props){
       <NavBar safe style = {styles.nav}
           title="Recipes"
           left={(
-            <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+            // props.navigation.openDrawer()
+            <TouchableOpacity onPress={() =>props.navigation.dispatch(StackActions.popToTop())}>
               <Icon 
-                name="menu"
-                family="feather"
+                name="home"
+                family="AntDesign"
                 size={25}
                 color={theme.COLORS.WHITE}
               />

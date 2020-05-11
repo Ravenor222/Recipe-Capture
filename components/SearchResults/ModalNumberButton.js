@@ -8,7 +8,6 @@ const ModalNumberButton = (props) => {
     const stringNumberState = JSON.stringify(numberState)
     const storeData = async () => {
        try {
-        console.log(numberState)
 
          await AsyncStorage.setItem('number', stringNumberState );
        } catch (error) {

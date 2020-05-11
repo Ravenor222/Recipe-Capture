@@ -14,7 +14,6 @@ export default class LoadingScreen extends React.Component{
   componentDidMount() {
     let socket = io("https://lit-river-70719.herokuapp.com/");
     const params = this.props.route.params
-    console.log({info:this.props.route.params.photo})
     axios.post('https://lit-river-70719.herokuapp.com/', {data: {photo:this.props.route.params.photo, state:params.state, profileState: params.profileState, numberState:params.numberState}, headers: {'Content-type': 'application/x-www-form-urlencoded'}})
                 .then(res => console.log('success'))
                 .catch(err => {console.log(err, 'axios err 1')});
