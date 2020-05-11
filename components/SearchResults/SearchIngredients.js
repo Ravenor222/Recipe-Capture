@@ -2,7 +2,7 @@ import React, { useState,useCallback ,useContext } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { Button } from 'react-native-elements';
 import { theme } from 'galio-framework'
-import { FlatList, View, StyleSheet, Dimensions, Text, Animated } from 'react-native';
+import { FlatList, View, StyleSheet, Dimensions, Text, Animated, Easing } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconMI from 'react-native-vector-icons/MaterialIcons';
 const { width: viewportWidth } = Dimensions.get('window');
@@ -11,23 +11,13 @@ import { getProfileStorageAsync } from '../helpers/getProfileStorageAsync';
 import { getNumberStorageAsync } from '../helpers/getNumberStorageAsync';
 
 import { IngredientsContext } from '../../contexts/IngredientsContext'
+import loadingSpinner from '../photos/status.png'
 
 export default function SearchIngredients(props){
 
 
-const searchAgain = () =>{
-  // setLoadingState(true);
-  console.log('logged');
-  axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings, numberSettings}})
-  .then((res)=>{
-    setRecipes(res.data.slice(1,));
-    // setLoadingState(false);
-  })
-  .catch((err)=> {
-    console.log(err, "axios err 2")
-  });
 
-};
+
 
   useFocusEffect(
     useCallback(() => {
@@ -42,7 +32,6 @@ const searchAgain = () =>{
       .catch(err => console.log(err, "error"));
     },[])
   )
-    const ex = () => {return console.log('hello')}
 
   const [isAnimated, setIsAnimated] = useState(new Animated.Value(0))
   const {recipes, setRecipes} = props;
@@ -57,6 +46,34 @@ const searchAgain = () =>{
   .then(x=>x)
   .catch(x=>console.log(x));
   
+  const spin = isAnimated.interpolate({
+    inputRange:[0,1],
+    outputRange:['0deg', '360deg']
+  })
+
+  const searchAgain = () =>{
+    setLoadingState(true);
+    console.log(loadingState);
+    Animated.timing(isAnimated, {
+      toValue:1,
+      duration:1000,
+      easing: Easing.linear,
+      useNativeDriver: true
+    }).start()
+  
+    axios.post('https://lit-river-70719.herokuapp.com/recipes', {data:{ingredients, profileSettings, numberSettings}})
+    .then((res)=>{
+      setLoadingState(false);
+      console.log(loadingState);
+      setRecipes(res.data.slice(1,));
+      // setLoadingState(false);
+    })
+    .catch((err)=> {
+      console.log(err, "axios err 2")
+    });
+  
+  };
+
   return (
     <View style={styles.container}>
       {console.log("Search ingredients: ", ingredients)}
@@ -80,14 +97,24 @@ const searchAgain = () =>{
       />
 
   <View style={styles.secondtier}>
+      {!loadingState ?
       <Button 
-      title ='Search Again' 
+      title ='Search Again'
       style={styles.searchButton}
       buttonStyle={{backgroundColor:'lightsalmon', padding: 10, borderRadius: 8}}
       onPress={searchAgain}
       >
-      <Text>search Again</Text>
+      search Again
       </Button>
+      :
+      <Animated.Image 
+      style={{transform:[{rotate:spin}]}}
+      source={require("../photos/status.png")}
+      // style={{width:125, height:140, backgroundColor:'transparent', backgroundSize:'cover'}}
+      resizeMode="contain"
+      />
+      }
+      
 
      
     <Button
