@@ -118,6 +118,7 @@ export default function SearchIngredients(props){
       :
       <Animated.Image 
       style={{transform:[{rotate:spin}], alignSelf:'center', height:'100%'}}
+
       source={require("../photos/status.png")}
       resizeMode="contain"
       />
@@ -129,7 +130,7 @@ export default function SearchIngredients(props){
       style={styles.insertButton}
       title="Add"
       titleStyle={{fontSize:16}}
-      buttonStyle={{backgroundColor:'lightsalmon', padding: 11, borderRadius: 8, marginHorizontal:8}}
+      buttonStyle={{backgroundColor:'lightsalmon', padding: 11, borderRadius: 8, marginLeft:8}}
       onPress={()=>{
         setModalState(!modalState);
         setWhichModal('addModal')
