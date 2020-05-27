@@ -3,13 +3,14 @@ import { ProfileContextProvider } from '../../contexts/ProfileContext';
 import DropdownCuisineComponent from './DropdownCuisine';
 import DropdownTimeComponent from './DropDownTime'
 import ButtonComponent from './ButtonComponent';
-import { TouchableOpacity, ImageBackground, StyleSheet, Image, View } from 'react-native';
+import { TouchableOpacity, ImageBackground, StyleSheet, Image, View, Dimensions } from 'react-native';
 import { NavBar, Icon, Block } from 'galio-framework';
 import background from '../photos/food3.jpg'
 import logo from '../photos/logo2.png';
 
 
 export default function Home ({navigation}){
+  const {width}  = Dimensions.get('screen');
 
   let styles = StyleSheet.create({
     backgroundImage: {
@@ -20,7 +21,7 @@ export default function Home ({navigation}){
     button: {
       alignSelf: "center",
       backgroundColor: 'lightsalmon',
-      width:'55%',
+      width:width/2.5,
       borderRadius:10,
       marginVertical:30,
     },
@@ -33,6 +34,11 @@ export default function Home ({navigation}){
       borderWidth: 1.5,
       borderColor: '#606060',
       borderRadius: 10
+    },
+    buttonContainer: {
+      display:'flex',
+      flexDirection:'row',
+      justifyContent:'space-evenly'
     }
   });
 
@@ -97,9 +103,27 @@ export default function Home ({navigation}){
             list={cuisine} 
             style={styles.dropdown}
             label="Select Cuisine" />
+
+              <View style={styles.buttonContainer}>
+
             <ButtonComponent 
             style={styles.button} 
-            navigation={navigation}/>
+            navigation={navigation}
+            screen='Camera'
+            label='Camera'/>
+
+            <ButtonComponent 
+            style={styles.button}
+            navigation={navigation}
+            screen='SearchResults'
+            label='Manual Selection'
+            />
+
+              </View>
+
+
+
+
           </ProfileContextProvider>
         </View>
       </ImageBackground>

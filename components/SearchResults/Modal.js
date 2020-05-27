@@ -19,6 +19,7 @@ const Modal = (props) => {
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
             <Text style={styles.modalText}>{whichModal==='addModal' ? 'Add more ingredients to your next search!' : 'Change the number of recipes generated'}</Text>
+          <Text>{whichModal==='addModal' ? 'Use singular tense only (i.e "Potato"}' : 'Please allow for additional time when increasing the number of recipes'}</Text>
             {whichModal==='addModal' ?
               <View>
                <ModalTextInput ingredients={ingredients} errorState={errorState} setErrorState={setErrorState}/>

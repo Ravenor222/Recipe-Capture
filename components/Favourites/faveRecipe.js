@@ -114,11 +114,12 @@ export default function faveRecipe({route, navigation}){
       <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
       <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
-      <Button style={{width:'25%', marginHorizontal:8, backgroundColor: saved.includes(recipe.id) ? "grey" : "lightsalmon", shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
+      <Button style={{width:width/3, marginHorizontal:8, backgroundColor: saved.includes(recipe.id) ? "grey" : "lightsalmon", shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
         toggleMakeLaterList(recipe, recipe.id, saved.includes(recipe.id) ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => console.log("alert closed")}]));
+        console.log(width);
       }}><Text style={{fontWeight:'bold', color:'white'}}>{saved.includes(recipe.id) ? "Saved" : "Save for later"}</Text></Button>
         
-      <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
+      <Button style={{ width:width/3, marginHorizontal:8, backgroundColor: faveState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
         toggleFavourites(recipe, recipe.id, faveState.favourited ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleFave()}]));
       }}><Text style={{fontWeight:'bold', color:'white'}}>{faveState.text}</Text></Button>
 

@@ -13,9 +13,9 @@ const ButtonComponent = (props) => {
         color='info'
         iconSize={50}
         style={props.style} 
-        onPress={() => {props.navigation.navigate('Camera', {state: state, navigation:navigation});}} 
+        onPress={() => {props.navigation.navigate(`${props.screen}`, {state: state, navigation:navigation});}} 
         >
-        Start Now 
+          {props.label}
       </Button>
     )
 }
