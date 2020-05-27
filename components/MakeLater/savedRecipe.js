@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
             <Text style={styles.time}>Ready in {recipe.time} minutes</Text>
             <Block style={{flex:1, flexDirection:'row', justifyContent: 'center'}}>
 
-            <Button style={{width:'25%', marginHorizontal:8, backgroundColor: makeLaterState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
+            <Button style={{width:width/3.5, marginHorizontal:8, backgroundColor: makeLaterState.color, shadowColor:'transparent', height:30, marginTop:10}} onPress={()=> {
               toggleMakeLaterList(recipe, recipe.id, makeLaterState.saved ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => toggleMakeLater()}]));
             }}><Text style={{fontWeight:'bold', color:'white'}}>{makeLaterState.text}</Text></Button>
               
-            <Button style={{ width:'25%', marginHorizontal:8, backgroundColor: favourites.includes(recipe.id) ? "grey" : "lightsalmon", shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
-              toggleFavourites(recipe, recipe.id, favourites.includes(recipe.id) ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => console.log("alert closed")}]));
+            <Button style={{ width:width/3.5, marginHorizontal:8, backgroundColor: favourites.includes(recipe.id) ? "grey" : "lightsalmon", shadowColor:'transparent', height:30, marginTop:10}} onPress={() => {
+              toggleFavourites(recipe, recipe.id, favourites.includes(recipe.id) ? false : true).then(res => Alert.alert("Done!", "Your preferences have been updated", [{text: "Close", onPress: () => console.log(width)}]));
             }}><Text style={{fontWeight:'bold', color:'white'}}>{favourites.includes(recipe.id) ? "Favourited" : "Favourite"}</Text></Button>
 
             </Block>
