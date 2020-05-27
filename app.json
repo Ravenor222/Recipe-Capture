@@ -25,7 +25,9 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.code-haven.recipecapture"
+      "bundleIdentifier":"com.nick-danvers.recipecapture",
+      "buildNumber": "0.1.0"
+
     }
   }
 }
