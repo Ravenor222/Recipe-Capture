@@ -128,10 +128,13 @@ export default function SearchResults(props){
     
     <IngredientsContextProvider>
       
-      <Modal isVisible={modalState} style={{maxHeight:300, maxWidth:300, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
+      <Modal isVisible={modalState} style={{maxHeight:height/1.85, maxWidth:width/1.25, marginLeft:37, marginTop:100, backgroundColor:'white'}} onBackdropPress={()=>setModalState(!modalState)}>
         <View style={{ flex: 1, justifyContent:'space-around'}}>
           <ModalContextProvider>
+            
             <Text style={styles.modalText}>{whichModal==='addModal' ? 'Add more ingredients to your next search!' : 'Change the number of recipes generated'}</Text>
+            <Text style={{alignSelf:'center'}}>{whichModal==='addModal' ? 'Use singular tense only (i.e "Potato"}' : 'Please allow for additional time when increasing the number of recipes'}</Text>
+
             {whichModal==='addModal' ?
               <View>
                <ModalTextInput errorState={errorState} setErrorState={setErrorState}/>

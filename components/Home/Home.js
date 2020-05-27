@@ -38,7 +38,7 @@ export default function Home ({navigation}){
     buttonContainer: {
       display:'flex',
       flexDirection:'row',
-      justifyContent:'space-around'
+      justifyContent:'space-evenly'
     }
   });
 

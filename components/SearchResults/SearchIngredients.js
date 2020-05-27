@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     position:'absolute',
-    top:Dimensions.get('window').height-235
+    top:Dimensions.get('window').height-Dimensions.get('window').height/2.85
   },
   button:{
     alignSelf: "center",
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   }, 
   searchButton :{
     // marginHorizontal: 25,
-
+    // width:viewportWidth/2.5
     // alignSelf:'center',
     // position:'absolute',
     // top:0,
