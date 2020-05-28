@@ -10,7 +10,7 @@
       "android",
       "web"
     ],
-    "version": "0.1.0",
+    "version": "0.1.1",
     "orientation": "portrait",
     "splash": {
       "image": "./assets/splash.png",
@@ -26,7 +26,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier":"com.nick-danvers.recipecapture",
-      "buildNumber": "0.1.0"
+      "buildNumber": "0.1.1"
 
     }
   }
