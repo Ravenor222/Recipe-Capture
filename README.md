@@ -36,6 +36,9 @@
  - uses Clarifai to extract tags from an image, and sends them to Spoonacular for recipes.
     - https://lit-river-70719.herokuapp.com/
 
+## Apple Store
+ - Currently under beta with Testflight with a small portion of users.
+
  ## Authors
  
     - Nicholas Danvers = {
